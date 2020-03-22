@@ -24,7 +24,10 @@ namespace WebApplication1.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Flight>()
-               .HasKey(x => x.FlightNumber);
+                .HasKey(x => x.FlightNumber);
+                
+
+            base.OnModelCreating(builder);
         }
     }
 }
