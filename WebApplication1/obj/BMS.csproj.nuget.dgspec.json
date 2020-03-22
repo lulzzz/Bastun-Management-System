@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mitko\\source\\repos\\DMOME\\WebApplication1\\BMS.csproj": {}
+    "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mitko\\source\\repos\\DMOME\\WebApplication1\\BMS.csproj": {
+    "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mitko\\source\\repos\\DMOME\\WebApplication1\\BMS.csproj",
+        "projectUniqueName": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj",
         "projectName": "BMS",
-        "projectPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\WebApplication1\\BMS.csproj",
+        "projectPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj",
         "packagesPath": "C:\\Users\\Mitko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

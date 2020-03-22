@@ -4,8 +4,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <button id="arrBtn"type="button" class="btn btn-primary btn-lg" onclick="displayArrMovement()">Display</button>
-            <form asp-controller="Movements" asp-action="Arrival" id="arrMovementForm" style="display:none">
+            <form asp-controller="Movements" asp-action="Arrival" id="arrMovementForm" >
                 <div class="form-group">
                     <label for="flightNumber">Enter flight number:</label>
                     <input type="text" class="form-control w-100" />
@@ -26,47 +25,7 @@
                     <label for="supplementaryInformation">Enter supplementary information:</label>
                     <textarea class="form-control w-100" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-            </form>
-        </div>
-        <div class="col">
-            <button id="ldmBtn" type="button" class=" btn btn-primary" onclick="showHideLDMForm()">Display LDM</button>
-            <form id="ldmForm" asp-controller="Movements" asp-action="InboundLDMStats" style="display:none">
-                <div class="form-group">
-                    <label for="ldm">Inbound LDM:</label>
-                    <textarea class="form-control w-100" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="col">
-            <button id="cpmBtn" type="button" class="btn btn-primary" onclick="showHideCPMForm()">Display CPM</button>
-            <form id="cpmForm" asp-controller="Movements" asp-action="InboundCPMStats" style="display:none">
-                <div class="form-group">
-                    <label for="cpm">Inbound CPM:</label>
-                    <textarea class="form-control w-100" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="col">
-            <button id="ucmButton" type="button" class="btn btn-primary" onclick="showHideUCM()">Display UCM</button>
-            <form id="ucmForm" asp-controller="Movements" asp-action="InboundUCMStats" style="display:none">
-                <div class="form-group">
-                    <label for="ucm">Inbound UCM:</label>
-                    <textarea class="form-control w-100" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-        <div class="col">
-            <button id="psm" type="button" class="btn btn-primary" onclick="showHidePSMForm()">Display PSM</button>
-            <form id="psmForm" asp-controller="Movements" asp-action="InboundPSMStats" style="display:none">
-                <div class="form-group">
-                    <label for="psm">Inbound PSM:</label>
-                    <textarea class="form-control w-100" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
             </form>
         </div>
     </div>

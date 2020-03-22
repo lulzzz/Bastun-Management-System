@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
             return this.View();
         }
 
+
         [HttpPost]
         public void Arrival(ArrivalMovementInputModel arrMovementInputModel)
         {
