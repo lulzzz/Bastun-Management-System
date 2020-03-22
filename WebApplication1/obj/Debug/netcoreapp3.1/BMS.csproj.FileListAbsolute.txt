@@ -74,8 +74,6 @@ C:\Users\Mitko\source\repos\DMOME\WebApplication1\obj\Debug\netcoreapp3.1\BMS.pd
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.csprojAssemblyReference.cache
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\staticwebassets\BMS.StaticWebAssets.Manifest.cache
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\staticwebassets\BMS.StaticWebAssets.xml
-C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.RazorAssemblyInfo.cache
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.RazorAssemblyInfo.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.AssemblyInfoInputs.cache
@@ -146,3 +144,5 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BM
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.csproj.CopyComplete
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Messages\InboundMessages.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Messages\OutboundMessages.cshtml.g.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cache
