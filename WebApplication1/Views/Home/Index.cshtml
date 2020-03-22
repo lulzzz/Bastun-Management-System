@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-lg" id="registerButton" onclick="displayRegisterFlight()">Add flight</button>
+            <br />
+            <form asp-controller="Flight" asp-action="Register" id="flightToAdd" style="display:none">
+                <div class="form-group">
+                    <label for="flightNumber">Enter flight number:</label>
+                    <input type="text" class="form-control w-50"/>
+                </div>
+                <div class="form-group">
+                    <label for="acReg">Enter A/C registration:</label>
+                    <input type="text" class="form-control w-50"/>
+                </div>
+                <div class="form-group">
+                    <label for="A/C Type">Enter A/C type:</label>
+                    <input type="text" class="form-control w-50"/>
+                </div>
+                <div class="form-group">
+                    <label for="Origin">Enter origin:</label>
+                    <input type="text" class="form-control w-50" />
+                </div>
+                <div class="form-group">
+                    <label for="Destination">Enter destination:</label>
+                    <input type="text" class="form-control w-50" />
+                </div>
+                <div class="form-group">
+                    <label for="STA">Enter STA:</label>
+                    <input type="text" class="form-control w-50" />
+                </div>
+                <div class="form-group">
+                    <label for="STD">Enter STD:</label>
+                    <input type="text" class="form-control w-50"/>
+                </div>
+                <div class="form-group">
+                    <label for="bookedPax">Booked PAX:</label>
+                    <input type="number" class="form-control w-50"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Register flight</button>
+            </form>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary float-right btn-lg table-responsive" id="displayButton" onclick="changeDisplayButtonContent()">Display daily</button>
+            <table class="table table-bordered table-hover text-center" id="dailyMovements" style="display:none">
+                <thead class="thead-dark ">
+                    <tr>
+                        <th scope="col">Flight Number</th>
+                        <th scope="col">A/C Registration</th>
+                        <th scope="col">A/C Type</th>
+                        <th scope="col">Origin</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">STA</th>
+                        <th scope="col">STD</th>
+                        <th scope="col">Flight details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/site.js">
+
+</script>
