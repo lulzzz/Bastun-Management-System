@@ -224,5 +224,7 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cache
