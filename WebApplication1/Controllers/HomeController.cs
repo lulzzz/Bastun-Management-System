@@ -31,6 +31,9 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public void RegisterFlight(FlightInputModel flightInputModel)
         {
+            //TODO: Use automapper to create flight, fix date formats to utc
+            //create service for get all flights from db 
+            //create view model to pass to all flights to daily using new format
             this.flightService.RegisterFlight(flightInputModel);
         }
 

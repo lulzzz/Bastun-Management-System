@@ -14,8 +14,6 @@
     {
       
         [Key]
-        [Required]
-        [RegularExpression(FlightInputDataValidation.FlightNumberValidation,ErrorMessage =(InvalidErrorMessages.FlightNumber))]
         public string FlightNumber { get; set; }
 
         [Required]
@@ -26,7 +24,7 @@
         public string AircraftRegistration { get; set; }
 
         [Required]
-        [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage =(InvalidErrorMessages.AircraftVersion))]
+        [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage = (InvalidErrorMessages.AircraftVersion))]
         public string Version{ get; set; }
 
         [Required]
