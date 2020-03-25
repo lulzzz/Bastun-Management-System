@@ -6,9 +6,21 @@
     using System.Threading.Tasks;
     public class InvalidErrorMessages
     {
+        public const string FlightNumberRequired = "Flight number is required!";
+
+        public const string AircraftRegistrationRequired = "Aicraft registration is required!";
+
+        public const string OriginRequired = "Origin station is required!";
+
+        public const string DestinationRequired = "Destination station is required!";
+
+        public const string BookedPAXRequired = "Number of booked PAX is required!";
+
         public const string FlightNumber = "Invalid flight number entered!";
 
-        public const string AircraftRegistration = "Invalid aircraft registration entered!";
+        public const string AircraftRegistration = "Invalid aircraft registration";
+
+        public const string AircraftType = "Invalid aircraft type entered!";
 
         public const string AircraftVersion = "Invalid aircraft version entered!";
 

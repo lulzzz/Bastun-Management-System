@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using BMS.Models;
+using BMS.Models.ViewModels.Flights;
 using BMS.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,13 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            var listOfFlights = this.flightService.GetAllFlights();
+
+            if (listOfFlights != null)
+            {
+                var allFlightsViewModel = new FlightViewModel(listOfFlights);
+                return this.View(allFlightsViewModel);
+            }
             return this.View();
         }
 

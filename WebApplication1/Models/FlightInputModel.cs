@@ -11,27 +11,28 @@
 
     public class FlightInputModel
     {
-        [Required]
+        [Required(ErrorMessage = InvalidErrorMessages.FlightNumberRequired)]
         [RegularExpression(FlightInputDataValidation.FlightNumberValidation, ErrorMessage = (InvalidErrorMessages.FlightNumber))]
         public string FlightNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage =InvalidErrorMessages.AircraftRegistrationRequired)]
         [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation, ErrorMessage =(InvalidErrorMessages.AircraftRegistration))]
         public string AircraftRegistration { get; set; }
 
         [Required]
+        [RegularExpression(FlightInputDataValidation.AircraftTypeValidation, ErrorMessage =(InvalidErrorMessages.AircraftType))]
         public AircraftType ACType { get; set; }
 
-        [Required]
+        [Required(ErrorMessage =InvalidErrorMessages.AircraftVersion)]
         [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage = (InvalidErrorMessages.AircraftVersion))]
         public string Version { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage =InvalidErrorMessages.OriginRequired)]
         [StringLength(3, ErrorMessage = InvalidErrorMessages.Origin)]
         public string Origin { get; set; }
 
-        [Required]
+        [Required(ErrorMessage =InvalidErrorMessages.DestinationRequired)]
         [StringLength(3, ErrorMessage = InvalidErrorMessages.Destination)]
         public string Destination { get; set; }
 
@@ -39,8 +40,8 @@
 
         public DateTime STD { get; set; }
 
-        [Required]
-        [Range(0, 189, ErrorMessage = (InvalidErrorMessages.BookedPax))]
+        [Required(ErrorMessage =InvalidErrorMessages.BookedPAXRequired)]
+        [Range(1, 189, ErrorMessage = (InvalidErrorMessages.BookedPax))]
         public int BookedPax { get; set; }
     }
 }

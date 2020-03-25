@@ -10,6 +10,7 @@
     using WebApplication1.Data;
     using BMS.Data.Models;
     using BMS.Data.Models.Contracts;
+    using Microsoft.EntityFrameworkCore;
 
     public class FlightsService : IFlightService
     {
@@ -37,6 +38,30 @@
 
             this.dbContext.Flights.Add(currFlightToAdd);
             this.dbContext.SaveChanges();
+        }
+
+        public IEnumerable<FlightInputModel> GetAllFlights()
+        {
+            var allFlightsFromDb =
+                this
+                .dbContext
+                .Flights
+                .Select(fvm => new FlightInputModel
+                {
+                    FlightNumber = fvm.FlightNumber,
+                    ACType = fvm.ACType,
+                    AircraftRegistration = fvm.AircraftRegistration,
+                    Origin = fvm.Origin,
+                    Destination = fvm.Destination,
+                    Version = fvm.Version,
+                    STA = fvm.STA,
+                    STD = fvm.STD,
+                    BookedPax = fvm.BookedPax
+                })
+                .ToList();
+
+
+            return allFlightsFromDb;
         }
     }
 }

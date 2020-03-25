@@ -8,5 +8,7 @@
     public interface IFlightService
     {
         void RegisterFlight(FlightInputModel flightInput);
+
+        IEnumerable<FlightInputModel> GetAllFlights();
     }
 }
