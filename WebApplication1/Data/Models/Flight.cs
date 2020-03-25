@@ -15,24 +15,27 @@
       
         [Key]
         [Required]
-        [RegularExpression(FlightInputDataValidation.FlightNumberValidation,ErrorMessage =(InvalidErrorMessages.FlightNumber)]
-        public string FlightNumber { get; }
+        [RegularExpression(FlightInputDataValidation.FlightNumberValidation,ErrorMessage =(InvalidErrorMessages.FlightNumber))]
+        public string FlightNumber { get; set; }
 
         [Required]
         public AircraftType ACType { get; set; }
 
         [Required]
-        [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation,ErrorMessage =(InvalidErrorMessages.AircraftRegistration)]
+        [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation,ErrorMessage =(InvalidErrorMessages.AircraftRegistration))]
         public string AircraftRegistration { get; set; }
 
         [Required]
-        public string AircraftConfiguration { get; set; }
+        [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage =(InvalidErrorMessages.AircraftVersion))]
+        public string Version{ get; set; }
 
         [Required]
-        public string Origin { get; }
+        [StringLength(3,ErrorMessage = InvalidErrorMessages.Origin)]
+        public string Origin { get; set; }
 
         [Required]
-        public string Destination { get; }
+        [StringLength(3, ErrorMessage =InvalidErrorMessages.Destination)]
+        public string Destination { get; set; }
 
         [Required]
         public DateTime STA { get; set; }
@@ -41,7 +44,7 @@
         public DateTime STD { get; set; }
 
         [Required]
-       
+        [Range(0,189,ErrorMessage =(InvalidErrorMessages.BookedPax))]
         public int BookedPax { get; set; }
     }
 }

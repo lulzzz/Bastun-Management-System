@@ -11,6 +11,8 @@
         public const string AircraftRegistrationValidation = @"^[A-Z]{1,2}\-[A-Z0-9]{1,10}$";
 
         //TODO: Make validation for each manufacturer 
-        public const string AircraftTypeValidation = @"";
+        public const string AircraftTypeValidation = @"[B737]|[A320]";
+
+        public const string AircraftVersionValidation = @"[Y][1][8][0-9]";
     }
 }

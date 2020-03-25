@@ -1,47 +1,49 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using BMS.Models;
+@model FlightInputModel
 <div class="container-fluid">
     <div class="row">
         <div class="col">
             <button type="button" class="btn btn-primary btn-lg" id="registerButton" onclick="displayRegisterFlight()">Add flight</button>
             <br />
-            <form asp-controller="Flight" asp-action="Register" id="flightToAdd" style="display:none">
+            <form asp-controller="Home" asp-action="RegisterFlight" id="flightToAdd" style="display:none">
                 <div class="form-group">
-                    <label for="flightNumber">Flight number:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label>Flight number:</label>
+                    <input asp-for="@Model.FlightNumber" type="text" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="acReg">A/C registration:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label >A/C registration:</label>
+                    <input type="text" asp-for="@Model.AircraftRegistration" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="A/C Type">A/C type:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label>A/C type:</label>
+                    <input asp-for="@Model.ACType" type="text" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="acConfig">A/C configuration:</label>
-                    <input type="text"  class="form-control w-50"/>
+                    <label>Version:</label>
+                    <input asp-for="@Model.Version" type="text"  class="form-control w-50"/>
                 </div>
                 <div class="form-group">
-                    <label for="Origin">Origin:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label >Origin:</label>
+                    <input asp-for="@Model.Origin" type="text" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="Destination">Destination:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label>Destination:</label>
+                    <input asp-for="@Model.Destination" type="text" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="STA">STA:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label>STA:</label>
+                    <input asp-for="@Model.STA" type="datetime" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="STD">STD:</label>
-                    <input type="text" class="form-control w-50" />
+                    <label >STD:</label>
+                    <input asp-for="@Model.STD" type="datetime" class="form-control w-50" />
                 </div>
                 <div class="form-group">
-                    <label for="bookedPax">Booked PAX:</label>
-                    <input type="number" class="form-control w-50" />
+                    <label >Booked PAX:</label>
+                    <input asp-for="@Model.BookedPax" type="number" class="form-control w-50" />
                 </div>
                 <button type="submit" class="btn btn-primary w-50">Register flight</button>
             </form>

@@ -14,7 +14,7 @@
 
         public string AircraftRegistration { get; set; }
 
-        public string AircraftConfiguration { get; set; }
+        public string Version { get; set; }
 
         public string Origin { get; }
 

@@ -14,7 +14,7 @@
 
         public AircraftType ACType { get; set; }
 
-        public string ACConfiguration { get; set; }
+        public string Version { get; set; }
 
         public string Origin { get; set; }
 
