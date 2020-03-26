@@ -1,20 +1,17 @@
-﻿using System;
+﻿using BMS.GlobalData.ErrorMessages;
+using BMS.GlobalData.Validation;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Models.MovementsInputModels
+namespace BMS.Models.MovementsInputModels
 {
     public class DepartureMovementInputModel
     {
-        public DateTime OffBlockTime { get; set; }
-
-        public DateTime TakeoffTime { get; }
-
-        public DateTime ETA { get; }
-
-        public string SupplementaryInformation { get; set; }
-
-        public int PaxOnBoard { get; set; }
+        [Required(ErrorMessage = InvalidDepartureMovementErrorMessages.DepartureMovementIsRequired)]
+        [RegularExpression(MessagesValidation.DepMVTMessageValidation,ErrorMessage = InvalidDepartureMovementErrorMessages.DepartureMovementIsInvalid)]
+        public string Message { get; set; }
     }
 }

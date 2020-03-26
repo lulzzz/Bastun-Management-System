@@ -6,12 +6,11 @@ using System.ComponentModel.DataAnnotations;
 using BMS.GlobalData.ErrorMessages;
 using BMS.GlobalData.Validation;
 
-namespace WebApplication1.Models.MovementsInputModels
+namespace BMS.Models.MovementsInputModels
 {
     public class ArrivalMovementInputModel
     {
-        [Required(ErrorMessage =InvalidDepartureMovementErrorMessages.DepartureMovementIsRequired)]
-        [RegularExpression(MessagesValidation.DepMVTMessageValidation,ErrorMessage = InvalidDepartureMovementErrorMessages.DepartureMovementIsInvalid)]
+       
         public string Message { get; set; }
     }
 }
