@@ -34,18 +34,9 @@ namespace BMS.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterFlight(FlightInputModel flightInputModel)
+        public void RegisterFlight(FlightInputModel flightInputModel)
         {
-            if (this.ModelState.IsValid)
-            {
-                this.flightService.RegisterFlight(flightInputModel);
-                return this.RedirectToAction("/Home/Index");
-
-            } else
-            {
-                //Do magic
-            }
-            return this.RedirectToAction("/Home/Index");
+            this.flightService.RegisterFlight(flightInputModel);
         }
 
        
