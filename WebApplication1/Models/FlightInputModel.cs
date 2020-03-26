@@ -19,7 +19,7 @@
         [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation, ErrorMessage =(InvalidErrorMessages.AircraftRegistration))]
         public string AircraftRegistration { get; set; }
 
-        [Required]
+        [Required(ErrorMessage =InvalidErrorMessages.AircraftTypeIsRequired)]
         [RegularExpression(FlightInputDataValidation.AircraftTypeValidation, ErrorMessage =(InvalidErrorMessages.AircraftType))]
         public AircraftType ACType { get; set; }
 

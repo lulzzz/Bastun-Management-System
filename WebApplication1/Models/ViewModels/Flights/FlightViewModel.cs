@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
-
-namespace BMS.Models.ViewModels.Flights
+﻿namespace BMS.Models.ViewModels.Flights
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     public class FlightViewModel
     {
-        public FlightViewModel(IEnumerable<FlightInputModel> flightInputModels)
+        public FlightViewModel(List<FlightInputModel> flights)
         {
-            this.Flights = flightInputModels;
+            this.Flights = flights;
         }
 
-        public IEnumerable<FlightInputModel> Flights { get; set; }
+        public List<FlightInputModel> Flights { get; set; }
     }
 }

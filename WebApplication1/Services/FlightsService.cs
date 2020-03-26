@@ -40,7 +40,7 @@
             this.dbContext.SaveChanges();
         }
 
-        public IEnumerable<FlightInputModel> GetAllFlights()
+        public List<FlightInputModel> GetAllFlights()
         {
             var allFlightsFromDb =
                 this

@@ -9,6 +9,6 @@
     {
         void RegisterFlight(FlightInputModel flightInput);
 
-        IEnumerable<FlightInputModel> GetAllFlights();
+        List<FlightInputModel> GetAllFlights();
     }
 }
