@@ -1,35 +1,16 @@
 ﻿@{ 
-    ViewData["Arrival"] = "ArrivalMovement";
+    ViewData["Arrival"] = "Arrival";
 }
 <div class="container-fluid">
     <div class="row">
         <div class="col">
-            <form asp-controller="Movements" asp-action="Arrival" id="arrMovementForm" >
+            <form asp-controller="Movements" asp-action="Arrival">
                 <div class="form-group">
-                    <label for="flightNumber">Flight number:</label>
-                    <input type="text" class="form-control w-100" />
-                </div>
-                <div class="form-group">
-                    <label for="todaysDate">Arrival date:</label>
-                    <input type="text" class="form-control w-100" />
-                </div>
-                <div class="form-group">
-                    <label for="touchdownTime">Touchdown time:</label>
-                    <input type="text" class="form-control w-100" />
-                </div>
-                <div class="form-group">
-                    <label for="onblockTime">On-block time:</label>
-                    <input type="text" class="form-control w-100" />
-                </div>
-                <div class="form-group">
-                    <label for="supplementaryInformation">Supplementary information:</label>
-                    <textarea class="form-control w-100" rows="3"></textarea>
+                    <label>Enter arrival movement:</label>
+                    <textarea class="form-control z-depth-1 w-100" rows="7"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
             </form>
         </div>
     </div>
 </div>  
-<script src="~/js/displayAndRemoveArrButtons.js">
-    
-</script>
