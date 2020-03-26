@@ -10,7 +10,8 @@ namespace BMS.Models.MovementsInputModels
 {
     public class ArrivalMovementInputModel
     {
-       
+        [Required(ErrorMessage =InvalidArrivalMovementErrorMessages.ArrivalMovementIsRequired)]
+        [RegularExpression(MessagesValidation.ArrMVTMessageValidation,ErrorMessage =InvalidArrivalMovementErrorMessages.ArrivalMovementIsInvalid)]
         public string Message { get; set; }
     }
 }
