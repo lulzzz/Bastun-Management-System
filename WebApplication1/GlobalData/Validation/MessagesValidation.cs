@@ -14,9 +14,12 @@
 
         public const string CPMFlightInfoValidation = @"?<msg>[CPM]{3})[\r\n]?(?<arln>[A-Z]{1,4})(?<fltNmb>[0-9]{1,5})\/(?<date>[0-9]{2})\.(?<reg>[A-Z]{1,5})\.(?<version>[YJ]{1}[0-9]{3})[\r\n]?";
 
-        public const string CPMContainerInfoValidation = @"(?<containers>[\-][0-9]{2}[LR]{1}\/[A-Z]{3}[0-9]{4}[\r\n]?)";
+        public const string CPMContainerInfoValidation = @"(?<containers>[\-][0-9]{2}[LR]{1}\/[A-Z]{3}[0-9]{5}[\r\n]?)";
 
         public const string CPMSupplementaryInformationValidation = @"(?<SI>[SI]{2}[A-Z\s]+)";
+
+        //Dok would be proud ;) 
+        public const string UCMValidation = @"(?<msg>[UCM]{3})[\r\n]?(?<flt>[A-Z]{1,3}[0-9]{1,5})\/(?<date>[0-9]{2})\.(?<station>[A-Z]{3})[\r\n](?<cntIn>[IN]{2}[\r\n]?[A-Z0-9\.]+)[\r\n]?(?<cntOut>[OUT]{3}[\r\n]?[A-Z0-9\.]+)";
     }
 }
     

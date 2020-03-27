@@ -8,5 +8,29 @@ namespace WebApplication1.Controllers
 {
     public class OperationsController : Controller
     {
+
+        [HttpGet]
+        public IActionResult Loadsheet()
+        {
+            return this.View();
+        }
+
+        [HttpGet]
+        public IActionResult LoadingInstruction()
+        {
+            return this.View();
+        }
+
+        [HttpGet]
+        public IActionResult PAXManifest()
+        {
+            return this.View();
+        }
+
+        [HttpGet]
+        public IActionResult DepartureControl()
+        {
+            return this.View();
+        }
     }
 }

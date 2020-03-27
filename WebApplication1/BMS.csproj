@@ -21,7 +21,6 @@
 
   <ItemGroup>
     <Folder Include="Data\Models\Messages\" />
-    <Folder Include="Views\OperatingDepartment\" />
   </ItemGroup>
 
 </Project>
