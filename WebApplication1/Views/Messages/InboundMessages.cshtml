@@ -8,6 +8,7 @@
     </form>
 </div>
 <br />
+<hr />
 <br />
 <div class="col">
     <form id="cpmForm" asp-controller="Movements" asp-action="InboundCPMStats">
@@ -19,6 +20,7 @@
     </form>
 </div>
 <br />
+<hr />
 <br />
 <div class="col">
     <form id="ucmForm" asp-controller="Movements" asp-action="InboundUCMStats">
@@ -30,14 +32,3 @@
     </form>
 </div>
 <br />
-<br />
-<div class="col">
-    <form id="psmForm" asp-controller="Movements" asp-action="InboundPSMStats">
-        <div class="form-group">
-            <label for="psm">Inbound PSM:</label>
-            <textarea class="form-control w-100" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
-    </form>
-</div>
-<script src="~/js/displayAndRemoveArrButtons.js"></script>
