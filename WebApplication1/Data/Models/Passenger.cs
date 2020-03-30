@@ -12,6 +12,7 @@
         public Passenger()
         {
             this.PaxId = Guid.NewGuid().ToString();
+            this.Suitcases = new List<Suitcase>();
         }
 
         [Required]
@@ -37,5 +38,7 @@
 
         [Required]
         public Gender Gender { get; set; }
+
+        public ICollection<Suitcase> Suitcases { get; set; }
     }
 }

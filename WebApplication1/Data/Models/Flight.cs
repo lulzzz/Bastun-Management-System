@@ -13,9 +13,11 @@
     public class Flight : IFlight
     {
 
-        public Flight()
+        public Flight(IArrMovement arrMovement, IDepMovement depMovement)
         {
             this.Passengers = new List<Passenger>();
+            this.ArrivalMovement = arrMovement;
+            this.DepartureMovement = depMovement;
         }
       
         [Key]

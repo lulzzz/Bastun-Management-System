@@ -16,6 +16,10 @@ namespace WebApplication1.Data
 
         public DbSet<DepartureMovement> DepartureMovements { get; set; }
 
+        public DbSet<Passenger> Passengers { get; set; }
+
+        public DbSet<Suitcase> Suitcases { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
