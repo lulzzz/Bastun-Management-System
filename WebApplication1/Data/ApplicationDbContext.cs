@@ -46,6 +46,13 @@ namespace WebApplication1.Data
                 .WithOne(x => x.Flight)
                 .HasForeignKey<ArrivalMovement>(arrMvt => arrMvt.FlightRef);
 
+
+            builder.Entity<ArrivalMovement>()
+                .HasKey(x => x.Id);
+
+            builder.Entity<DepartureMovement>()
+                .HasKey(x => x.Id);
+
             base.OnModelCreating(builder);
         }
     }
