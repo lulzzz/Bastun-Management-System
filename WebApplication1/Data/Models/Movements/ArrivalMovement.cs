@@ -1,6 +1,9 @@
 ﻿namespace BMS.Data.Models
 {
     using BMS.Data.Models.Contracts;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,14 +11,26 @@
    
     public class ArrivalMovement : IArrMovement
     {
+        [Key]
+        
+        public int Id { get; set; }
+
+        [Required]
+        [ForeignKey("FlightNumber")]
         public string FlightNumber { get; }
 
+        public Flight Flight { get; set; }
+
+        [Required]
         public DateTime DateOfMovement { get; }
 
+        [Required]
         public DateTime TouchdownTime { get; }
 
+        [Required]
         public DateTime OnBlockTime { get; set; }
 
+        
         public string SupplementaryInformation { get; set; }
     }
 }
