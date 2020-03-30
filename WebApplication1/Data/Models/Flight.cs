@@ -12,9 +12,6 @@
 
     public class Flight : IFlight
     {
-
-
-
         public int FlightId { get; set; }
 
         [Required(ErrorMessage = InvalidErrorMessages.FlightNumberRequired)]
