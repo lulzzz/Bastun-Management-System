@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BMS.Data.Models;
+using BMS.Data.Models.Messages;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,8 @@ namespace WebApplication1.Data
         public DbSet<ArrivalMovement> ArrivalMovements { get; set; }
 
         public DbSet<DepartureMovement> DepartureMovements { get; set; }
+
+        public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -42,6 +45,10 @@ namespace WebApplication1.Data
                 .WithOne(x => x.Flight)
                 .HasForeignKey<ArrivalMovement>(arrMvt => arrMvt.FlightRef);
 
+            builder.Entity<Flight>()
+                .HasOne(x => x.LDM)
+                .WithOne(x => x.Flight)
+                .HasForeignKey<LoadDistributionMessage>(ldm => ldm.FlightRef);
 
             base.OnModelCreating(builder);
         }

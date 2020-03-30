@@ -9,6 +9,7 @@
     using System.ComponentModel.DataAnnotations;
     using BMS.GlobalData;
     using BMS.GlobalData.ErrorMessages;
+    using BMS.Data.Models.Messages;
 
     public class Flight : IFlight
     {
@@ -47,6 +48,8 @@
         public ArrivalMovement ArrivalMovement { get; set; }
 
         public DepartureMovement DepartureMovement { get; set; }
+
+        public LoadDistributionMessage LDM { get; set; }
 
 
         [Required]
