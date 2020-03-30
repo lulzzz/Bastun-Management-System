@@ -4,15 +4,19 @@ namespace BMS.Data.Models.Contracts
 {
     public interface IArrMovement
     {
-        //public string FlightNumber { get; }
+        public int Id { get; set; }
 
-        //public DateTime DateOfMovement { get; }
+        public int FlightRef { get; set; }
 
-        //public DateTime TouchdownTime { get; }
+        public Flight Flight { get; set; }
 
-        //public DateTime OnBlockTime { get; set; }
+        public DateTime DateOfMovement { get; }
 
-        //public string SupplementaryInformation { get; }
+        public DateTime TouchdownTime { get; }
+
+        public DateTime OnBlockTime { get; set; }
+
+        public string SupplementaryInformation { get; }
 
 
     }

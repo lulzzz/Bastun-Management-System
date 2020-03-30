@@ -11,18 +11,16 @@
     public class DepartureMovement : IDepMovement
     {
         [Key]
-        [Required]
         public int Id { get; set; }
 
-
-
-        //public string FlightNumber { get; }
-
-        //[Required]
-        //public Flight Flight { get; set; }
+        [Required]
+        public int FlightRef { get; set; }
 
         [Required]
-        public DateTime DepartureDate { get; }
+        public Flight Flight { get; set; }
+
+        [Required]
+        public DateTime DepartureDate { get; set; }
 
         [Required]
         public DateTime OffBlockTime { get; set; }
@@ -33,5 +31,7 @@
         [Required]
         [Range(0,189)]
         public int TotalPAX { get; set; }
+
+        public string SupplementaryInformation { get; set; }
     }
 }

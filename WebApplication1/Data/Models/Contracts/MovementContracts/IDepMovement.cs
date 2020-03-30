@@ -13,8 +13,6 @@
 
         public Flight Flight { get; set; }
 
-        public string FlightNumber { get; set; }
-
         public DateTime DepartureDate { get; set; }
 
         public DateTime OffBlockTime { get; set; }

@@ -22,10 +22,6 @@
 
 
         [Required]
-        public string FlightNumber { get; set; }
-
-
-        [Required]
         public DateTime DateOfMovement { get; }
 
         [Required]

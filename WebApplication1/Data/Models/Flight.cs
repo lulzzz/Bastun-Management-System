@@ -21,9 +21,12 @@
 
         public int FlightId { get; set; }
 
+        [Required(ErrorMessage = InvalidErrorMessages.FlightNumberRequired)]
+        [RegularExpression(FlightInputDataValidation.FlightNumberValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
         public string FlightNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessage =InvalidErrorMessages.AircraftTypeIsRequired)]
+        [RegularExpression(FlightInputDataValidation.AircraftTypeValidation, ErrorMessage =InvalidErrorMessages.AircraftType)]
         public AircraftType ACType { get; set; }
 
         [Required]
@@ -48,7 +51,11 @@
         [Required]
         public DateTime STD { get; set; }
         
-        
+        [Required]
+        public ArrivalMovement ArrivalMovement { get; set; }
+
+        [Required]
+        public DepartureMovement DepartureMovement { get; set; }
 
         [Required]
         public ICollection<Passenger> Passengers { get; set; }

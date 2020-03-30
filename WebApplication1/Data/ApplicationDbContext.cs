@@ -12,6 +12,14 @@ namespace WebApplication1.Data
 
         public DbSet<Flight> Flights { get; set; }
 
+        public DbSet<ArrivalMovement> ArrivalMovements { get; set; }
+
+        public DbSet<DepartureMovement> DepartureMovements { get; set; }
+
+        public DbSet<Passenger> Passengers { get; set; }
+
+        public DbSet<Suitcase> Suitcases { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -27,7 +35,16 @@ namespace WebApplication1.Data
             builder.Entity<Flight>()
                 .HasKey(x => x.FlightId);
 
-         
+            builder.Entity<Flight>()
+                .HasOne(x => x.DepartureMovement)
+                .WithOne(x => x.Flight)
+                .HasForeignKey<DepartureMovement>(depMvt => depMvt.FlightRef);
+
+
+            builder.Entity<Flight>()
+                .HasOne(x => x.ArrivalMovement)
+                .WithOne(x => x.Flight)
+                .HasForeignKey<ArrivalMovement>(arrMvt => arrMvt.FlightRef);
 
             base.OnModelCreating(builder);
         }
