@@ -7,14 +7,23 @@
 
     public interface IDepMovement
     {
-        //public string FlightNumber { get; }
+        public int Id { get; set; }
 
-        //public DateTime DepartureDate { get; }
+        public int FlightRef { get; set; }
 
-        //public DateTime OffBlockTime { get; set; }
+        public Flight Flight { get; set; }
 
-        //public DateTime TakeoffTime { get; set; }
+        public string FlightNumber { get; set; }
 
-        //public int TotalPAX { get; set; }
+        public DateTime DepartureDate { get; set; }
+
+        public DateTime OffBlockTime { get; set; }
+
+        public DateTime TakeoffTime { get; set; }
+
+        public int TotalPAX { get; set; }
+
+        public string SupplementaryInformation { get; set; }
+
     }
 }

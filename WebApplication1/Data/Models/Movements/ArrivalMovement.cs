@@ -14,7 +14,17 @@
         [Key]
         public int Id { get; set; }
 
-     
+        [Required]
+        public int FlightRef { get; set; }
+
+        [Required]
+        public Flight Flight { get; set; }
+
+
+        [Required]
+        public string FlightNumber { get; set; }
+
+
         [Required]
         public DateTime DateOfMovement { get; }
 
@@ -27,6 +37,6 @@
         
         public string SupplementaryInformation { get; set; }
 
-        public string FlightNumber => throw new NotImplementedException();
+      
     }
 }
