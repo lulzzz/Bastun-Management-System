@@ -22,6 +22,5 @@ namespace BMS.Data.Models.Contracts
 
         public Gender Gender { get; set; }
 
-        public ICollection<Suitcase> Suitcases { get; set; }
     }
 }

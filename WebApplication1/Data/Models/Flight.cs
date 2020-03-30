@@ -13,10 +13,6 @@
     public class Flight : IFlight
     {
 
-        public Flight()
-        {
-            this.Passengers = new List<Passenger>();
-        }
 
 
         public int FlightId { get; set; }
@@ -50,15 +46,11 @@
 
         [Required]
         public DateTime STD { get; set; }
-        
-        [Required]
+
         public ArrivalMovement ArrivalMovement { get; set; }
 
-        [Required]
         public DepartureMovement DepartureMovement { get; set; }
 
-        [Required]
-        public ICollection<Passenger> Passengers { get; set; }
 
         [Required]
         [Range(0,189,ErrorMessage =(InvalidErrorMessages.BookedPax))]

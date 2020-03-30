@@ -16,10 +16,6 @@ namespace WebApplication1.Data
 
         public DbSet<DepartureMovement> DepartureMovements { get; set; }
 
-        public DbSet<Passenger> Passengers { get; set; }
-
-        public DbSet<Suitcase> Suitcases { get; set; }
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -46,12 +42,6 @@ namespace WebApplication1.Data
                 .WithOne(x => x.Flight)
                 .HasForeignKey<ArrivalMovement>(arrMvt => arrMvt.FlightRef);
 
-
-            builder.Entity<ArrivalMovement>()
-                .HasKey(x => x.Id);
-
-            builder.Entity<DepartureMovement>()
-                .HasKey(x => x.Id);
 
             base.OnModelCreating(builder);
         }

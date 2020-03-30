@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Models\Messages\" />
+    <Folder Include="Data\Models\Movements\" />
   </ItemGroup>
 
 </Project>
