@@ -13,14 +13,14 @@
     public class Flight : IFlight
     {
 
-        public Flight(IArrMovement arrMovement, IDepMovement depMovement)
+        public Flight()
         {
             this.Passengers = new List<Passenger>();
-            this.ArrivalMovement = arrMovement;
-            this.DepartureMovement = depMovement;
         }
-      
-        [Key]
+
+
+        public int FlightId { get; set; }
+
         public string FlightNumber { get; set; }
 
         [Required]
@@ -47,12 +47,8 @@
 
         [Required]
         public DateTime STD { get; set; }
-
-        [Required]
-        public IArrMovement ArrivalMovement { get; set; }
-
-        [Required]
-        public IDepMovement DepartureMovement { get; set; }
+        
+        
 
         [Required]
         public ICollection<Passenger> Passengers { get; set; }

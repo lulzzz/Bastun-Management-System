@@ -23,45 +23,12 @@
 
         public void RegisterFlight(FlightInputModel flightInput)
         {
-            var currFlightToAdd = new Flight
-            {
-                FlightNumber = flightInput.FlightNumber,
-                ACType = flightInput.ACType,
-                AircraftRegistration = flightInput.AircraftRegistration,
-                Version = flightInput.Version,
-                Origin = flightInput.Origin,
-                Destination = flightInput.Destination,
-                STA = flightInput.STA,
-                STD = flightInput.STD,
-                BookedPax = flightInput.BookedPax
-            };
-
-            this.dbContext.Flights.Add(currFlightToAdd);
-            this.dbContext.SaveChanges();
+           
         }
 
         public List<FlightInputModel> GetAllFlights()
         {
-            var allFlightsFromDb =
-                this
-                .dbContext
-                .Flights
-                .Select(fvm => new FlightInputModel
-                {
-                    FlightNumber = fvm.FlightNumber,
-                    ACType = fvm.ACType,
-                    AircraftRegistration = fvm.AircraftRegistration,
-                    Origin = fvm.Origin,
-                    Destination = fvm.Destination,
-                    Version = fvm.Version,
-                    STA = fvm.STA,
-                    STD = fvm.STD,
-                    BookedPax = fvm.BookedPax
-                })
-                .ToList();
-
-
-            return allFlightsFromDb;
+            return null;
         }
     }
 }

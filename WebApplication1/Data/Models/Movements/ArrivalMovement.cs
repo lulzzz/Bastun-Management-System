@@ -12,15 +12,9 @@
     public class ArrivalMovement : IArrMovement
     {
         [Key]
-        
         public int Id { get; set; }
 
-        [Required]
-        [ForeignKey("FlightNumber")]
-        public string FlightNumber { get; }
-
-        public Flight Flight { get; set; }
-
+     
         [Required]
         public DateTime DateOfMovement { get; }
 
@@ -32,5 +26,7 @@
 
         
         public string SupplementaryInformation { get; set; }
+
+        public string FlightNumber => throw new NotImplementedException();
     }
 }

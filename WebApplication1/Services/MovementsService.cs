@@ -1,11 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Services
+﻿namespace BMS.Services
 {
-    public class MovementsService
+    using BMS.Services.Contracts;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    public class MovementsService : IMovementService
     {
+
+        public void GetArrivalMovementByFlightNumber(string flightNumber)
+        {
+
+        }
+
+        public void GetDepartureMovementByFlightNumber(string flightNumber)
+        {
+
+        }
     }
 }

@@ -14,11 +14,12 @@
         [Required]
         public int Id { get; set; }
 
-        [Required]
-        public string FlightNumber { get; }
 
-        [Required]
-        public Flight Flight { get; set; }
+
+        //public string FlightNumber { get; }
+
+        //[Required]
+        //public Flight Flight { get; set; }
 
         [Required]
         public DateTime DepartureDate { get; }

@@ -12,14 +12,6 @@ namespace WebApplication1.Data
 
         public DbSet<Flight> Flights { get; set; }
 
-        public DbSet<ArrivalMovement> ArrivalMovements { get; set; }
-
-        public DbSet<DepartureMovement> DepartureMovements { get; set; }
-
-        public DbSet<Passenger> Passengers { get; set; }
-
-        public DbSet<Suitcase> Suitcases { get; set; }
-
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -33,8 +25,9 @@ namespace WebApplication1.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Flight>()
-                .HasKey(x => x.FlightNumber);
-                
+                .HasKey(x => x.FlightId);
+
+         
 
             base.OnModelCreating(builder);
         }
