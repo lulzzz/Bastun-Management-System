@@ -20,6 +20,10 @@
 
         public string Destination { get; }
 
+        public ArrivalMovement ArrivalMovement { get; set; }
+
+        public DepartureMovement DepartureMovement { get; set; }
+
         //Scheduled Time Of Arrival
         public DateTime STA { get; }
 
