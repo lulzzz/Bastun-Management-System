@@ -12,6 +12,11 @@
 
     public class Flight : IFlight
     {
+
+        public Flight()
+        {
+            this.Passengers = new List<Passenger>();
+        }
       
         [Key]
         public string FlightNumber { get; set; }
@@ -40,6 +45,15 @@
 
         [Required]
         public DateTime STD { get; set; }
+
+        [Required]
+        public IArrMovement ArrivalMovement { get; set; }
+
+        [Required]
+        public IDepMovement DepartureMovement { get; set; }
+
+        [Required]
+        public ICollection<Passenger> Passengers { get; set; }
 
         [Required]
         [Range(0,189,ErrorMessage =(InvalidErrorMessages.BookedPax))]
