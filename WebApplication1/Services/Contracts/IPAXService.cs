@@ -7,6 +7,12 @@
     using System.Threading.Tasks;
     public interface IPAXService
     {
-        void AddPassenger(PAXInputModel paxInputModel);
+        string GetPaxZoneBySeatNumber(string paxSeatNumber);
+
+        void AddPAXToZoneAlpha(PAXInputModel paxInputModel);
+
+        void AddPAXToZoneBravo(PAXInputModel paxInputModel);
+
+        void AddPAXToZoneCharlie(PAXInputModel pAXInputModel);
     }
 }

@@ -14,22 +14,12 @@ namespace WebApplication1.Controllers
             return this.View();
         }
 
+        
         [HttpGet]
-        public IActionResult Remove()
+        public IActionResult OffloadEdit()
         {
             return this.View();
         }
-
-        [HttpGet]
-        public IActionResult Edit()
-        {
-            return this.View();
-        }
-
-        [HttpGet]
-        public IActionResult Display()
-        {
-            return this.View();
-        }
+      
     }
 }

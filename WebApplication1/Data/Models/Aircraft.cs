@@ -1,11 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Data.Models
+﻿namespace BMS.Data.Models
 {
-    public class Aircraft
+    using BMS.Data.Models.Contracts;
+    using BMS.Data.Models.Enums;
+    using BMS.GlobalData;
+    using BMS.GlobalData.ErrorMessages;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Threading.Tasks;
+    public class Aircraft : IAircraft
     {
+        [Key]
+        public int AircraftId { get; set; }
+        public int FlightId { get; set; }
+
+        public Flight Flight { get; set; }
+
+        [Required(ErrorMessage = InvalidErrorMessages.AircraftTypeIsRequired)]
+        [RegularExpression(FlightInputDataValidation.AircraftTypeValidation, ErrorMessage = InvalidErrorMessages.AircraftType)]
+        public AircraftType Type { get; set; }
+
+        [Required]
+        [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation, ErrorMessage = (InvalidErrorMessages.AircraftRegistration))]
+        public string AircraftRegistration { get; set; }
+
+        [Required]
+        [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage = (InvalidErrorMessages.AircraftVersion))]
+        public string Version { get; set; }
+
+
+        public AircraftCabin Cabin { get; set; }
     }
 }

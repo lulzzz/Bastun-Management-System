@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     public interface IAircraft
     {
-        public int Id { get; set; }
+        public int AircraftId { get; set; }
 
         public int FlightId { get; set; }
 

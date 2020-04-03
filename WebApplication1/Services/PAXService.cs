@@ -22,5 +22,10 @@
         {
             throw new NotImplementedException();
         }
+
+        public string GetPaxZoneBySeatNumber(string paxSeatNumber)
+        {
+            return null; 
+        }
     }
 }

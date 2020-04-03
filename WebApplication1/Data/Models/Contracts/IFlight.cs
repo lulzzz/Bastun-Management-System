@@ -10,12 +10,6 @@
     {
         public string FlightNumber { get; }
 
-        public AircraftType ACType { get; set; }
-
-        public string AircraftRegistration { get; set; }
-
-        public string Version { get; set; }
-
         public string Origin { get; }
 
         public string Destination { get; }

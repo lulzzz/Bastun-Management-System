@@ -24,17 +24,6 @@
         [RegularExpression(FlightInputDataValidation.FlightNumberValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
         public string FlightNumber { get; set; }
 
-        [Required(ErrorMessage =InvalidErrorMessages.AircraftTypeIsRequired)]
-        [RegularExpression(FlightInputDataValidation.AircraftTypeValidation, ErrorMessage =InvalidErrorMessages.AircraftType)]
-        public AircraftType ACType { get; set; }
-
-        [Required]
-        [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation,ErrorMessage =(InvalidErrorMessages.AircraftRegistration))]
-        public string AircraftRegistration { get; set; }
-
-        [Required]
-        [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage = (InvalidErrorMessages.AircraftVersion))]
-        public string Version{ get; set; }
 
         [Required]
         [StringLength(3,ErrorMessage = InvalidErrorMessages.Origin)]
@@ -57,8 +46,8 @@
         public LoadDistributionMessage LDM { get; set; }
 
 
-        [Required]
-        [Range(0,189,ErrorMessage =(InvalidErrorMessages.BookedPax))]
+        [Required(ErrorMessage = InvalidErrorMessages.BookedPAXRequired)]
+        [Range(0,189,ErrorMessage =InvalidErrorMessages.BookedPax)]
         public int BookedPax { get; set; }
 
         public ICollection<Passenger> Passengers { get; set; }

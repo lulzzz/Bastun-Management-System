@@ -2,26 +2,11 @@
 @model FlightInputModel
 <div class="row">
     <div class="col">
-        <form asp-controller="Flights" asp-action="RegisterFlight" id="flightToAdd">
+        <form asp-controller="Flights" asp-action="RegisterFlight">
             <div class="form-group">
                 <label>Flight number:</label>
                 <input asp-for="@Model.FlightNumber" type="text" class="form-control w-100" />
                 <span asp-validation-for="@Model.FlightNumber" class="alert-danger"></span>
-            </div>
-            <div class="form-group">
-                <label>A/C registration:</label>
-                <input type="text" asp-for="@Model.AircraftRegistration" class="form-control w-100" />
-                <span asp-validation-for="@Model.AircraftRegistration" class="alert-danger"></span>
-            </div>
-            <div class="form-group">
-                <label>A/C type:</label>
-                <input asp-for="@Model.ACType" type="text" class="form-control w-100" />
-                <span asp-validation-for="@Model.ACType" class="alert-danger"></span>
-            </div>
-            <div class="form-group">
-                <label>Version:</label>
-                <input asp-for="@Model.Version" type="text" class="form-control w-100" />
-                <span asp-validation-for="@Model.Version" class="alert-danger"></span>
             </div>
             <div class="form-group">
                 <label>Origin:</label>

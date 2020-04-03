@@ -23,6 +23,10 @@ namespace WebApplication1.Data
 
         public DbSet<Suitcase> Suitcases { get; set; }
 
+        public DbSet<Aircraft> Aircraft { get; set; }
+
+        public DbSet<AircraftCabin> AircraftCabins { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
