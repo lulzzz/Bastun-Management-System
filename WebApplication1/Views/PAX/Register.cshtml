@@ -28,13 +28,24 @@
                 </div>
                 <div class="form-group">
                     <label>Gender</label>
-                    <input type="text" class="form-control w-50" />
+                    <input type="text" class="form-control w-100" />
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary w-100">Submit</button>
+                <button type="submit" class="btn btn-lg btn-primary w-100">Check-in</button>
             </form>
         </div>
         <div class="col">
-            suitcase
+            <h3 class="text-center">Bag drop</h3>
+            <form asp-controller="PAX" asp-action="Register">
+                <div class="form-group">
+                    <label>Flight number:</label>
+                    <input type="text" class="form-control w-100" />
+                </div>
+                <div class="form-group">
+                    <label>Weight</label>
+                    <input type="number" class="form-control w-100"/>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100">Register</button>
+            </form>
         </div>
     </div>
 </div>
