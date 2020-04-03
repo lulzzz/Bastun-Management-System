@@ -34,9 +34,29 @@ namespace BMS.Controllers
         }
 
         [HttpPost]
-        public void RegisterFlight(FlightInputModel flightInputModel)
+        public IActionResult RegisterFlight(FlightInputModel flightInputModel)
         {
-            this.flightService.RegisterFlight(flightInputModel);
+            if (this.ModelState.IsValid)
+            {
+                this.flightService.RegisterFlight(flightInputModel);
+                return this.RedirectToAction("RegisterAircraft", new { flightNumber = flightInputModel.FlightNumber});
+            } 
+            else
+            {
+                var listOfErrors = this.ModelState.Select(x => x.Value.Errors)
+                    .Where(v => v.Count > 0)
+                    .ToList();
+
+                return this.View(listOfErrors);
+            }
+
+           
+        }
+
+        [HttpGet]
+        public IActionResult RegisterAircraft(string flightNumber)
+        {
+            return this.View();
         }
 
        

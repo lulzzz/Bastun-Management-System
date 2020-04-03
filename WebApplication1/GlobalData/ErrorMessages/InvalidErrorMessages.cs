@@ -20,6 +20,10 @@
 
         public const string FlightNumber = "Invalid flight number entered!";
 
+        public const string FlightSTAIsRequired = "STA is required!";
+
+        public const string FlightSTDIsRequired = "STD is required!";
+
         public const string AircraftRegistration = "Invalid aircraft registration!";
 
         public const string AircraftType = "Invalid aircraft type entered!";

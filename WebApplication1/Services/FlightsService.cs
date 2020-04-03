@@ -23,7 +23,17 @@
 
         public void RegisterFlight(FlightInputModel flightInput)
         {
-           
+            var flightToAdd = new Flight
+            {
+                FlightNumber = flightInput.FlightNumber,
+                Origin = flightInput.Origin,
+                Destination = flightInput.Destination,
+                STA = flightInput.STA,
+                STD = flightInput.STD,
+                BookedPax = flightInput.BookedPax
+            };
+            this.dbContext.Flights.Add(flightToAdd);
+            this.dbContext.SaveChanges();
         }
 
         public List<FlightInputModel> GetAllFlights()

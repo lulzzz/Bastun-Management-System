@@ -236,3 +236,4 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Operations\PAXManifest.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Operations\DepartureControl.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\PAX\OffloadEdit.cshtml.g.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Flights\RegisterAircraft.cshtml.g.cs

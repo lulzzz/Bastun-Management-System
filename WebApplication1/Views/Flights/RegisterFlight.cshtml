@@ -33,6 +33,7 @@
                 <input asp-for="@Model.BookedPax" type="number" class="form-control w-100" />
                 <span asp-validation-for="@Model.BookedPax" class="alert-danger"></span>
             </div>
+            <div asp-validation-summary="All" class="text-danger">Error Messages</div>
             <button type="submit" class="btn btn-primary w-100">Register flight</button>
         </form>
     </div>

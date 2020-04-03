@@ -44,6 +44,8 @@
         public DepartureMovement DepartureMovement { get; set; }
 
         public LoadDistributionMessage LDM { get; set; }
+        
+        public Aircraft Aircraft { get; set; }
 
 
         [Required(ErrorMessage = InvalidErrorMessages.BookedPAXRequired)]
