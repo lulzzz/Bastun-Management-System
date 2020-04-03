@@ -8,7 +8,8 @@ namespace BMS.Data.Models.Contracts
 {
     public interface IPassenger
     {
-        public string PaxId { get; set; }
+
+        public int PaxId { get; set; }
 
         public string FirstName { get; }
 
@@ -21,6 +22,10 @@ namespace BMS.Data.Models.Contracts
         public string PassportNumber { get; set; }
 
         public Gender Gender { get; set; }
+
+        public PAXWeight Weight { get; set; }
+
+        public ICollection<Suitcase> Suitcases { get; set; }
 
     }
 }

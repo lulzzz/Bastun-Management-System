@@ -22,8 +22,10 @@
         public int Weight { get; set; }
 
         
+        [Required]
         public int PaxId { get; set; }
 
+        [Required]
         public Passenger Passenger { get; set; }
     }
 }

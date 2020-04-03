@@ -19,6 +19,10 @@ namespace WebApplication1.Data
 
         public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
 
+        public DbSet<Passenger> Passengers { get; set; }
+
+        public DbSet<Suitcase> Suitcases { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
