@@ -36,9 +36,35 @@
             this.dbContext.SaveChanges();
         }
 
+        public Flight GetFlightByFlightNumber(string flightNumber)
+        {
+            var flightFromDb =
+                this.dbContext.Flights
+                 .Where(x => x.FlightNumber == flightNumber)
+                 .FirstOrDefault();
+
+            return flightFromDb;
+        }
+
         public List<FlightInputModel> GetAllFlights()
         {
             return null;
+        }
+
+        public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight)
+        {
+            var currAircraft = new Aircraft
+            {
+                AircraftRegistration = aircraftInputModel.AircraftRegistration,
+                Type = aircraftInputModel.Type,
+                Version = aircraftInputModel.Version,
+                Cabin = new AircraftCabin(),
+                FlightId = flight.FlightId,
+                Flight = flight
+            };
+
+            this.dbContext.Aircraft.Add(currAircraft);
+            this.dbContext.SaveChanges();
         }
     }
 }

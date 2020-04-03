@@ -12,6 +12,8 @@
 
         void RegisterFlight(FlightInputModel flightInput);
 
+        void RegisterAircraft(AircraftInputModel aircraftInputModel,Flight flight);
+
         List<FlightInputModel> GetAllFlights();
     }
 }
