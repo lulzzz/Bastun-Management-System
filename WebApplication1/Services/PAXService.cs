@@ -8,9 +8,19 @@
     using System.Threading.Tasks;
     public class PAXService : IPAXService
     {
-        public void AddPassenger(PAXInputModel paxInputModel)
+        public void AddPAXToZoneAlpha(PAXInputModel paxInputModel)
         {
-           
+            throw new NotImplementedException();
+        }
+
+        public void AddPAXToZoneBravo(PAXInputModel paxInputModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddPAXToZoneCharlie(PAXInputModel pAXInputModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }
