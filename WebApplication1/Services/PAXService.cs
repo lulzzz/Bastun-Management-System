@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Services
+﻿namespace BMS.Services
 {
-    public class PAXService
+    using BMS.Models;
+    using BMS.Services.Contracts;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    public class PAXService : IPAXService
     {
+        public void AddPassenger(PAXInputModel paxInputModel)
+        {
+           
+        }
     }
 }
