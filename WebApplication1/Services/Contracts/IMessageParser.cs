@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Services.Contracts
+﻿namespace BMS.Services.Contracts
 {
-    interface IMessageParser
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    public interface IMessageParser
     {
+        void ParseMessage();
     }
 }

@@ -33,6 +33,9 @@ namespace WebApplication1
             services.AddTransient<IFlightService, FlightsService>();
             services.AddTransient<IMovementService, MovementsService>();
             services.AddTransient<IPAXService, PAXService>();
+            services.AddTransient<ILoadControlService, LoadControlService>();
+            services.AddTransient<ILoadsheetService, LoadsheetService>();
+            services.AddTransient<IMessageParser, MessageParser>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
