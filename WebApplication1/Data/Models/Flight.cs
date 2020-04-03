@@ -13,6 +13,11 @@
 
     public class Flight : IFlight
     {
+        public Flight()
+        {
+            this.Passengers = new List<Passenger>();
+        }
+
         public int FlightId { get; set; }
 
         [Required(ErrorMessage = InvalidErrorMessages.FlightNumberRequired)]
@@ -55,5 +60,7 @@
         [Required]
         [Range(0,189,ErrorMessage =(InvalidErrorMessages.BookedPax))]
         public int BookedPax { get; set; }
+
+        public ICollection<Passenger> Passengers { get; set; }
     }
 }

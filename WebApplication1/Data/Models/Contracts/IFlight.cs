@@ -32,5 +32,7 @@
 
         //Number of booked passengers 
         public int BookedPax { get; }
+
+        public ICollection<Passenger> Passengers { get; set; }
     }
 }
