@@ -29,7 +29,7 @@ namespace BMS.Controllers
         [HttpGet]
         public IActionResult DisplayDaily()
         {
-            var flight = this.flightService.GetFlightByFlightNumber("BY-1234");
+            
 
             var flights = this.flightService.GetAllFlights();
             var dailyFlightsViewModel = new FlightViewModel(flights);
@@ -43,18 +43,12 @@ namespace BMS.Controllers
             if (this.ModelState.IsValid)
             {
                 this.flightService.RegisterFlight(flightInputModel);
-                return this.RedirectToAction("RegisterAircraft", new { flightNumber = flightInputModel.FlightNumber});
+                return this.RedirectToAction("RegisterAircraft");
             } 
             else
             {
-                var listOfErrors = this.ModelState.Select(x => x.Value.Errors)
-                    .Where(v => v.Count > 0)
-                    .ToList();
-
-                return this.View(listOfErrors);
+                return this.View(flightInputModel);
             }
-
-           
         }
 
         [HttpGet]
@@ -80,15 +74,11 @@ namespace BMS.Controllers
                 }
             
 
-                return this.RedirectToAction("Arrival", "Movements", new { flightNumber = aircraftInputModel.FlightNumber });
+                return this.RedirectToAction("Arrival", "Movements");
             }
             else
             {
-                var listOfErrors = this.ModelState.Select(x => x.Value.Errors)
-                   .Where(v => v.Count > 0)
-                   .ToList();
-
-                return this.View(listOfErrors);
+                return this.View(aircraftInputModel);
             }
         }
 
