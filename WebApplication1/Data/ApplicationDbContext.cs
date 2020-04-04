@@ -58,6 +58,11 @@ namespace WebApplication1.Data
                 .WithOne(x => x.Flight)
                 .HasForeignKey<LoadDistributionMessage>(ldm => ldm.FlightRef);
 
+            builder.Entity<Flight>()
+                .HasOne(x => x.Aircraft)
+                .WithOne(x => x.Flight)
+                .HasForeignKey<Aircraft>(a => a.FlightId);
+
             base.OnModelCreating(builder);
         }
     }

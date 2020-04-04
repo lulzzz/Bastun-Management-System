@@ -11,7 +11,7 @@
 
         public int FlightRef { get; set; }
 
-        public Flight Flight { get; set; }
+        public virtual Flight Flight { get; set; }
 
         public DateTime DateOfMovement { get; set; }
 

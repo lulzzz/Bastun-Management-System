@@ -20,6 +20,18 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (var flight in Model.Flights)
+                {
+                    <tr>
+                        <th scope="col">@flight.FlightNumber</th>
+                        <th scope="col">@flight.Aircraft.AircraftRegistration</th>
+                        <th scope="col">@flight.Aircraft.Type</th>
+                        <th scope="col">@flight.Origin</th>
+                        <th scope="col">@flight.Destination</th>
+                        <th scope="col">@flight.STA</th>
+                        <th scope="col">@flight.STD</th>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

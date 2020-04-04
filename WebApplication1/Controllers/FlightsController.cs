@@ -12,10 +12,12 @@ namespace BMS.Controllers
     public class FlightsController : Controller
     {
         private readonly IFlightService flightService;
+        private readonly IAircraftService aircraftService;
 
-        public FlightsController(IFlightService flightService)
+        public FlightsController(IFlightService flightService, IAircraftService aircraftService)
         {
             this.flightService = flightService;
+            this.aircraftService = aircraftService;
         }
 
         [HttpGet]
@@ -27,10 +29,12 @@ namespace BMS.Controllers
         [HttpGet]
         public IActionResult DisplayDaily()
         {
-            var allFlightsFromDb = this.flightService.GetAllFlights();
-            var allFlightsViewModel = new FlightViewModel(allFlightsFromDb);
+            var flight = this.flightService.GetFlightByFlightNumber("BY-2130");
 
-            return this.View(allFlightsViewModel);
+            var flights = this.flightService.GetAllFlights();
+            var dailyFlightsViewModel = new FlightViewModel(flights);
+
+            return this.View(dailyFlightsViewModel);
         }
 
         [HttpPost]
@@ -68,12 +72,13 @@ namespace BMS.Controllers
 
                 if (flightByFlightNumber != null)
                 {
-                    this.flightService.RegisterAircraft(aircraftInputModel, flightByFlightNumber);
+                    this.aircraftService.RegisterAircraft(aircraftInputModel, flightByFlightNumber);
                 }
                 else
                 {
                     return this.View();
                 }
+            
 
                 return this.RedirectToAction("Arrival", "Movements", new { flightNumber = aircraftInputModel.FlightNumber });
             }

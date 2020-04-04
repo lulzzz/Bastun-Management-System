@@ -215,8 +215,6 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Sy
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Flights\DisplayDaily.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Flights\RegisterFlight.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
@@ -237,3 +235,18 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Ra
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Operations\DepartureControl.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\PAX\OffloadEdit.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Flights\RegisterAircraft.cshtml.g.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Castle.Core.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\BMS.MvcApplicationPartsAssemblyInfo.cache

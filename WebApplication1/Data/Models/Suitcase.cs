@@ -26,6 +26,6 @@
         public int PaxId { get; set; }
 
         [Required]
-        public Passenger Passenger { get; set; }
+        public virtual Passenger Passenger { get; set; }
     }
 }

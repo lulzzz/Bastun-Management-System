@@ -46,25 +46,12 @@
             return flightFromDb;
         }
 
-        public List<FlightInputModel> GetAllFlights()
+        public ICollection<Flight> GetAllFlights()
         {
-            return null;
+            var allFlightsFromDb = this.dbContext.Flights.ToList();
+
+            return allFlightsFromDb;
         }
 
-        public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight)
-        {
-            var currAircraft = new Aircraft
-            {
-                AircraftRegistration = aircraftInputModel.AircraftRegistration,
-                Type = aircraftInputModel.Type,
-                Version = aircraftInputModel.Version,
-                Cabin = new AircraftCabin(),
-                FlightId = flight.FlightId,
-                Flight = flight
-            };
-
-            this.dbContext.Aircraft.Add(currAircraft);
-            this.dbContext.SaveChanges();
-        }
     }
 }

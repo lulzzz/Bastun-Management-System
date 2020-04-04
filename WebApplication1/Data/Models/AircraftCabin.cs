@@ -22,12 +22,12 @@
         public int AircraftId { get; set; }
 
         [Required]
-        public Aircraft Aircraft { get; set; }
+        public virtual Aircraft Aircraft { get; set; }
 
-        public List<Passenger> ZoneAlpha { get; set; }
+        public virtual List<Passenger> ZoneAlpha { get; set; }
 
-        public List<Passenger> ZoneBravo { get; set; }
+        public virtual List<Passenger> ZoneBravo { get; set; }
 
-        public List<Passenger> ZoneCharlie { get; set; }
+        public virtual List<Passenger> ZoneCharlie { get; set; }
     }
 }

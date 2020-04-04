@@ -9,7 +9,7 @@
         public int Id { get; set; }
 
         public int FlightRef { get; set; }
-        public Flight Flight { get; set; }
+        public virtual Flight Flight { get; set; }
 
         public string CrewConfiguration { get; set; }
 

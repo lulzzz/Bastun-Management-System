@@ -39,19 +39,19 @@
         [Required]
         public DateTime STD { get; set; }
 
-        public ArrivalMovement ArrivalMovement { get; set; }
+        public virtual ArrivalMovement ArrivalMovement { get; set; }
 
-        public DepartureMovement DepartureMovement { get; set; }
+        public virtual DepartureMovement DepartureMovement { get; set; }
 
-        public LoadDistributionMessage LDM { get; set; }
+        public virtual LoadDistributionMessage LDM { get; set; }
         
-        public Aircraft Aircraft { get; set; }
+        public virtual Aircraft Aircraft { get; set; }
 
 
         [Required(ErrorMessage = InvalidErrorMessages.BookedPAXRequired)]
         [Range(0,189,ErrorMessage =InvalidErrorMessages.BookedPax)]
         public int BookedPax { get; set; }
 
-        public ICollection<Passenger> Passengers { get; set; }
+        public virtual ICollection<Passenger> Passengers { get; set; }
     }
 }

@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Services.Contracts
+﻿namespace BMS.Services.Contracts
 {
-    interface IAircraftService
+    using BMS.Data.Models;
+    using BMS.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    public interface IAircraftService
     {
+        public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight);
+
+
     }
 }

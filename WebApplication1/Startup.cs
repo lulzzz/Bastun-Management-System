@@ -31,6 +31,7 @@ namespace WebApplication1
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IFlightService, FlightsService>();
+            services.AddTransient<IAircraftService, AircraftService>();
             services.AddTransient<IMovementService, MovementsService>();
             services.AddTransient<IPAXService, PAXService>();
             services.AddTransient<ILoadControlService, LoadControlService>();
@@ -38,7 +39,7 @@ namespace WebApplication1
             services.AddTransient<IMessageParser, MessageParser>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();

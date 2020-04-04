@@ -42,14 +42,14 @@
         [Required(ErrorMessage = InvalidPAXErrorMessages.PAXPassportNumberIsRequired)]
         public string PassportNumber { get; set; }
 
-        public ICollection<Suitcase> Suitcases { get; set; }
+        public virtual ICollection<Suitcase> Suitcases { get; set; }
 
 
         [Required]
         public int FlightId { get; set; }
 
         [Required]
-        public Flight Flight { get; set; }
+        public virtual Flight Flight { get; set; }
 
 
     }
