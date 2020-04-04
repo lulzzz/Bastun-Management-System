@@ -19,6 +19,8 @@ namespace WebApplication1.Data
 
         public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
 
+        public DbSet<ContainerPalletMessage> ContainerPalletMessages { get; set; }
+
         public DbSet<Passenger> Passengers { get; set; }
 
         public DbSet<Suitcase> Suitcases { get; set; }
@@ -26,6 +28,8 @@ namespace WebApplication1.Data
         public DbSet<Aircraft> Aircraft { get; set; }
 
         public DbSet<AircraftCabin> AircraftCabins { get; set; }
+
+        public DbSet<Container> Containers { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

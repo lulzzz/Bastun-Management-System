@@ -29,8 +29,6 @@ namespace BMS.Controllers
         [HttpGet]
         public IActionResult DisplayDaily()
         {
-            
-
             var flights = this.flightService.GetAllFlights();
             var dailyFlightsViewModel = new FlightViewModel(flights);
 

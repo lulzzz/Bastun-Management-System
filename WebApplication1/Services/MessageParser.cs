@@ -1,5 +1,7 @@
 ﻿namespace BMS.Services
 {
+    using BMS.Data.Models;
+    using BMS.Data.Models.Messages;
     using BMS.Services.Contracts;
     using System;
     using System.Collections.Generic;
@@ -7,9 +9,19 @@
     using System.Threading.Tasks;
     public class MessageParser : IMessageParser
     {
-        public void ParseMessage()
+        public ArrivalMovement ParseArrivalMovement(string messageContent)
         {
-           
+            throw new NotImplementedException();
+        }
+
+        public DepartureMovement ParseDepartureMovement(string messageContent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public LoadDistributionMessage ParseLDM(string messageContent)
+        {
+            throw new NotImplementedException();
         }
     }
 }
