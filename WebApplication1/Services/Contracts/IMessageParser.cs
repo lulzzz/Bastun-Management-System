@@ -15,6 +15,8 @@
 
         LoadDistributionMessage ParseLDM(string messageContent);
 
+        ContainerPalletMessage ParseCPM(string messageContent);
+
 
     }
 }

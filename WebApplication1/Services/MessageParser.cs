@@ -14,6 +14,11 @@
             throw new NotImplementedException();
         }
 
+        public ContainerPalletMessage ParseCPM(string messageContent)
+        {
+            throw new NotImplementedException();
+        }
+
         public DepartureMovement ParseDepartureMovement(string messageContent)
         {
             throw new NotImplementedException();
