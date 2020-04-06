@@ -1,16 +1,16 @@
 ﻿@{ 
     ViewData["Arrival"] = "Arrival";
 }
-@using BMS.Models.MovementsInputModels;
-@model ArrivalMovementInputModel
+@using BMS.Models.MovementsInputModels
+@model MovementInputModel
 <div class="container-fluid">
     <div class="row">
         <div class="col">
             <form asp-controller="Movements" asp-action="Arrival">
                 <div class="form-group">
                     <label>Enter arrival movement:</label>
-                    <textarea asp-for="@Model.Message" class="form-control w-100" rows="7"></textarea>
-                    <span asp-validation-for="@Model.Message" class="alert-danger"></span>
+                    <textarea asp-for="@Model.ArrivalMovement" class="form-control w-100" rows="7"></textarea>
+                    <span asp-validation-for="@Model.ArrivalMovement" class="alert-danger"></span>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
             </form>

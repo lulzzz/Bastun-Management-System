@@ -2,15 +2,15 @@
     this.ViewData["Departure"] = "DepartureMovement";
 }
 @using BMS.Models.MovementsInputModels;
-@model DepartureMovementInputModel
+@model MovementInputModel
 <div class="container-fluid">
     <div class="row">
         <div class="col">
             <form asp-controller="Movements" asp-action="Departure">
                 <div class="form-group">
                     <label>Enter departure movement:</label>
-                    <textarea asp-for="@Model.Message" class="form-control z-depth-1 w-100" rows="7"></textarea>
-                    <span asp-validation-for="@Model.Message" class="alert-danger"></span>
+                    <textarea asp-for="@Model.DepartureMovement" class="form-control z-depth-1 w-100" rows="7"></textarea>
+                    <span asp-validation-for="@Model.DepartureMovement" class="alert-danger"></span>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
             </form>
