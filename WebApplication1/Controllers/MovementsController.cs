@@ -25,10 +25,10 @@ namespace WebApplication1.Controllers
 
 
         [HttpPost]
-        public IActionResult Arrival(ArrivalMovementInputModel arrMovementInputModel)
+        public IActionResult Arrival(MovementInputModel movementInput)
         {
 
-            this.messageParser.ParseArrivalMovement(arrMovementInputModel);
+            this.messageParser.ParseArrivalMovement(movementInput.ArrivalMovement);
 
             return this.RedirectToAction("RegisterFuelForm", "Fuel");
         }
@@ -40,15 +40,15 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult Departure(DepartureMovementInputModel depMovementInputModel)
+        public IActionResult Departure(MovementInputModel movementInput)
         {
             if (this.ModelState.IsValid)
             {
-                this.messageParser.ParseDepartureMovement(depMovementInputModel);
+                this.messageParser.ParseDepartureMovement(movementInput.DepartureMovement);
             }
             else
             {
-                return this.View(depMovementInputModel);
+                return this.View(movementInput);
             }
 
             return this.RedirectToAction("Index", "Home");

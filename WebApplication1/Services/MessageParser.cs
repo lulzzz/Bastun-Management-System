@@ -25,9 +25,20 @@
             this.flightService = flightService;
         }
 
-        public void ParseArrivalMovement(ArrivalMovementInputModel arrMvtInputModel)
+        public void ParseArrivalMovement(string messageContent)
         {
-            
+            string[] splitMessage =
+                messageContent.Split("\r\n", StringSplitOptions.None);
+            string msgType = splitMessage[0];
+            string flightInfo = splitMessage[1];
+            string dateInfo = splitMessage[2];
+           
+
+            if (splitMessage[3].Contains("NIL"))
+            {
+                var storage = splitMessage[3].Split(' ', StringSplitOptions.RemoveEmptyEntries).ToArray();
+                var supplementaryInformationData = storage[2];
+            }
         }
 
         public void ParseCPM(string messageContent)
@@ -37,7 +48,7 @@
 
         }
 
-        public void ParseDepartureMovement(DepartureMovementInputModel depMVTInputModel)
+        public void ParseDepartureMovement(string messageContent)
         {
            
         }
