@@ -14,9 +14,11 @@
 
         void ParseDepartureMovement(DepartureMovementInputModel depMVTInputModel);
 
-        LoadDistributionMessage ParseLDM(string messageContent);
+        void ParseLDM(string messageContent);
 
-        ContainerPalletMessage ParseCPM(string messageContent);
+        void ParseCPM(string messageContent);
+
+        void ParseUCM(string messageContent);
 
 
     }

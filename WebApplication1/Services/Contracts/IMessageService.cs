@@ -1,11 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Services.Contracts
+﻿namespace BMS.Services.Contracts
 {
-    interface IMessageService
+    using BMS.Data.Models.Messages;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    public interface IMessageService
     {
+        public void CreateLDM();
+
+        public void CreateCPM();
+
+        public void CreateUCM();
     }
 }
