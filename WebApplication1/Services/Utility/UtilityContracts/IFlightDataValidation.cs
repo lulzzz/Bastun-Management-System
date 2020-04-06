@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BMS.Services.ParserUtility
+namespace BMS.Services.Utility.UtilityContracts
 {
-    public class CheckFlightData
+    interface IFlightDataValidation
     {
     }
 }
