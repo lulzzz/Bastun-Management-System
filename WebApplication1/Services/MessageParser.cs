@@ -27,35 +27,29 @@
 
         public void ParseArrivalMovement(ArrivalMovementInputModel arrMvtInputModel)
         {
-            var regeOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase;
-            var arrivalMovementRegex  = new Regex(MessagesValidation.ArrMVTMessageValidation,regeOptions);
-            var arrMVTMatch = arrivalMovementRegex.Matches(arrMvtInputModel.Message);
-            
             
         }
 
         public void ParseCPM(string messageContent)
         {
-            var cpmFlightInfoRegex = new Regex(MessagesValidation.CPMFlightInfoValidation);
-            var cpmContainerInfoRegex = new Regex(MessagesValidation.CPMContainerInfoValidation);
-            var cpmSupplementaryInformationRegex = new Regex(MessagesValidation.CPMSupplementaryInformationValidation);
+           
 
 
         }
 
         public void ParseDepartureMovement(DepartureMovementInputModel depMVTInputModel)
         {
-            var departureMovementRegex = new Regex(MessagesValidation.DepMVTMessageValidation);
+           
         }
 
         public void ParseLDM(string messageContent)
         {
-            var loadDistributionMessageRegex = new Regex(MessagesValidation.LDMMessageValidation);
+            
         }
 
         public void ParseUCM(string messageContent)
         {
-            var ucmRegex = new Regex(MessagesValidation.UCMValidation);
+           
         }
     }
 }
