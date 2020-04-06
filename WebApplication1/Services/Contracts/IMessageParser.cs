@@ -3,15 +3,16 @@
     using BMS.Data.Models;
     using BMS.Data.Models.Contracts.MovementContracts;
     using BMS.Data.Models.Messages;
+    using BMS.Models.MovementsInputModels;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     public interface IMessageParser
     {
-        ArrivalMovement ParseArrivalMovement(string messageContent);
+        void ParseArrivalMovement(ArrivalMovementInputModel arrMVTInputModel);
 
-        DepartureMovement ParseDepartureMovement(string messageContent);
+        void ParseDepartureMovement(DepartureMovementInputModel depMVTInputModel);
 
         LoadDistributionMessage ParseLDM(string messageContent);
 
