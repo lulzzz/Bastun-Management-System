@@ -10,9 +10,9 @@
     using System.Threading.Tasks;
     public interface IMessageParser
     {
-        void ParseArrivalMovement(ArrivalMovementInputModel arrMVTInputModel);
+        void ParseArrivalMovement(string messageContent);
 
-        void ParseDepartureMovement(DepartureMovementInputModel depMVTInputModel);
+        void ParseDepartureMovement(string messageContent);
 
         void ParseLDM(string messageContent);
 
