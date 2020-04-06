@@ -10,7 +10,7 @@
     using System.Threading.Tasks;
     public interface IMessageParser
     {
-        void ParseArrivalMovement(string messageContent);
+        bool ParseArrivalMovement(string messageContent);
 
         void ParseDepartureMovement(string messageContent);
 

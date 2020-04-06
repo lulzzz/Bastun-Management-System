@@ -25,14 +25,30 @@
             if (this.flightService.CheckFlightNumber(flightNumber))
             {
                 string newReg = registration.Insert(1,_hyphen);
-
+                if (!this.aircraftService.CheckAircraftRegistration(newReg))
+                {
+                   
+                    flag = false;
+                }
+                else
+                {
+                    flag = true;
+                }
             }
             return flag;
         }
 
         public bool IsDateAndStationValid(string flightNumber,string date, string station)
         {
-            return true;
+            bool flag = true;
+            var flightFromDb = this.flightService.GetFlightByFlightNumber(flightNumber);
+
+            if (flightFromDb.Origin != station || flightFromDb.STA.Day.ToString() != date)
+            {
+                flag = false;
+            }
+
+            return flag;
         }
     }
 }

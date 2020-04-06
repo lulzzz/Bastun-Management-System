@@ -27,10 +27,14 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Arrival(MovementInputModel movementInput)
         {
-
-            this.messageParser.ParseArrivalMovement(movementInput.ArrivalMovement);
-
-            return this.RedirectToAction("RegisterFuelForm", "Fuel");
+            if (this.messageParser.ParseArrivalMovement(movementInput.ArrivalMovement))
+            {
+                return this.Redirect("/Home/Index");
+            } 
+            else 
+            {
+                return this.View(movementInput);
+            }
         }
 
         [HttpGet]

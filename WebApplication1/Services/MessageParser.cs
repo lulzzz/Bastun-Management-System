@@ -28,8 +28,9 @@
             this.flightDataValidation = flightDataValidation;
         }
 
-        public void ParseArrivalMovement(string messageContent)
+        public bool ParseArrivalMovement(string messageContent)
         {
+            bool flag;
             string[] splitMessage =
                 messageContent.Split("\r\n", StringSplitOptions.None);
 
@@ -49,23 +50,31 @@
                     {
                         if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(fltNmb,registration))
                         {
-                            
+                            if (this.flightDataValidation.IsDateAndStationValid(fltNmb,date,station))
+                            {
+                                
+                            } else
+                            {
+                                flag = false;
+                            }
                         } 
                         else
                         {
-
+                            flag = false;
                         }
                     }
                     else
                     {
-
+                        flag = false;
                     }
                 }
             }
             else
             {
-                //do something
+                flag = false;
             }
+
+            return flag; 
         }
 
         public void ParseCPM(string messageContent)
