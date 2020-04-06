@@ -12,6 +12,8 @@
 
         void RegisterFlight(FlightInputModel flightInput);
 
+        bool CheckFlightNumber(string flightNumber);
+
         ICollection<Flight> GetAllFlights();
     }
 }

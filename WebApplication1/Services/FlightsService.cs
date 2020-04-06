@@ -53,5 +53,9 @@
             return allFlightsFromDb;
         }
 
+        public bool CheckFlightNumber(string flightNumber)
+        {
+            return this.dbContext.Flights.Any(x => x.FlightNumber == flightNumber);
+        }
     }
 }
