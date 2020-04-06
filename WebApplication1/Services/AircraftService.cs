@@ -18,6 +18,11 @@
             this.dbContext = dbContext;
         }
 
+        public bool CheckAircraftRegistration(string registration)
+        {
+            return this.dbContext.Aircraft.Any(x => x.AircraftRegistration == registration);
+        }
+
         public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight)
         {
             var currAircraft = new Aircraft

@@ -27,14 +27,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Arrival(ArrivalMovementInputModel arrMovementInputModel)
         {
-            if (this.ModelState.IsValid)
-            {
-                this.messageParser.ParseArrivalMovement(arrMovementInputModel);
-            }
-            else
-            {
-                return this.View(arrMovementInputModel);
-            }
+
+            this.messageParser.ParseArrivalMovement(arrMovementInputModel);
 
             return this.RedirectToAction("RegisterFuelForm", "Fuel");
         }

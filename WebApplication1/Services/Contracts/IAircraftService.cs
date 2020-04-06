@@ -10,6 +10,8 @@
     {
         public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight);
 
+        public bool CheckAircraftRegistration(string registration);
 
+       
     }
 }

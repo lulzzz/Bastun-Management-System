@@ -37,6 +37,7 @@ namespace WebApplication1
             services.AddTransient<ILoadControlService, LoadControlService>();
             services.AddTransient<ILoadsheetService, LoadsheetService>();
             services.AddTransient<IMessageParser, MessageParser>();
+            services.AddTransient<IMessageService, MessageService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());

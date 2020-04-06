@@ -2,31 +2,60 @@
 {
     using BMS.Data.Models;
     using BMS.Data.Models.Messages;
+    using BMS.GlobalData.Validation;
+    using BMS.Models.MovementsInputModels;
     using BMS.Services.Contracts;
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     public class MessageParser : IMessageParser
     {
-        public ArrivalMovement ParseArrivalMovement(string messageContent)
+        private readonly IMovementService movementService;
+        private readonly IMessageService messageService;
+        private readonly IAircraftService aircraftService;
+        private readonly IFlightService flightService;
+
+        public MessageParser(IMovementService movementService, IMessageService messageService, IAircraftService aircraftService, IFlightService flightService)
         {
-            throw new NotImplementedException();
+            this.movementService = movementService;
+            this.messageService = messageService;
+            this.aircraftService = aircraftService;
+            this.flightService = flightService;
         }
 
-        public ContainerPalletMessage ParseCPM(string messageContent)
+        public void ParseArrivalMovement(ArrivalMovementInputModel arrMvtInputModel)
         {
-            throw new NotImplementedException();
+            var regeOptions = RegexOptions.Compiled | RegexOptions.IgnoreCase;
+            var arrivalMovementRegex  = new Regex(MessagesValidation.ArrMVTMessageValidation,regeOptions);
+            var arrMVTMatch = arrivalMovementRegex.Matches(arrMvtInputModel.Message);
+            
+            
         }
 
-        public DepartureMovement ParseDepartureMovement(string messageContent)
+        public void ParseCPM(string messageContent)
         {
-            throw new NotImplementedException();
+            var cpmFlightInfoRegex = new Regex(MessagesValidation.CPMFlightInfoValidation);
+            var cpmContainerInfoRegex = new Regex(MessagesValidation.CPMContainerInfoValidation);
+            var cpmSupplementaryInformationRegex = new Regex(MessagesValidation.CPMSupplementaryInformationValidation);
+
+
         }
 
-        public LoadDistributionMessage ParseLDM(string messageContent)
+        public void ParseDepartureMovement(DepartureMovementInputModel depMVTInputModel)
         {
-            throw new NotImplementedException();
+            var departureMovementRegex = new Regex(MessagesValidation.DepMVTMessageValidation);
+        }
+
+        public void ParseLDM(string messageContent)
+        {
+            var loadDistributionMessageRegex = new Regex(MessagesValidation.LDMMessageValidation);
+        }
+
+        public void ParseUCM(string messageContent)
+        {
+            var ucmRegex = new Regex(MessagesValidation.UCMValidation);
         }
     }
 }
