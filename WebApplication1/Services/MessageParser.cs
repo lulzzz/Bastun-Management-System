@@ -12,21 +12,20 @@
     using BMS.Services.ParserUtility;
     using System.Threading.Tasks;
     using BMS.Services.Utility.UtilityConstants;
+    using BMS.Services.Utility;
+    using BMS.Services.Utility.UtilityContracts;
 
     public class MessageParser : IMessageParser
     {
         private readonly IMovementService movementService;
         private readonly IMessageService messageService;
-        private readonly IAircraftService aircraftService;
-        private readonly IFlightService flightService;
+        private readonly IFlightDataValidation flightDataValidation;
 
-
-        public MessageParser(IMovementService movementService, IMessageService messageService, IAircraftService aircraftService, IFlightService flightService)
+        public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation)
         {
             this.movementService = movementService;
             this.messageService = messageService;
-            this.aircraftService = aircraftService;
-            this.flightService = flightService;
+            this.flightDataValidation = flightDataValidation;
         }
 
         public void ParseArrivalMovement(string messageContent)
@@ -34,14 +33,33 @@
             string[] splitMessage =
                 messageContent.Split("\r\n", StringSplitOptions.None);
 
-            if (MessageTypeValidation.IsArrivalMovementMessageTypeValid(splitMessage[0]))
+            if (MessageValidation.IsArrivalMovementMessageTypeValid(splitMessage[0]))
             {
                 var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
                 var flightMatch = flightRegex.Match(splitMessage[1]);
 
                 if (flightMatch.Success)
                 {
+                    string fltNmb = flightMatch.Groups["flt"].Value;
+                    string date = flightMatch.Groups["date"].Value;
+                    string registration = flightMatch.Groups["registration"].Value;
+                    string station = flightMatch.Groups["station"].Value;
 
+                    if (!MessageValidation.IsFlightInfoNotNullOrEmpty(fltNmb,registration,date,station))
+                    {
+                        if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(fltNmb,registration))
+                        {
+                            
+                        } 
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
             else

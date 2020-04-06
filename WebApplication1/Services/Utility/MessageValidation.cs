@@ -1,7 +1,7 @@
 ﻿namespace BMS.Services.ParserUtility
 {
     using System;
-    public static class MessageTypeValidation
+    public static class MessageValidation
     {
 
         public static bool IsArrivalMovementMessageTypeValid(string messageType)
@@ -22,6 +22,12 @@
         public static bool IsUCMMessageTypeValid(string messageType)
         {
             return messageType == "UCM";
+        }
+
+        public static bool IsFlightInfoNotNullOrEmpty(string flightNumber, string registration, string date, string station)
+        {
+            return string.IsNullOrWhiteSpace(flightNumber) || string.IsNullOrWhiteSpace(registration) || string.IsNullOrWhiteSpace(date)
+                || string.IsNullOrWhiteSpace(station);
         }
     }
 }

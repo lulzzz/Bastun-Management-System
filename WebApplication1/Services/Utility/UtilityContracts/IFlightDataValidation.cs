@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BMS.Services.Utility.UtilityContracts
+﻿namespace BMS.Services.Utility.UtilityContracts
 {
-    interface IFlightDataValidation
+    using BMS.Services.Contracts;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    public interface IFlightDataValidation
     {
+        bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration);
+
+        bool IsDateAndStationValid(string flightNumber,string date, string station);
     }
 }

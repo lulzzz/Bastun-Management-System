@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using AutoMapper;
 using BMS.Services.Contracts;
 using BMS.Services;
+using BMS.Services.Utility.UtilityContracts;
+using BMS.Services.Utility;
 
 namespace WebApplication1
 {
@@ -38,6 +40,7 @@ namespace WebApplication1
             services.AddTransient<ILoadsheetService, LoadsheetService>();
             services.AddTransient<IMessageParser, MessageParser>();
             services.AddTransient<IMessageService, MessageService>();
+            services.AddTransient<IFlightDataValidation, FlightDataValidation>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
