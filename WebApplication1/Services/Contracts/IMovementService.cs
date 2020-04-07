@@ -8,7 +8,7 @@
 
     public interface IMovementService
     {
-        void CreateArrivalMovement(Flight flight, DateTime touchdownTime, DateTime onBlockTime);
+        void CreateArrivalMovement(Flight flight,DateTime[] dates, string supplementaryInformation);
 
         void CreateDepartureMovement();
 

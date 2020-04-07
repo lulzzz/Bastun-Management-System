@@ -63,7 +63,7 @@
                                     .GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(fltNmb));
                                 string[] times = this.ParseTimeForMovements(splitMessage[2]);
                                 DateTime[] dates = this.ParseTimesForArrivalMovement(times, flightByFlightNumber);
-
+                                this.movementService.CreateArrivalMovement(flightByFlightNumber, dates, supplementaryInformation);
                             } 
                             else
                             {
@@ -149,7 +149,7 @@
             return result;
         }
 
-        private TimeSpan[] ParseTimesForArrivalMovement(string[] times, Flight flight)
+        private DateTime[] ParseTimesForArrivalMovement(string[] times, Flight flight)
         {
             var arrOfValidTimes = this.GetValidTimesFormat(times);
             string touchdownTime = arrOfValidTimes[0];
@@ -165,7 +165,7 @@
 
             var flightDate = flight.STA;
             var touchdownTimeAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTouchdownTime.Hours, parsedTouchdownTime.Minutes, parsedTouchdownTime.Seconds);
-            var onblockTimeAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTouchdownTime.Hours, parsedTouchdownTime.Minutes, parsedTouchdownTime.Seconds);
+            var onblockTimeAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedOnBlockTime.Hours, parsedOnBlockTime.Minutes, parsedOnBlockTime.Seconds);
 
             return new DateTime[] { touchdownTimeAsDateTime, onblockTimeAsDateTime };
         }
