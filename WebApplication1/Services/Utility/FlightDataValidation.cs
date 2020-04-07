@@ -21,10 +21,10 @@
         public bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration)
         {
             bool flag = true;
-
-            if (this.flightService.CheckFlightNumber(flightNumber))
+            string newFlnmb = GetCorrectFlightNumber(flightNumber);
+            if (this.flightService.CheckFlightNumber(newFlnmb))
             {
-                string newReg = registration.Insert(1,_hyphen);
+                string newReg = GetCorrectRegistration(registration);
                 if (!this.aircraftService.CheckAircraftRegistration(newReg))
                 {
                    
@@ -41,14 +41,38 @@
         public bool IsDateAndStationValid(string flightNumber,string date, string station)
         {
             bool flag = true;
-            var flightFromDb = this.flightService.GetFlightByFlightNumber(flightNumber);
+            string newFlnmb = GetCorrectFlightNumber(flightNumber);
+            var flightFromDb = this.flightService.GetFlightByFlightNumber(newFlnmb);
 
             if (flightFromDb.Origin != station || flightFromDb.STA.Day.ToString() != date)
             {
                 flag = false;
             }
 
+
             return flag;
+        }
+        
+        public string GetCorrectFlightNumber(string flightNumber)
+        {
+            string result = string.Empty;
+            int index = 0;
+            for (int i = 0; i < flightNumber.Length; i++)
+            {
+                if (char.IsDigit(flightNumber[i]))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            result = flightNumber.Insert(index, _hyphen);
+            return result;
+        }
+
+        private string GetCorrectRegistration(string registration)
+        {
+            string result = registration.Insert(1, _hyphen);
+            return result;
         }
     }
 }

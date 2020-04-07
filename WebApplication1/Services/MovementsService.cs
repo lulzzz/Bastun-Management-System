@@ -17,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public void CreateArrivalMovement()
+        public void CreateArrivalMovement(Flight flight, DateTime touchdownTime, DateTime onblockTime)
         {
            
         }
