@@ -11,10 +11,12 @@
     public class MovementsService : IMovementService
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IFlightService flightService;
 
-        public MovementsService(ApplicationDbContext dbContext)
+        public MovementsService(ApplicationDbContext dbContext, IFlightService flightService)
         {
             this.dbContext = dbContext;
+            this.flightService = flightService;
         }
 
         public void CreateArrivalMovement(Flight flight,DateTime[] dates,string supplementaryInformation)
@@ -54,12 +56,14 @@
 
         public ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber)
         {
-            return null;
+            var flight = this.flightService.GetFlightByFlightNumber(flightNumber);
+            return flight.ArrivalMovement;
         }
 
         public DepartureMovement GetDepartureMovementByFlightNumber(string flightNumber)
         {
-            return null; 
+            var flight = this.flightService.GetFlightByFlightNumber(flightNumber);
+            return flight.DepartureMovement;
         }
     }
 }
