@@ -19,7 +19,20 @@
 
         public void CreateArrivalMovement(Flight flight,DateTime[] dates,string supplementaryInformation)
         {
-            
+            var dateMovementCreatedOn = new DateTime(flight.STA.Year, flight.STA.Month, flight.STA.Day);
+
+            var arrivalMovement = new ArrivalMovement
+            {
+                FlightRef = flight.FlightId,
+                TouchdownTime = dates[0],
+                OnBlockTime = dates[1],
+                SupplementaryInformation = supplementaryInformation,
+                DateOfMovement = dateMovementCreatedOn,
+                Flight = flight
+            };
+
+            this.dbContext.ArrivalMovements.Add(arrivalMovement);
+            this.dbContext.SaveChangesAsync();
         }
 
         public void CreateDepartureMovement()
