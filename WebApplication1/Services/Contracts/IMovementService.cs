@@ -10,7 +10,7 @@
     {
         void CreateArrivalMovement(Flight flight,DateTime[] dates, string supplementaryInformation);
 
-        void CreateDepartureMovement();
+        void CreateDepartureMovement(Flight flight, DateTime[] dates, string supplementaryInformation, int totalPax);
 
         ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber);
 

@@ -40,7 +40,7 @@
             string[] splitMessage =
                 messageContent.Split("\r\n", StringSplitOptions.None);
 
-            if (MessageValidation.IsArrivalMovementMessageTypeValid(splitMessage[0]))
+            if (MessageValidation.IsMovementMessageTypeValid(splitMessage[0]))
             {
                 var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
                 var flightMatch = flightRegex.Match(splitMessage[1]);
@@ -61,8 +61,8 @@
                                 string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
                                 var flightByFlightNumber = this.flightService
                                     .GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(fltNmb));
-                                string[] times = this.ParseTimeForMovements(splitMessage[2]);
-                                DateTime[] dates = this.ParseTimesForArrivalMovement(times, flightByFlightNumber);
+                                string[] times = this.GetTimesForArrivalMovement(splitMessage[2]);
+                                DateTime[] dates = this.ParseTimesForMovements(times, flightByFlightNumber);
                                 this.movementService.CreateArrivalMovement(flightByFlightNumber, dates, supplementaryInformation);
                             } 
                             else
@@ -98,7 +98,39 @@
 
         public void ParseDepartureMovement(string messageContent)
         {
+            bool flag = true;
+            string[] splitMessage = messageContent
+                .Split("\r\n", StringSplitOptions.None);
 
+            if (MessageValidation.IsMovementMessageTypeValid(splitMessage[0]))
+            {
+                var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+                var match = flightRegex.Match(splitMessage[1]);
+                if (match.Success)
+                {
+                    string flightNumber = match.Groups["flt"].Value;
+                    string date = match.Groups["date"].Value;
+                    string registration = match.Groups["registration"].Value;
+
+                    if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(flightNumber, registration))
+                    {
+                        string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[4]);
+                        var flightByFlightNumber = this.flightService.GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(flightNumber));
+                        string[] timesForDepartureMovement = this.GetTimesForDepartureMovement(splitMessage[2]);
+                        DateTime[] datesForDepartureMovement = this.ParseTimesForMovements(timesForDepartureMovement, flightByFlightNumber);
+                        int totalPax = this.ParseTotalPax(splitMessage[3]);
+                        this.movementService.CreateDepartureMovement(flightByFlightNumber, datesForDepartureMovement, supplementaryInformation, totalPax);
+                    } 
+                    else
+                    {
+                        flag = false;
+                    }
+                }
+
+            } else
+            {
+                flag = false;
+            }
         }
 
         public void ParseLDM(string messageContent)
@@ -117,10 +149,11 @@
 
             if (!supplementaryInfo.Contains("NIL"))
             {
+                //TODO: Test for arrival movement
                 string[] splitData = supplementaryInfo
-                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                    .Split("SI", StringSplitOptions.RemoveEmptyEntries)
                     .ToArray();
-                string actualData = splitData[1];
+                string actualData = splitData[0];
                 result = actualData;
             } else
             {
@@ -130,7 +163,7 @@
             return result;
         }
 
-        private string[] ParseTimeForMovements(string timeData)
+        private string[] GetTimesForArrivalMovement(string timeData)
         {
             string touchdownTime = string.Empty;
             string onblockTime = string.Empty;
@@ -149,25 +182,40 @@
             return result;
         }
 
-        private DateTime[] ParseTimesForArrivalMovement(string[] times, Flight flight)
+        private string[] GetTimesForDepartureMovement(string timeData)
+        {
+            string[] splitTimeData =
+                timeData
+                .Split("ETA", StringSplitOptions.RemoveEmptyEntries);
+
+            string[] tokens = splitTimeData[0]
+                .Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            string offBlockTime = tokens[0].Remove(0, 2);
+            string takeoffTime = tokens[1];
+
+            return new string[] { offBlockTime, takeoffTime };
+        }
+
+        private DateTime[] ParseTimesForMovements(string[] times, Flight flight)
         {
             var arrOfValidTimes = this.GetValidTimesFormat(times);
-            string touchdownTime = arrOfValidTimes[0];
-            string onblockTime = arrOfValidTimes[1];
+            string time1 = arrOfValidTimes[0];
+            string time2 = arrOfValidTimes[1];
 
-            if (touchdownTime == null || onblockTime == null)
+            if (time1 == null || time2 == null)
             {
                 return null;
             }
 
-            var parsedTouchdownTime = TimeSpan.Parse(touchdownTime);
-            var parsedOnBlockTime = TimeSpan.Parse(onblockTime);
+            var parsedTime1 = TimeSpan.Parse(time1);
+            var parsedTime2 = TimeSpan.Parse(time2);
 
             var flightDate = flight.STA;
-            var touchdownTimeAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTouchdownTime.Hours, parsedTouchdownTime.Minutes, parsedTouchdownTime.Seconds);
-            var onblockTimeAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedOnBlockTime.Hours, parsedOnBlockTime.Minutes, parsedOnBlockTime.Seconds);
+            var timeOneAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds);
+            var timeTwoAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds);
 
-            return new DateTime[] { touchdownTimeAsDateTime, onblockTimeAsDateTime };
+            return new DateTime[] { timeOneAsDateTime, timeTwoAsDateTime };
         }
 
         private string[] GetValidTimesFormat(string[] listOfTimes)
@@ -182,6 +230,11 @@
             var onblockTime = newOnBlockTimeWithColonAfterMinutes.Insert(6, _zeros);
 
             return new string[] { touchdownTime, onblockTime };
+        }
+
+        private int ParseTotalPax(string totalPax)
+        {
+            return int.Parse(totalPax.Remove(0, 3));
         }
 
 

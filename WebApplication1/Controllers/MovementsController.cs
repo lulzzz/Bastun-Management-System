@@ -46,14 +46,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Departure(MovementInputModel movementInput)
         {
-            if (this.ModelState.IsValid)
-            {
-                this.messageParser.ParseDepartureMovement(movementInput.DepartureMovement);
-            }
-            else
-            {
-                return this.View(movementInput);
-            }
+            this.messageParser.ParseDepartureMovement(movementInput.DepartureMovement);
 
             return this.RedirectToAction("Index", "Home");
         }

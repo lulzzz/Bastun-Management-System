@@ -4,7 +4,7 @@
     public static class MessageValidation
     {
 
-        public static bool IsArrivalMovementMessageTypeValid(string messageType)
+        public static bool IsMovementMessageTypeValid(string messageType)
         {
             return messageType == "MVT";
         } 

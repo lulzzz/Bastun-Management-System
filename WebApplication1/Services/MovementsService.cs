@@ -32,12 +32,24 @@
             };
 
             this.dbContext.ArrivalMovements.Add(arrivalMovement);
-            this.dbContext.SaveChangesAsync();
+            this.dbContext.SaveChanges();
         }
 
-        public void CreateDepartureMovement()
+        public void CreateDepartureMovement(Flight flight,DateTime[] dates, string supplementaryInformation, int totalPax)
         {
-           
+            var dateOfDepartureMovementCreation = new DateTime(flight.STD.Year, flight.STD.Month, flight.STD.Day);
+            var departureMovement = new DepartureMovement
+            {
+                FlightRef = flight.FlightId,
+                Flight = flight,
+                DateOfMovement = dateOfDepartureMovementCreation,
+                OffBlockTime = dates[0],
+                TakeoffTime = dates[1],
+                TotalPAX = totalPax,
+                SupplementaryInformation = supplementaryInformation
+            };
+            this.dbContext.DepartureMovements.Add(departureMovement);
+            this.dbContext.SaveChanges();
         }
 
         public ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber)
