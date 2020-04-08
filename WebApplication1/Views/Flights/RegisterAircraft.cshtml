@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using BMS.Models;
+@using BMS.Data.Models.Enums;
 @model AircraftInputModel
 <div class="container-fluid">
     <div class="row">
@@ -14,9 +15,17 @@
                     <span asp-validation-for="@Model.FlightNumber" class="alert-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label >Aircraft type:</label>
-                    <input asp-for="@Model.Type" type="text" class="form-control w-100"/>
-                    <span asp-validation-for="@Model.Type" class="alert-danger"></span>
+                    <label>Aircraft type:</label>
+                    <select asp-for="@Model.Type" class="form-control w-100">
+                        <option selected="selected" value="">Select an aircrat type:</option>
+                        <option>B738</option>
+                        <option>B752</option>
+                        <option>B763</option>
+                        <option>B788</option>
+                        <option>B789</option>
+                        <option>A320</option>
+                        <option>A321</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Aircraft registration:</label>

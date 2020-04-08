@@ -59,7 +59,8 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult RegisterAircraft(AircraftInputModel aircraftInputModel)
         {
-          
+            var requestBody = this.HttpContext.Request;
+
 
                 return this.RedirectToAction("Arrival", "Movements");
            

@@ -12,7 +12,7 @@
     public class FlightInputModel
     {
         [Required(ErrorMessage = InvalidErrorMessages.FlightNumberRequired)]
-        [RegularExpression(FlightInputDataValidation.FlightNumberValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
+        [RegularExpression(FlightInputDataValidation.FlightNumberValidationForInputForm, ErrorMessage = InvalidErrorMessages.FlightNumber)]
         public string FlightNumber { get; set; }
 
         [Required(ErrorMessage = InvalidErrorMessages.OriginRequired)]

@@ -1,5 +1,6 @@
 ﻿namespace BMS.Models
 {
+    using BMS.CustomAttributes;
     using BMS.Data.Models.Enums;
     using BMS.GlobalData;
     using BMS.GlobalData.ErrorMessages;
@@ -12,7 +13,7 @@
     {
 
         [Required(ErrorMessage =InvalidErrorMessages.FlightNumberRequired)]
-        [RegularExpression(FlightInputDataValidation.FlightNumberValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
+        [RegularExpression(FlightInputDataValidation.OutboundFlightValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
         public string FlightNumber { get; set; }
 
 
