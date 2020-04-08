@@ -2,18 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
     public class UniloadContainerMessage : Message
     {
         public UniloadContainerMessage()
         {
-            this.InboundContainerNumbers = new List<string>();
-            this.OutboundContainerNumbers = new List<string>();
+            this.ContainerInfo = new List<ContainerInfo>();
         }
 
-        public ICollection<string> InboundContainerNumbers { get; set; }
-
-        public ICollection<string> OutboundContainerNumbers { get; set; }
+        public virtual ICollection<ContainerInfo> ContainerInfo { get; set; }
     }
 }

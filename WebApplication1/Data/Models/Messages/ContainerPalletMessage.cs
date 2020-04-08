@@ -7,24 +7,12 @@
     using System.Threading.Tasks;
     public class ContainerPalletMessage : Message
     {
-        public string Container1Info { get; set; }
+        public ContainerPalletMessage()
+        {
 
-        public string Container2Info { get; set; }
+        }
 
-        public string Container3Info { get; set; }
-
-        public string Container4Info { get; set; }
-
-        public string Container5Info { get; set; }
-
-        public string Container6Info { get; set; }
-
-        public string Container7Info { get; set; }
-
-        public string Container8Info { get; set; }
-
-        public string Container9Info { get; set; }
-
-        public string Container10Info { get; set; }
+        public int ContainerInfoId { get; set; }
+        public virtual ICollection<ContainerInfo> ContainerInfo { get; set; }
     }
 }
