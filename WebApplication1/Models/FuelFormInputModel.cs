@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class FuelInputModel
+    public class FuelFormInputModel
     {
     }
 }

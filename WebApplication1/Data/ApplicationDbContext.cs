@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BMS.Data;
 using BMS.Data.Models;
 using BMS.Data.Models.Messages;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -30,6 +31,8 @@ namespace WebApplication1.Data
         public DbSet<AircraftBaggageHold> AircraftBaggageHolds { get; set; }
 
         public DbSet<FuelForm> FuelForms { get; set; }
+
+        public DbSet<WeightForm> WeightForms { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
