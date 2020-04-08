@@ -16,34 +16,33 @@ namespace WebApplication1.Data
 
         public DbSet<OutboundFlight> OutboundFlights { get; set; }
 
-
         public DbSet<ArrivalMovement> ArrivalMovements { get; set; }
 
         public DbSet<DepartureMovement> DepartureMovements { get; set; }
 
-        public DbSet<Passenger> Passengers { get; set; }
-
-        public DbSet<Suitcase> Suitcases { get; set; }
-
         public DbSet<Aircraft> Aircraft { get; set; }
-
-        public DbSet<AircraftCabin> AircraftCabins { get; set; }
-
-        public DbSet<Message> Messages { get; set; }
-
-        public DbSet<AircraftBaggageHold> AircraftBaggageHolds { get; set; }
-
-        public DbSet<FuelForm> FuelForms { get; set; }
-
-        public DbSet<WeightForm> WeightForms { get; set; }
-
-        public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
 
         public DbSet<ContainerPalletMessage> ContainerPalletMessages { get; set; }
 
         public DbSet<UniloadContainerMessage> UniloadContainerMessages { get; set; }
 
+        public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
+
+        public DbSet<AircraftBaggageHold> AircraftBaggageHolds { get; set; }
+
+        public DbSet<AircraftCabin> AircraftCabins { get; set; }
+
+        public DbSet<FuelForm> FuelForms { get; set; }
+
+        public DbSet<WeightForm> WeightForms { get; set; }
+
+        public DbSet<Passenger> Passengers { get; set; }
+
         public DbSet<Container> Containers { get; set; }
+
+        public DbSet<ContainerInfo> ContainerInfos { get; set; }
+
+        public DbSet<Suitcase> Suitcases { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

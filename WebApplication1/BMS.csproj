@@ -12,6 +12,8 @@
     <Compile Remove="Data\Migrations\20200408070303_RemoveMessages.Designer.cs" />
     <Compile Remove="Data\Migrations\20200408070535_RemoveContainers.cs" />
     <Compile Remove="Data\Migrations\20200408070535_RemoveContainers.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200408210323_FromTheGroundUp2.cs" />
+    <Compile Remove="Data\Migrations\20200408210323_FromTheGroundUp2.Designer.cs" />
   </ItemGroup>
 
 
