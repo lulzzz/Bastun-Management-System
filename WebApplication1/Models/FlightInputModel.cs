@@ -19,8 +19,22 @@
         [RegularExpression(FlightInputDataValidation.StationValidation,ErrorMessage =InvalidErrorMessages.Origin)]
         public string Origin { get; set; }
 
+        [Required(ErrorMessage = InvalidErrorMessages.HandlingStationIsRequired)]
+        [RegularExpression(FlightInputDataValidation.StationValidation, ErrorMessage = InvalidErrorMessages.HandlingStationIsInvalid)]
+        public string HandlingStation { get; set; }
+
         [Required(ErrorMessage = InvalidErrorMessages.DestinationRequired)]
-        [RegularExpression()]
+        [RegularExpression(FlightInputDataValidation.StationValidation, ErrorMessage = InvalidErrorMessages.Destination)]
         public string Destination { get; set; }
+
+        [Required(ErrorMessage = InvalidErrorMessages.FlightSTAIsRequired)]
+        public DateTime STA { get; set; }
+
+        [Required(ErrorMessage = InvalidErrorMessages.FlightSTDIsRequired)]
+        public DateTime STD { get; set; }
+
+        [Required(ErrorMessage = InvalidErrorMessages.BookedPAXRequired)]
+        [Range(1,325, ErrorMessage = InvalidErrorMessages.BookedPax)]
+        public int BookedPax { get; set; }
     }
 }

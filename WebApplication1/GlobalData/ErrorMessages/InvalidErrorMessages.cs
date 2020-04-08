@@ -37,5 +37,9 @@
         public const string BookedPax = "Invalid number of booked PAX entered!";
 
         public const string PAXSuitcaseWeightIsInvalid = "Suitcase weight is invalid!";
+
+        public const string HandlingStationIsRequired = "Handling station is required!";
+
+        public const string HandlingStationIsInvalid = "Handling station format is invalid!";
     }
 }

@@ -21,7 +21,7 @@
 
         [Required]
         [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation, ErrorMessage = (InvalidErrorMessages.AircraftRegistration))]
-        [MultipleRegularExpression]
+        
         public string AircraftRegistration { get; set; }
 
         [Required]

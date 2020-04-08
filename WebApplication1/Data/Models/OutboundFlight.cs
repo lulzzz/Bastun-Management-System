@@ -17,6 +17,8 @@
 
         public Aircraft Aircraft { get; set; }
 
+        public string HandlingStation { get; set; }
+
         public ICollection<Message> OutboundMessages { get; set; }
 
         public DepartureMovement DepartureMovement { get; set; }
