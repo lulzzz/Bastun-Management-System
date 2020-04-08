@@ -21,13 +21,14 @@
 
         [Required]
         [RegularExpression(FlightInputDataValidation.AircraftRegistrationValidation, ErrorMessage = (InvalidErrorMessages.AircraftRegistration))]
+        [MultipleRegularExpression]
         public string AircraftRegistration { get; set; }
 
         [Required]
         [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage = (InvalidErrorMessages.AircraftVersion))]
         public string Version { get; set; }
-
-
         public AircraftCabin Cabin { get; set; }
+
+        public bool IsAicraftContainerized { get; set; }
     }
 }

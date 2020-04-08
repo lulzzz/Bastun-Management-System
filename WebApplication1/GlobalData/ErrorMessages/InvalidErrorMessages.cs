@@ -18,7 +18,7 @@
 
         public const string BookedPAXRequired = "Number of booked PAX is required!";
 
-        public const string FlightNumber = "Invalid flight number entered!";
+        public const string FlightNumber = "Invalid flight numbers entered!";
 
         public const string FlightSTAIsRequired = "STA is required!";
 
@@ -30,9 +30,9 @@
 
         public const string AircraftVersion = "Invalid aircraft version entered!";
 
-        public const string Origin = "Invalid origin entered!";
+        public const string Origin = "Invalid origin format entered!";
 
-        public const string Destination = "Invalid destination entered!";
+        public const string Destination = "Invalid destination format entered!";
 
         public const string BookedPax = "Invalid number of booked PAX entered!";
 

@@ -14,5 +14,9 @@
         public const string AircraftTypeValidation = @"[B737]+|[A320]+";
 
         public const string AircraftVersionValidation = @"(?<version>[Y][0-9]{1,3})";
+
+        public const string StationValidation = @"^[A-Z]{3}$";
+
+       
     }
 }

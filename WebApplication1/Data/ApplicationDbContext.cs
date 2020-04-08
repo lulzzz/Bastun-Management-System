@@ -10,9 +10,9 @@ namespace WebApplication1.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<InboundFlight> InboundFlights { get; set; }
 
-
-
+        public DbSet<OutboundFlight> OutboundFlights { get; set; }
         public DbSet<ArrivalMovement> ArrivalMovements { get; set; }
 
         public DbSet<DepartureMovement> DepartureMovements { get; set; }
