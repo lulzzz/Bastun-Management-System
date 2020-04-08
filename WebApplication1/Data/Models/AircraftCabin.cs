@@ -11,6 +11,7 @@
         public AircraftCabin()
         {
             this.Passengers = new List<Passenger>();
+            this.DetermineCabinCapacity();
         }
 
         [Key]
@@ -29,6 +30,25 @@
         public int ZoneBravoCapacity { get; set; }
 
         public int ZoneCharlieCapacity { get; set; }
+
+        public int ZoneDeltaCapacity { get; set; }
+
+        private void DetermineCabinCapacity()
+        {
+            if (this.Aircraft.Type.ToString() == "A320")
+            {
+                this.ZoneAlphaCapacity = 60;
+                this.ZoneBravoCapacity = 60;
+                this.ZoneCharlieCapacity = 60;
+            } 
+            else if(this.Aircraft.Type.ToString() == "B737")
+            {
+                this.ZoneAlphaCapacity = 60;
+                this.ZoneBravoCapacity = 60;
+                this.ZoneCharlieCapacity = 60;
+                this.ZoneDeltaCapacity = 9;
+            }
+        }
 
     }
 }

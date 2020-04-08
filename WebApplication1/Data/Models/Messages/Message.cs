@@ -17,10 +17,15 @@
         [Key]
         public int MessageId { get; set; }
 
-  
+        
+        public int InboundFlightId { get; set; }
 
        
+        public InboundFlight InboundFlight { get; set; }
 
+        
+        public int OutboundFlightId { get; set; }
 
+        public OutboundFlight OutboundFlight { get; set; }
     }
 }
