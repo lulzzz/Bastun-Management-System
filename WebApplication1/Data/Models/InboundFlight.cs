@@ -8,6 +8,12 @@
     using System.Threading.Tasks;
     public class InboundFlight
     {
+        public InboundFlight()
+        {
+            this.InboundMessages = new List<Message>();
+            this.InboundContainers = new List<Container>();
+        }
+
         [Key]
         public int FlightId { get; set; }
 
@@ -20,5 +26,7 @@
         public string Origin { get; set; }
 
         public virtual ICollection<Message> InboundMessages { get; set; }
+
+        public virtual ICollection<Container> InboundContainers { get; set; }
     }
 }

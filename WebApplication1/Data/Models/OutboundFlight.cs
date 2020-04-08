@@ -9,6 +9,12 @@
 
     public class OutboundFlight
     {
+        public OutboundFlight()
+        {
+            this.OutboundContainers = new List<Container>();
+            this.OutboundMessages = new List<Message>();
+        }
+
         [Key]
         public int FlightId { get; set; }
 
@@ -21,6 +27,8 @@
         public string HandlingStation { get; set; }
 
         public virtual ICollection<Message> OutboundMessages { get; set; }
+
+        public virtual ICollection<Container> OutboundContainers { get; set; }
 
         public virtual DepartureMovement DepartureMovement { get; set; }
 
