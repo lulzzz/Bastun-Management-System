@@ -15,7 +15,7 @@ namespace WebApplication1.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -96,34 +96,6 @@ namespace WebApplication1.Data.Migrations
                     b.ToTable("ArrivalMovements");
                 });
 
-            modelBuilder.Entity("BMS.Data.Models.Container", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ContainerNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ContainerPalletMessageId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FlightId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContainerPalletMessageId");
-
-                    b.HasIndex("FlightId");
-
-                    b.ToTable("Containers");
-                });
-
             modelBuilder.Entity("BMS.Data.Models.DepartureMovement", b =>
                 {
                     b.Property<int>("Id")
@@ -190,26 +162,6 @@ namespace WebApplication1.Data.Migrations
                     b.HasKey("FlightId");
 
                     b.ToTable("Flights");
-                });
-
-            modelBuilder.Entity("BMS.Data.Models.Messages.ContainerPalletMessage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("FlightId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SupplementaryInformation")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FlightId");
-
-                    b.ToTable("ContainerPalletMessages");
                 });
 
             modelBuilder.Entity("BMS.Data.Models.Messages.LoadDistributionMessage", b =>
@@ -565,35 +517,11 @@ namespace WebApplication1.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BMS.Data.Models.Container", b =>
-                {
-                    b.HasOne("BMS.Data.Models.Messages.ContainerPalletMessage", "ContainerPalletMessage")
-                        .WithMany("Containers")
-                        .HasForeignKey("ContainerPalletMessageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BMS.Data.Models.Flight", "Flight")
-                        .WithMany()
-                        .HasForeignKey("FlightId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("BMS.Data.Models.DepartureMovement", b =>
                 {
                     b.HasOne("BMS.Data.Models.Flight", "Flight")
                         .WithOne("DepartureMovement")
                         .HasForeignKey("BMS.Data.Models.DepartureMovement", "FlightRef")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BMS.Data.Models.Messages.ContainerPalletMessage", b =>
-                {
-                    b.HasOne("BMS.Data.Models.Flight", "Flight")
-                        .WithMany()
-                        .HasForeignKey("FlightId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

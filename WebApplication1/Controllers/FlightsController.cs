@@ -1,5 +1,5 @@
 ﻿using BMS.Models;
-using BMS.Models.ViewModels.Flights;
+
 using BMS.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,10 +29,11 @@ namespace BMS.Controllers
         [HttpGet]
         public IActionResult DisplayDaily()
         {
-            var flights = this.flightService.GetAllFlights();
-            var dailyFlightsViewModel = new FlightViewModel(flights);
+            //var flights = this.flightService.GetAllFlights();
+            //var dailyFlightsViewModel = new FlightViewModel(flights);
 
-            return this.View(dailyFlightsViewModel);
+            //return this.View(dailyFlightsViewModel);
+            return null;
         }
 
         [HttpPost]
@@ -58,26 +59,10 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult RegisterAircraft(AircraftInputModel aircraftInputModel)
         {
-            if (this.ModelState.IsValid)
-            {
-                var flightByFlightNumber = this.flightService.GetFlightByFlightNumber(aircraftInputModel.FlightNumber);
-
-                if (flightByFlightNumber != null)
-                {
-                    this.aircraftService.RegisterAircraft(aircraftInputModel, flightByFlightNumber);
-                }
-                else
-                {
-                    return this.View();
-                }
-            
+          
 
                 return this.RedirectToAction("Arrival", "Movements");
-            }
-            else
-            {
-                return this.View(aircraftInputModel);
-            }
+           
         }
 
        

@@ -2,7 +2,6 @@
 {
     using BMS.Data.Models;
     using BMS.Data.Models.Contracts.MovementContracts;
-    using BMS.Data.Models.Messages;
     using BMS.Models.MovementsInputModels;
     using System;
     using System.Collections.Generic;

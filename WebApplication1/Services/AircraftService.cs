@@ -23,20 +23,9 @@
             return this.dbContext.Aircraft.Any(x => x.AircraftRegistration == registration);
         }
 
-        public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight)
+        public void RegisterAircraft(AircraftInputModel aircraftInputModel)
         {
-            var currAircraft = new Aircraft
-            {
-                AircraftRegistration = aircraftInputModel.AircraftRegistration,
-                Type = aircraftInputModel.Type,
-                Version = aircraftInputModel.Version,
-                Cabin = new AircraftCabin(),
-                Flight = flight,
-                FlightId = flight.FlightId,
-            };
-           
-            this.dbContext.Aircraft.Add(currAircraft);
-            this.dbContext.SaveChanges();
+          
         }
     }
 }

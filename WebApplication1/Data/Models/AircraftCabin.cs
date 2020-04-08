@@ -10,9 +10,7 @@
     {
         public AircraftCabin()
         {
-            this.ZoneAlpha = new List<Passenger>();
-            this.ZoneBravo = new List<Passenger>();
-            this.ZoneCharlie = new List<Passenger>();
+            this.Passengers = new List<Passenger>();
         }
 
         [Key]
@@ -24,10 +22,13 @@
         [Required]
         public virtual Aircraft Aircraft { get; set; }
 
-        public virtual List<Passenger> ZoneAlpha { get; set; }
+        public virtual ICollection<Passenger> Passengers { get; set; }
 
-        public virtual List<Passenger> ZoneBravo { get; set; }
+        public int ZoneAlphaCapacity { get; set; }
 
-        public virtual List<Passenger> ZoneCharlie { get; set; }
+        public int ZoneBravoCapacity { get; set; }
+
+        public int ZoneCharlieCapacity { get; set; }
+
     }
 }

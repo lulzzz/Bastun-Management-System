@@ -9,10 +9,7 @@
     {
         public int Id { get; set; }
 
-        public int FlightRef { get; set; }
-
-        public Flight Flight { get; set; }
-
+       
         public DateTime DateOfMovement { get; set; }
 
         public DateTime TouchdownTime { get; set; }

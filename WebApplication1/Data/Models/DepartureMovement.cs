@@ -8,10 +8,7 @@
     public class DepartureMovement : IDepartureMovement
     {
         public int Id { get; set; }
-
-        public int FlightRef { get; set; }
-
-        public virtual Flight Flight { get; set; }
+       
 
         public DateTime DateOfMovement { get; set; }
 

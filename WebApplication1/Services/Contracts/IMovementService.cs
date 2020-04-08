@@ -8,9 +8,9 @@
 
     public interface IMovementService
     {
-        void CreateArrivalMovement(Flight flight,DateTime[] dates, string supplementaryInformation);
+        void CreateArrivalMovement(DateTime[] dates, string supplementaryInformation);
 
-        void CreateDepartureMovement(Flight flight, DateTime[] dates, string supplementaryInformation, int totalPax);
+        void CreateDepartureMovement(DateTime[] dates, string supplementaryInformation, int totalPax);
 
         ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber);
 

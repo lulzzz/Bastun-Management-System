@@ -23,39 +23,22 @@
 
         public void RegisterFlight(FlightInputModel flightInput)
         {
-            var flightToAdd = new Flight
-            {
-                FlightNumber = flightInput.FlightNumber,
-                Origin = flightInput.Origin,
-                Destination = flightInput.Destination,
-                STA = flightInput.STA,
-                STD = flightInput.STD,
-                BookedPax = flightInput.BookedPax
-            };
-            this.dbContext.Flights.Add(flightToAdd);
-            this.dbContext.SaveChanges();
+            
         }
 
-        public Flight GetFlightByFlightNumber(string flightNumber)
+        public void GetFlightByFlightNumber(string flightNumber)
         {
-            var flightFromDb =
-                this.dbContext.Flights
-                 .Where(x => x.FlightNumber == flightNumber)
-                 .FirstOrDefault();
-
-            return flightFromDb;
+         
         }
 
-        public ICollection<Flight> GetAllFlights()
+        public void GetAllFlights()
         {
-            var allFlightsFromDb = this.dbContext.Flights.ToList();
-
-            return allFlightsFromDb;
+         
         }
 
         public bool CheckFlightNumber(string flightNumber)
         {
-            return this.dbContext.Flights.Any(x => x.FlightNumber == flightNumber);
+            return true;
         }
     }
 }

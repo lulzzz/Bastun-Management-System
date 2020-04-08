@@ -44,13 +44,5 @@
 
         public virtual ICollection<Suitcase> Suitcases { get; set; }
 
-
-        [Required]
-        public int FlightId { get; set; }
-
-        [Required]
-        public virtual Flight Flight { get; set; }
-
-
     }
 }

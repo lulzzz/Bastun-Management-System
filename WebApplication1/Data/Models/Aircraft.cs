@@ -13,9 +13,7 @@
     {
         [Key]
         public int AircraftId { get; set; }
-        public int FlightId { get; set; }
 
-        public Flight Flight { get; set; }
 
         [Required(ErrorMessage = InvalidErrorMessages.AircraftTypeIsRequired)]
         [RegularExpression(FlightInputDataValidation.AircraftTypeValidation, ErrorMessage = InvalidErrorMessages.AircraftType)]

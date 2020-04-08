@@ -2,15 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
-    public class LoadDistributionMessage
+
+    public class LoadDistributionMessage : Message
     {
-        public int Id { get; set; }
-
-        public int FlightRef { get; set; }
-        public virtual Flight Flight { get; set; }
-
         public string CrewConfiguration { get; set; }
 
         public int PAXMale { get; set; }
@@ -19,16 +16,23 @@
 
         public int PAXChildren { get; set; }
 
-        public int PAXInfant { get; set; }
+        public int PAXInfants { get; set; }
 
-        public int TotalPayloadWeight { get; set; }
+        public int TotalWeightInCompartments { get; set; }
 
-        public string PayloadPerCompartments { get; set; }
+        [Required]
+        public int AircraftBaggageHoldId { get; set; }
 
-        public int TotalPAX { get; set; }
+        [Required]
+        public AircraftBaggageHold WeightByCompartment { get; set; }
 
-        public int TotalBags { get; set; }
+        [Range(0,189, ErrorMessage = "Invalid pax number!")]
+        public int TotalPax { get; set; }
 
-        public int CargoWeight { get; set; }
+        public int TotalBaggagePieces { get; set; }
+
+        public int TotalCargo { get; set; }
+
+
     }
 }

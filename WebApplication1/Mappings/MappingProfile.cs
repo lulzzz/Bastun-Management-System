@@ -12,7 +12,7 @@ namespace BMS.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<FlightInputModel, Flight>();
+            
         }
     }
 }

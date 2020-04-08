@@ -9,10 +9,6 @@
     {
         public int AircraftId { get; set; }
 
-        public int FlightId { get; set; }
-
-        public Flight Flight { get; set; }
-
         public AircraftType Type { get; set; }
 
         public string AircraftRegistration { get; set; }

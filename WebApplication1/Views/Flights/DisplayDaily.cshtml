@@ -1,10 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Daily";
 }
-
-@using BMS.Models.ViewModels.Flights;
-@model FlightViewModel;
-    <div class="col">
+<div class="col">
         <h1 class="text-center">Daily aircraft movements:</h1>
         <br />
         <table class="table table-bordered table-hover text-center" id="dailyMovements" >
@@ -20,18 +17,6 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var flight in Model.Flights)
-                {
-                    <tr>
-                        <th scope="col">@flight.FlightNumber</th>
-                        <th scope="col">@flight.Aircraft.AircraftRegistration</th>
-                        <th scope="col">@flight.Aircraft.Type</th>
-                        <th scope="col">@flight.Origin</th>
-                        <th scope="col">@flight.Destination</th>
-                        <th scope="col">@flight.STA</th>
-                        <th scope="col">@flight.STD</th>
-                    </tr>
-                }
             </tbody>
         </table>
     </div>

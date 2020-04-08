@@ -1,7 +1,6 @@
 ﻿namespace BMS.Services
 {
     using BMS.Data.Models;
-    using BMS.Data.Models.Messages;
     using BMS.GlobalData.Validation;
     using BMS.Models.MovementsInputModels;
     using BMS.Services.Contracts;
@@ -25,7 +24,7 @@
         private const string movementDateFormat = "HH:MM:SS";
         private const string _colon = ":";
         private const string _zeros = "00";
-
+        //TODO: Refactor this
         public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation, IFlightService flightService)
         {
             this.movementService = movementService;
@@ -58,12 +57,12 @@
                         {
                             if (this.flightDataValidation.IsDateAndStationValid(fltNmb,date,station))
                             {
-                                string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
-                                var flightByFlightNumber = this.flightService
-                                    .GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(fltNmb));
-                                string[] times = this.GetTimesForArrivalMovement(splitMessage[2]);
-                                DateTime[] dates = this.ParseTimesForMovements(times, flightByFlightNumber);
-                                this.movementService.CreateArrivalMovement(flightByFlightNumber, dates, supplementaryInformation);
+                                //string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
+                                //var flightByFlightNumber = this.flightService
+                                //    .GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(fltNmb));
+                                //string[] times = this.GetTimesForArrivalMovement(splitMessage[2]);
+                                //DateTime[] dates = this.ParseTimesForMovements(times, flightByFlightNumber);
+                                //this.movementService.CreateArrivalMovement(flightByFlightNumber, dates, supplementaryInformation);
                             } 
                             else
                             {
@@ -114,12 +113,12 @@
 
                     if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(flightNumber, registration))
                     {
-                        string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[4]);
-                        var flightByFlightNumber = this.flightService.GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(flightNumber));
-                        string[] timesForDepartureMovement = this.GetTimesForDepartureMovement(splitMessage[2]);
-                        DateTime[] datesForDepartureMovement = this.ParseTimesForMovements(timesForDepartureMovement, flightByFlightNumber);
-                        int totalPax = this.ParseTotalPax(splitMessage[3]);
-                        this.movementService.CreateDepartureMovement(flightByFlightNumber, datesForDepartureMovement, supplementaryInformation, totalPax);
+                        //string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[4]);
+                        //var flightByFlightNumber = this.flightService.GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(flightNumber));
+                        //string[] timesForDepartureMovement = this.GetTimesForDepartureMovement(splitMessage[2]);
+                        //DateTime[] datesForDepartureMovement = this.ParseTimesForMovements(timesForDepartureMovement, flightByFlightNumber);
+                        //int totalPax = this.ParseTotalPax(splitMessage[3]);
+                        //this.movementService.CreateDepartureMovement(flightByFlightNumber, datesForDepartureMovement, supplementaryInformation, totalPax);
                     } 
                     else
                     {
@@ -197,7 +196,7 @@
             return new string[] { offBlockTime, takeoffTime };
         }
 
-        private DateTime[] ParseTimesForMovements(string[] times, Flight flight)
+        private DateTime[] ParseTimesForMovements(string[] times)
         {
             var arrOfValidTimes = this.GetValidTimesFormat(times);
             string time1 = arrOfValidTimes[0];
@@ -211,11 +210,9 @@
             var parsedTime1 = TimeSpan.Parse(time1);
             var parsedTime2 = TimeSpan.Parse(time2);
 
-            var flightDate = flight.STA;
-            var timeOneAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds);
-            var timeTwoAsDateTime = new DateTime(flightDate.Year, flightDate.Month, flightDate.Day, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds);
 
-            return new DateTime[] { timeOneAsDateTime, timeTwoAsDateTime };
+
+            return null;
         }
 
         private string[] GetValidTimesFormat(string[] listOfTimes)

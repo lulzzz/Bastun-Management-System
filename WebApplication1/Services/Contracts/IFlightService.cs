@@ -8,12 +8,12 @@
     using System.Threading.Tasks;
     public interface IFlightService
     {
-        Flight GetFlightByFlightNumber(string flightNumber);
+        void GetFlightByFlightNumber(string flightNumber);
 
         void RegisterFlight(FlightInputModel flightInput);
 
         bool CheckFlightNumber(string flightNumber);
 
-        ICollection<Flight> GetAllFlights();
+       void GetAllFlights();
     }
 }

@@ -8,7 +8,7 @@
     using System.Threading.Tasks;
     public interface IAircraftService
     {
-        public void RegisterAircraft(AircraftInputModel aircraftInputModel, Flight flight);
+        public void RegisterAircraft(AircraftInputModel aircraftInputModel);
 
         public bool CheckAircraftRegistration(string registration);
 

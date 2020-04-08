@@ -1,6 +1,5 @@
 ﻿namespace BMS.Services.Contracts
 {
-    using BMS.Data.Models.Messages;
     using System;
     using System.Collections.Generic;
     using System.Linq;
