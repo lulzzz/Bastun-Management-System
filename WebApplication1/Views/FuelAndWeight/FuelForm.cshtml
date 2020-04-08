@@ -1,5 +1,7 @@
-﻿<div class="col">
-    <form asp-controller="Fuel" asp-action="FuelForm">
+﻿@using BMS.Models
+@model FuelFormInputModel
+<div class="col">
+    <form asp-controller="FuelAndWeight" asp-action="RegisterFuelForm">
         <div class="form-group">
             <label for="flightNumber">Flight Number:</label>
             <input type="text"class="form-control w-100" />
@@ -32,6 +34,10 @@
         </div>
         <div class="form-group">
             <label for="tripFuel">Trip:</label>
+            <input type="number" class="form-control w-100" />
+        </div>
+        <div class="form-group">
+            <label>Takeoff fuel:</label>
             <input type="number" class="form-control w-100" />
         </div>
         <div class="form-group">

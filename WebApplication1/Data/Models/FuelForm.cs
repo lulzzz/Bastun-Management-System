@@ -7,12 +7,14 @@
     using System.Threading.Tasks;
     public class FuelForm
     {
+        [Key]
         public int Id { get; set; }
 
-        public int OutboundFlightId { get; set; }
+        [Required]
+        public int AircraftId { get; set; }
 
         [Required]
-        public virtual OutboundFlight OutboundFlight { get; set; }
+        public virtual Aircraft Aircraft { get; set; }
 
         [Required]
         public string PilotInCommand { get; set; }

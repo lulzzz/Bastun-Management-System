@@ -29,6 +29,13 @@
         public string Version { get; set; }
         public  virtual AircraftCabin Cabin { get; set; }
 
+        public int FuelFormId { get; set; }
+        public virtual FuelForm FuelForm { get; set; }
+
+        public int WeightFormId { get; set; }
+
+        public virtual WeightForm  WeightForm { get; set; }
+
         public bool IsAicraftContainerized { get; set; }
     }
 }

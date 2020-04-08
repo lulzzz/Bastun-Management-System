@@ -24,8 +24,6 @@
 
         public virtual DepartureMovement DepartureMovement { get; set; }
 
-        public virtual FuelForm FuelForm { get; set; }
-
         public DateTime STD { get; set; }
 
         public int BookedPax { get; set; }

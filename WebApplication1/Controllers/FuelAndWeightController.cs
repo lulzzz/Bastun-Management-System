@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BMS.Models;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Controllers
 {
-    public class FuelController : Controller
+    public class FuelAndWeightController : Controller
     {
 
         [HttpGet]
@@ -16,9 +17,21 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public void RegisterFuelForm()
+        public void RegisterFuelForm(FuelFormInputModel fuelInputModel)
         {
 
+        }
+
+        [HttpGet]
+        public IActionResult RegisterWeightForm()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult RegisterWeightForm(WeightInputModel weightInputModel)
+        {
+            return this.View(weightInputModel);
         }
     }
 }
