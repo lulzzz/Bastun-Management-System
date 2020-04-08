@@ -18,9 +18,17 @@
 
         public int PAXInfants { get; set; }
 
-        public int TotalWeightInCompartments { get; set; }
+        public int TotalWeightInAllCompartments { get; set; }
 
-        
+        public int TTLWeightInCPT1 { get; set; }
+
+        public int TTLWeightInCPT2 { get; set; }
+
+        public int TTlWeightINCPT3 { get; set; }
+
+        public int TTLWeightInCPT4 { get; set; }
+
+        public int TTLWeightInCPT5 { get; set; }
 
         [Range(1,345, ErrorMessage = "Invalid pax number!")]
         public int TotalPax { get; set; }

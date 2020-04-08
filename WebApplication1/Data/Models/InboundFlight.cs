@@ -11,7 +11,6 @@
         public InboundFlight()
         {
             this.InboundMessages = new List<Message>();
-            this.InboundContainers = new List<Container>();
         }
 
         [Key]
@@ -27,6 +26,5 @@
 
         public virtual ICollection<Message> InboundMessages { get; set; }
 
-        public virtual ICollection<Container> InboundContainers { get; set; }
     }
 }

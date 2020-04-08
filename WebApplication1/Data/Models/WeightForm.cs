@@ -14,7 +14,7 @@
 
         public int AircraftId { get; set; }
 
-        public Aircraft Aircraft { get; set; }
+        public virtual Aircraft Aircraft { get; set; }
 
         public double AircraftBasicWeight { get; set; }
 

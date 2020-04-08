@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using BMS.Data;
 using BMS.Data.Models;
@@ -14,6 +15,8 @@ namespace WebApplication1.Data
         public DbSet<InboundFlight> InboundFlights { get; set; }
 
         public DbSet<OutboundFlight> OutboundFlights { get; set; }
+
+
         public DbSet<ArrivalMovement> ArrivalMovements { get; set; }
 
         public DbSet<DepartureMovement> DepartureMovements { get; set; }
@@ -34,6 +37,14 @@ namespace WebApplication1.Data
 
         public DbSet<WeightForm> WeightForms { get; set; }
 
+        public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
+
+        public DbSet<ContainerPalletMessage> ContainerPalletMessages { get; set; }
+
+        public DbSet<UniloadContainerMessage> UniloadContainerMessages { get; set; }
+
+        public DbSet<Container> Containers { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -46,9 +57,9 @@ namespace WebApplication1.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-         
 
-           
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            builder.Entity<Message>().ToTable("Messages");
 
             base.OnModelCreating(builder);
         }
