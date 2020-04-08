@@ -12,7 +12,7 @@
         public int OutboundFlightId { get; set; }
 
         [Required]
-        public OutboundFlight OutboundFlight { get; set; }
+        public virtual OutboundFlight OutboundFlight { get; set; }
 
         [Required]
         public string PilotInCommand { get; set; }

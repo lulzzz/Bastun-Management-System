@@ -20,13 +20,9 @@
 
         public int TotalWeightInCompartments { get; set; }
 
-        [Required]
-        public int AircraftBaggageHoldId { get; set; }
+        
 
-        [Required]
-        public AircraftBaggageHold WeightByCompartment { get; set; }
-
-        [Range(0,189, ErrorMessage = "Invalid pax number!")]
+        [Range(1,345, ErrorMessage = "Invalid pax number!")]
         public int TotalPax { get; set; }
 
         public int TotalBaggagePieces { get; set; }

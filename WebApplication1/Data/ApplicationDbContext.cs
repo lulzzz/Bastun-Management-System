@@ -29,6 +29,8 @@ namespace WebApplication1.Data
 
         public DbSet<AircraftBaggageHold> AircraftBaggageHolds { get; set; }
 
+        public DbSet<FuelForm> FuelForms { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {

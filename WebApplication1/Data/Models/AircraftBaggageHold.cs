@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     public class AircraftBaggageHold
     {
+        [Key]
         public int BaggageHoldId { get; set; }
 
         [Required]

@@ -34,7 +34,7 @@
         public DateTime STD { get; set; }
 
         [Required(ErrorMessage = InvalidErrorMessages.BookedPAXRequired)]
-        [Range(1,325, ErrorMessage = InvalidErrorMessages.BookedPax)]
+        [Range(1,345, ErrorMessage = InvalidErrorMessages.BookedPax)]
         public int BookedPax { get; set; }
     }
 }
