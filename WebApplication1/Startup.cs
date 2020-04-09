@@ -41,6 +41,8 @@ namespace WebApplication1
             services.AddTransient<IMessageParser, MessageParser>();
             services.AddTransient<IMessageService, MessageService>();
             services.AddTransient<IFlightDataValidation, FlightDataValidation>();
+            services.AddTransient<IAircraftCabinService, AircraftCabinService>();
+            services.AddTransient<IAircraftBaggageHoldService, AircraftBaggageHoldService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
@@ -57,7 +59,6 @@ namespace WebApplication1
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,12 +67,12 @@ namespace WebApplication1
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+              
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseAuthentication();
             app.UseAuthorization();
 

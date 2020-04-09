@@ -7,20 +7,7 @@
     using System.Threading.Tasks;
     public interface IAircraftCabinService
     {
-        AircraftCabin AddCabinToAircraft(Aircraft aircraft);
+        void AddCabinToAircraft(Aircraft aircraft);
 
-        void SetCabinData738(AircraftCabin cabin);
-
-        void SetCabinData752(AircraftCabin cabin);
-
-        void SetCabinData763(AircraftCabin cabin);
-
-        void SetCabinData788(AircraftCabin cabin);
-
-        void SetCabinData789(AircraftCabin cabin);
-
-        void SetCabinData320(AircraftCabin cabin);
-
-       
     }
 }

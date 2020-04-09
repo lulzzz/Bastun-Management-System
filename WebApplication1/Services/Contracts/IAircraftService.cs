@@ -12,6 +12,9 @@
 
         public bool CheckAircraftRegistration(string registration);
 
+        public Aircraft GetAicraftByRegistration(string registration);
+
+        public bool IsAircraftGoingToBeContainerized(string aircraftType);
        
     }
 }
