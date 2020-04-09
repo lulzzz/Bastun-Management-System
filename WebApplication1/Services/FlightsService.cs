@@ -31,9 +31,32 @@
             throw new NotImplementedException();
         }
 
-        public void GetFlightByFlightNumber(string flightNumber)
+        public InboundFlight GetInboundFlightByFlightNumber(string inboundFlightNumber)
         {
-            throw new NotImplementedException();
+            var inboundFlightToReturn = this.dbContext.InboundFlights.FirstOrDefault(x => x.FlightNumber == inboundFlightNumber);
+
+            if (inboundFlightToReturn != null)
+            {
+                return inboundFlightToReturn;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public OutboundFlight GetOutboundFlightByFlightNumber(string outboundFlightNumber)
+        {
+            var outboundFlightToReturn = this.dbContext.OutboundFlights.FirstOrDefault(x => x.FlightNumber == outboundFlightNumber);
+
+            if (outboundFlightToReturn != null)
+            {
+                return outboundFlightToReturn;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public void RegisterInboundFlight(FlightInputModel inboundFlightInputModel)

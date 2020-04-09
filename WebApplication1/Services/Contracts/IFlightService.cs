@@ -8,7 +8,9 @@
     using System.Threading.Tasks;
     public interface IFlightService
     {
-        void GetFlightByFlightNumber(string flightNumber);
+        InboundFlight GetInboundFlightByFlightNumber(string inboundFlightNumber);
+
+        OutboundFlight GetOutboundFlightByFlightNumber(string outboundFlightNumber);
 
         void RegisterInboundFlight(FlightInputModel inboundFlightInputModel);
 

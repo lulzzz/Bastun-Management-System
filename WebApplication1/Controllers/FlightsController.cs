@@ -43,7 +43,7 @@ namespace BMS.Controllers
             {
                 this.flightService.RegisterInboundFlight(flightInputModel);
                 this.flightService.RegisterOutboundFlight(flightInputModel);
-                return this.RedirectToAction("Arrival", "Movements");
+                return this.RedirectToAction("RegisterAircraft");
             } 
             else
             {
@@ -60,11 +60,14 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult RegisterAircraft(AircraftInputModel aircraftInputModel)
         {
-          
-
-
+            if (this.ModelState.IsValid)
+            {
+                this.aircraftService.RegisterAircraft(aircraftInputModel);
                 return this.RedirectToAction("Arrival", "Movements");
-           
+            }else
+            {
+                return this.View(aircraftInputModel);
+            }
         }
 
        
