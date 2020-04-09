@@ -14,12 +14,14 @@
         private readonly ApplicationDbContext dbContext;
         private readonly IFlightService flightService;
         private readonly IAircraftCabinService cabinService;
+        private readonly IAircraftBaggageHoldService baggageHoldService;
 
-        public AircraftService(ApplicationDbContext dbContext, IFlightService flightService, IAircraftCabinService cabinService)
+        public AircraftService(ApplicationDbContext dbContext, IFlightService flightService, IAircraftCabinService cabinService, IAircraftBaggageHoldService baggageHoldService)
         {
             this.dbContext = dbContext;
             this.flightService = flightService;
             this.cabinService = cabinService;
+            this.baggageHoldService = baggageHoldService;
         }
 
         public bool CheckAircraftRegistration(string registration)
@@ -53,12 +55,18 @@
                 };
 
                 newAircraft.IsAicraftContainerized = this.IsAircraftGoingToBeContainerized(newAircraft.Type.ToString());
-                newAircraft.Cabin = this.cabinService.AddCabinToAircraft(newAircraft);
+                this.cabinService.AddCabinToAircraft(newAircraft);
+                this.baggageHoldService.AddBaggageHoldToAircraft(newAircraft);
                 this.dbContext.Aircraft.Add(newAircraft);
                 this.dbContext.SaveChanges();
             }
+        }
 
-           
+        public Aircraft GetAircraftByRegistration(string registration)
+        {
+            var aircrafToReturn = this.dbContext.Aircraft.FirstOrDefault(x => x.AircraftRegistration == registration);
+
+            return aircrafToReturn;
         }
     }
 }

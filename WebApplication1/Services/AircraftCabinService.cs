@@ -17,12 +17,12 @@
             this.dbContext = dbContext;
         }
 
-        public AircraftCabin AddCabinToAircraft(Aircraft aircraft)
+        public void AddCabinToAircraft(Aircraft aircraft)
         {
             var aircraftCabin = new AircraftCabin
             {
                 AircraftId = aircraft.AircraftId,
-               
+                Aircraft = aircraft
             };
 
             switch (aircraft.Type.ToString())
@@ -49,12 +49,18 @@
                     break;
             }
 
-            return aircraftCabin; 
+            this.dbContext.AircraftCabins.Add(aircraftCabin);
+            this.dbContext.SaveChanges();
         }
 
         private void SetCabinData320(AircraftCabin cabin)
         {
-            throw new NotImplementedException();
+            if (cabin != null)
+            {
+                cabin.ZoneAlphaCapacity = 60;
+                cabin.ZoneBravoCapacity = 60;
+                cabin.ZoneCharlieCapacity = 60;
+            }
         }
 
         private void SetCabinData738(AircraftCabin cabin)
