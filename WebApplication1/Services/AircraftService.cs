@@ -12,10 +12,12 @@
     public class AircraftService : IAircraftService
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IFlightService flightService;
 
-        public AircraftService(ApplicationDbContext dbContext)
+        public AircraftService(ApplicationDbContext dbContext, IFlightService flightService)
         {
             this.dbContext = dbContext;
+            this.flightService = flightService;
         }
 
         public bool CheckAircraftRegistration(string registration)
@@ -25,7 +27,35 @@
 
         public void RegisterAircraft(AircraftInputModel aircraftInputModel)
         {
-            
+            var outboundFlightToRegisterAircraftTo = this.flightService.GetOutboundFlightByFlightNumber(aircraftInputModel.FlightNumber);
+
+            if (outboundFlightToRegisterAircraftTo != null)
+            {
+                var newAircraft = new Aircraft
+                {
+                    AircraftRegistration = aircraftInputModel.AircraftRegistration,
+                    Version = aircraftInputModel.Version,
+                    Type = aircraftInputModel.Type,
+                    OutboundFlightId = outboundFlightToRegisterAircraftTo.FlightId,
+                    OutboundFlight = outboundFlightToRegisterAircraftTo
+                };
+
+            string typeAsString = aircraftInputModel.Type.ToString();
+
+                if (typeAsString == "B763" || typeAsString == "B788" || typeAsString == "B789")
+                {
+                    newAircraft.IsAicraftContainerized = true;
+                } 
+                else
+                {
+                    newAircraft.IsAicraftContainerized = false;
+                }
+
+                this.dbContext.Aircraft.Add(newAircraft);
+                this.dbContext.SaveChanges();
+            }
+
+           
         }
     }
 }

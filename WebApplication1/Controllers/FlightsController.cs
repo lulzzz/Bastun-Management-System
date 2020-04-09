@@ -64,7 +64,8 @@ namespace BMS.Controllers
             {
                 this.aircraftService.RegisterAircraft(aircraftInputModel);
                 return this.RedirectToAction("Arrival", "Movements");
-            }else
+            }
+            else
             {
                 return this.View(aircraftInputModel);
             }
