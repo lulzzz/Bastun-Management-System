@@ -21,24 +21,58 @@
             this.dbContext = dbContext;
         }
 
-        public void RegisterFlight(FlightInputModel flightInput)
+        public bool CheckFlightNumber(string flightNumber)
         {
-            
-        }
-
-        public void GetFlightByFlightNumber(string flightNumber)
-        {
-         
+            throw new NotImplementedException();
         }
 
         public void GetAllFlights()
         {
-         
+            throw new NotImplementedException();
         }
 
-        public bool CheckFlightNumber(string flightNumber)
+        public void GetFlightByFlightNumber(string flightNumber)
         {
-            return true;
+            throw new NotImplementedException();
+        }
+
+        public void RegisterInboundFlight(FlightInputModel inboundFlightInputModel)
+        {
+            string[] splitFlightNumbers =
+                inboundFlightInputModel
+                .FlightNumber
+                .Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            string inboundFlightNumber = splitFlightNumbers[0];
+            var newInboundFlight = new InboundFlight
+            {
+                FlightNumber = inboundFlightNumber,
+                Origin = inboundFlightInputModel.Origin,
+                STA = inboundFlightInputModel.STA,
+            };
+            this.dbContext.InboundFlights.Add(newInboundFlight);
+            this.dbContext.SaveChanges();
+        }
+
+        public void RegisterOutboundFlight(FlightInputModel outboundFlightInputModel)
+        {
+            string[] splitFlightNumbers =
+                outboundFlightInputModel
+                .FlightNumber
+                .Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            string outboundFlightNumber = splitFlightNumbers[1];
+            var newOutboundFlight = new OutboundFlight
+            {
+                FlightNumber = outboundFlightNumber,
+                HandlingStation = outboundFlightInputModel.HandlingStation,
+                BookedPax = outboundFlightInputModel.BookedPax,
+                STD = outboundFlightInputModel.STD,
+                Destination = outboundFlightInputModel.Destination
+            };
+
+            this.dbContext.OutboundFlights.Add(newOutboundFlight);
+            this.dbContext.SaveChanges();
         }
     }
 }

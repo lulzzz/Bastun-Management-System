@@ -9,7 +9,9 @@
     {
         public int Id { get; set; }
 
+        public int InboundFlightId { get; set; }
 
+        public virtual InboundFlight InboundFlight { get; set; }
 
         public DateTime DateOfMovement { get; set; }
 

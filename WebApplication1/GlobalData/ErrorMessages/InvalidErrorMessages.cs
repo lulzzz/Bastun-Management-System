@@ -10,6 +10,8 @@
 
         public const string AircraftRegistrationRequired = "Aicraft registration is required!";
 
+        public const string InvalidFlightNumberFormat = "Invalid flight number format entered!";
+
         public const string AircraftTypeIsRequired = "Aircraft type is required!";
 
         public const string OriginRequired = "Origin station is required!";

@@ -10,10 +10,12 @@
     {
         void GetFlightByFlightNumber(string flightNumber);
 
-        void RegisterFlight(FlightInputModel flightInput);
+        void RegisterInboundFlight(FlightInputModel inboundFlightInputModel);
+
+        void RegisterOutboundFlight(FlightInputModel outboundFlightInputModel);
 
         bool CheckFlightNumber(string flightNumber);
 
-       void GetAllFlights();
+        void GetAllFlights();
     }
 }

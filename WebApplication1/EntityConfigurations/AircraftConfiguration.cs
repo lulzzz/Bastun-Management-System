@@ -12,6 +12,9 @@
     {
         public void Configure(EntityTypeBuilder<Aircraft> builder)
         {
+
+            builder.HasKey(x => x.AircraftId);
+
             builder.HasOne(x => x.FuelForm)
                .WithOne(x => x.Aircraft)
                .HasForeignKey<FuelForm>(x => x.AircraftId)
@@ -21,6 +24,11 @@
                 .WithOne(x => x.Aircraft)
                 .HasForeignKey<WeightForm>(x => x.AircraftId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.Cabin)
+                .WithOne(x => x.Aircraft)
+                .HasForeignKey<AircraftCabin>(x => x.AircraftId)
+                .OnDelete(DeleteBehavior.Restrict); 
         }
     }
 }

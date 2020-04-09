@@ -23,6 +23,16 @@
                 .WithOne(x => x.OutboundFlight)
                 .HasForeignKey(x => x.OutboundFlightId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(a => a.Aircraft)
+                .WithOne(obF => obF.OutboundFlight)
+                .HasForeignKey<Aircraft>(fk => fk.OutboundFlightId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.DepartureMovement)
+                .WithOne(x => x.OutboundFlight)
+                .HasForeignKey<DepartureMovement>(mvt => mvt.OutboundFlightId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

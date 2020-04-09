@@ -5,19 +5,6 @@
     <UserSecretsId>aspnet-WebApplication1-334F89FB-0C78-4867-86FC-102E1A13EE27</UserSecretsId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Data\Migrations\20200404101705__Add_UCM_CPM_Container_Models.cs" />
-    <Compile Remove="Data\Migrations\20200404101705__Add_UCM_CPM_Container_Models.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200408070303_RemoveMessages.cs" />
-    <Compile Remove="Data\Migrations\20200408070303_RemoveMessages.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200408070535_RemoveContainers.cs" />
-    <Compile Remove="Data\Migrations\20200408070535_RemoveContainers.Designer.cs" />
-    <Compile Remove="Data\Migrations\20200408210323_FromTheGroundUp2.cs" />
-    <Compile Remove="Data\Migrations\20200408210323_FromTheGroundUp2.Designer.cs" />
-    <Compile Remove="Migrations\20200408214633_Initial.cs" />
-    <Compile Remove="Migrations\20200408214633_Initial.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
@@ -38,7 +25,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Models\ViewModels\Flights\" />
   </ItemGroup>
 

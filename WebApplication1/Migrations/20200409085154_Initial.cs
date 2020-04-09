@@ -8,40 +8,6 @@ namespace BMS.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Aircraft",
-                columns: table => new
-                {
-                    AircraftId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<int>(nullable: false),
-                    AircraftRegistration = table.Column<string>(nullable: false),
-                    Version = table.Column<string>(nullable: false),
-                    FuelFormId = table.Column<int>(nullable: false),
-                    WeightFormId = table.Column<int>(nullable: false),
-                    IsAicraftContainerized = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Aircraft", x => x.AircraftId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArrivalMovements",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateOfMovement = table.Column<DateTime>(nullable: false),
-                    TouchdownTime = table.Column<DateTime>(nullable: false),
-                    OnBlockTime = table.Column<DateTime>(nullable: false),
-                    SupplementaryInformation = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArrivalMovements", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -81,143 +47,38 @@ namespace BMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DepartureMovements",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DateOfMovement = table.Column<DateTime>(nullable: false),
-                    OffBlockTime = table.Column<DateTime>(nullable: false),
-                    TakeoffTime = table.Column<DateTime>(nullable: false),
-                    TotalPAX = table.Column<int>(nullable: false),
-                    SupplementaryInformation = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DepartureMovements", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AircraftBaggageHolds",
-                columns: table => new
-                {
-                    BaggageHoldId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AircraftId = table.Column<int>(nullable: false),
-                    CompartmentOneCapacity = table.Column<int>(nullable: false),
-                    CompartmentOneTotalWeight = table.Column<int>(nullable: false),
-                    CompartmentTwoCapacity = table.Column<int>(nullable: false),
-                    CompartmentTwoTotalWeight = table.Column<int>(nullable: false),
-                    CompartmentThreeCapacity = table.Column<int>(nullable: false),
-                    CompartmentThreeTotalWeight = table.Column<int>(nullable: false),
-                    CompartmentFourCapacity = table.Column<int>(nullable: false),
-                    CompartmentFourTotalWeight = table.Column<int>(nullable: false),
-                    CompartmentFiveCapacity = table.Column<int>(nullable: false),
-                    CompartmentFiveTotalWeight = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AircraftBaggageHolds", x => x.BaggageHoldId);
-                    table.ForeignKey(
-                        name: "FK_AircraftBaggageHolds_Aircraft_AircraftId",
-                        column: x => x.AircraftId,
-                        principalTable: "Aircraft",
-                        principalColumn: "AircraftId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AircraftCabins",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AircraftId = table.Column<int>(nullable: false),
-                    ZoneAlphaCapacity = table.Column<int>(nullable: false),
-                    ZoneBravoCapacity = table.Column<int>(nullable: false),
-                    ZoneCharlieCapacity = table.Column<int>(nullable: false),
-                    ZoneDeltaCapacity = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AircraftCabins", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AircraftCabins_Aircraft_AircraftId",
-                        column: x => x.AircraftId,
-                        principalTable: "Aircraft",
-                        principalColumn: "AircraftId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FuelForms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AircraftId = table.Column<int>(nullable: false),
-                    PilotInCommand = table.Column<string>(nullable: false),
-                    CrewConfiguration = table.Column<string>(nullable: false),
-                    TaxiFuel = table.Column<double>(nullable: false),
-                    BlockFuel = table.Column<double>(nullable: false),
-                    TripFuel = table.Column<double>(nullable: false),
-                    DryOperatingWeight = table.Column<double>(nullable: false),
-                    DryOperatingIndex = table.Column<double>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FuelForms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FuelForms_Aircraft_AircraftId",
-                        column: x => x.AircraftId,
-                        principalTable: "Aircraft",
-                        principalColumn: "AircraftId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "WeightForms",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AircraftId = table.Column<int>(nullable: false),
-                    AircraftBasicWeight = table.Column<double>(nullable: false),
-                    MaximumZeroFuelWeight = table.Column<double>(nullable: false),
-                    MaximumLandingWeight = table.Column<double>(nullable: false),
-                    MaximumTakeoffWeight = table.Column<double>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_WeightForms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_WeightForms_Aircraft_AircraftId",
-                        column: x => x.AircraftId,
-                        principalTable: "Aircraft",
-                        principalColumn: "AircraftId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "InboundFlights",
                 columns: table => new
                 {
                     FlightId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FlightNumber = table.Column<string>(nullable: true),
-                    ArrivalMovementId = table.Column<int>(nullable: true),
+                    FlightNumber = table.Column<string>(nullable: false),
+                    ArrivalMovementId = table.Column<int>(nullable: false),
                     STA = table.Column<DateTime>(nullable: false),
-                    Origin = table.Column<string>(nullable: true)
+                    Origin = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InboundFlights", x => x.FlightId);
-                    table.ForeignKey(
-                        name: "FK_InboundFlights_ArrivalMovements_ArrivalMovementId",
-                        column: x => x.ArrivalMovementId,
-                        principalTable: "ArrivalMovements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OutboundFlights",
+                columns: table => new
+                {
+                    FlightId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FlightNumber = table.Column<string>(nullable: false),
+                    AircraftId = table.Column<int>(nullable: false),
+                    HandlingStation = table.Column<string>(nullable: true),
+                    Destination = table.Column<string>(nullable: false),
+                    DepartureMovementId = table.Column<int>(nullable: false),
+                    STD = table.Column<DateTime>(nullable: false),
+                    BookedPax = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutboundFlights", x => x.FlightId);
                 });
 
             migrationBuilder.CreateTable(
@@ -327,58 +188,51 @@ namespace BMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OutboundFlights",
+                name: "ArrivalMovements",
                 columns: table => new
                 {
-                    FlightId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FlightNumber = table.Column<string>(nullable: true),
-                    AircraftId = table.Column<int>(nullable: false),
-                    HandlingStation = table.Column<string>(nullable: true),
-                    DepartureMovementId = table.Column<int>(nullable: true),
-                    STD = table.Column<DateTime>(nullable: false),
-                    BookedPax = table.Column<int>(nullable: false)
+                    InboundFlightId = table.Column<int>(nullable: false),
+                    DateOfMovement = table.Column<DateTime>(nullable: false),
+                    TouchdownTime = table.Column<DateTime>(nullable: false),
+                    OnBlockTime = table.Column<DateTime>(nullable: false),
+                    SupplementaryInformation = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OutboundFlights", x => x.FlightId);
+                    table.PrimaryKey("PK_ArrivalMovements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OutboundFlights_Aircraft_AircraftId",
-                        column: x => x.AircraftId,
-                        principalTable: "Aircraft",
-                        principalColumn: "AircraftId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OutboundFlights_DepartureMovements_DepartureMovementId",
-                        column: x => x.DepartureMovementId,
-                        principalTable: "DepartureMovements",
-                        principalColumn: "Id",
+                        name: "FK_ArrivalMovements_InboundFlights_InboundFlightId",
+                        column: x => x.InboundFlightId,
+                        principalTable: "InboundFlights",
+                        principalColumn: "FlightId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Passengers",
+                name: "Aircraft",
                 columns: table => new
                 {
-                    PaxId = table.Column<int>(nullable: false)
+                    AircraftId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(nullable: false),
-                    LastName = table.Column<string>(nullable: false),
-                    Nationality = table.Column<string>(nullable: false),
-                    Age = table.Column<int>(nullable: false),
-                    Gender = table.Column<int>(nullable: false),
-                    Weight = table.Column<int>(nullable: false),
-                    PassportNumber = table.Column<string>(nullable: false),
-                    AircraftCabinId = table.Column<int>(nullable: true)
+                    Type = table.Column<int>(nullable: false),
+                    AircraftRegistration = table.Column<string>(nullable: false),
+                    OutboundFlightId = table.Column<int>(nullable: false),
+                    Version = table.Column<string>(nullable: false),
+                    AircraftCabinId = table.Column<int>(nullable: false),
+                    FuelFormId = table.Column<int>(nullable: false),
+                    WeightFormId = table.Column<int>(nullable: false),
+                    IsAicraftContainerized = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Passengers", x => x.PaxId);
+                    table.PrimaryKey("PK_Aircraft", x => x.AircraftId);
                     table.ForeignKey(
-                        name: "FK_Passengers_AircraftCabins_AircraftCabinId",
-                        column: x => x.AircraftCabinId,
-                        principalTable: "AircraftCabins",
-                        principalColumn: "Id",
+                        name: "FK_Aircraft_OutboundFlights_OutboundFlightId",
+                        column: x => x.OutboundFlightId,
+                        principalTable: "OutboundFlights",
+                        principalColumn: "FlightId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -397,6 +251,30 @@ namespace BMS.Migrations
                     table.PrimaryKey("PK_Containers", x => x.ContainerId);
                     table.ForeignKey(
                         name: "FK_Containers_OutboundFlights_OutboundFlightId",
+                        column: x => x.OutboundFlightId,
+                        principalTable: "OutboundFlights",
+                        principalColumn: "FlightId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DepartureMovements",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateOfMovement = table.Column<DateTime>(nullable: false),
+                    OffBlockTime = table.Column<DateTime>(nullable: false),
+                    TakeoffTime = table.Column<DateTime>(nullable: false),
+                    OutboundFlightId = table.Column<int>(nullable: false),
+                    TotalPAX = table.Column<int>(nullable: false),
+                    SupplementaryInformation = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DepartureMovements", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DepartureMovements_OutboundFlights_OutboundFlightId",
                         column: x => x.OutboundFlightId,
                         principalTable: "OutboundFlights",
                         principalColumn: "FlightId",
@@ -446,23 +324,104 @@ namespace BMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Suitcases",
+                name: "AircraftBaggageHolds",
                 columns: table => new
                 {
-                    SuitcaseId = table.Column<string>(nullable: false),
-                    Weight = table.Column<int>(nullable: false),
-                    PaxId = table.Column<int>(nullable: false),
-                    PassengerPaxId = table.Column<int>(nullable: false)
+                    BaggageHoldId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AircraftId = table.Column<int>(nullable: false),
+                    CompartmentOneCapacity = table.Column<int>(nullable: false),
+                    CompartmentOneTotalWeight = table.Column<int>(nullable: false),
+                    CompartmentTwoCapacity = table.Column<int>(nullable: false),
+                    CompartmentTwoTotalWeight = table.Column<int>(nullable: false),
+                    CompartmentThreeCapacity = table.Column<int>(nullable: false),
+                    CompartmentThreeTotalWeight = table.Column<int>(nullable: false),
+                    CompartmentFourCapacity = table.Column<int>(nullable: false),
+                    CompartmentFourTotalWeight = table.Column<int>(nullable: false),
+                    CompartmentFiveCapacity = table.Column<int>(nullable: false),
+                    CompartmentFiveTotalWeight = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Suitcases", x => x.SuitcaseId);
+                    table.PrimaryKey("PK_AircraftBaggageHolds", x => x.BaggageHoldId);
                     table.ForeignKey(
-                        name: "FK_Suitcases_Passengers_PassengerPaxId",
-                        column: x => x.PassengerPaxId,
-                        principalTable: "Passengers",
-                        principalColumn: "PaxId",
+                        name: "FK_AircraftBaggageHolds_Aircraft_AircraftId",
+                        column: x => x.AircraftId,
+                        principalTable: "Aircraft",
+                        principalColumn: "AircraftId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AircraftCabins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AircraftId = table.Column<int>(nullable: false),
+                    ZoneAlphaCapacity = table.Column<int>(nullable: false),
+                    ZoneBravoCapacity = table.Column<int>(nullable: false),
+                    ZoneCharlieCapacity = table.Column<int>(nullable: false),
+                    ZoneDeltaCapacity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AircraftCabins", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AircraftCabins_Aircraft_AircraftId",
+                        column: x => x.AircraftId,
+                        principalTable: "Aircraft",
+                        principalColumn: "AircraftId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FuelForms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AircraftId = table.Column<int>(nullable: false),
+                    PilotInCommand = table.Column<string>(nullable: false),
+                    CrewConfiguration = table.Column<string>(nullable: false),
+                    TaxiFuel = table.Column<double>(nullable: false),
+                    BlockFuel = table.Column<double>(nullable: false),
+                    TripFuel = table.Column<double>(nullable: false),
+                    DryOperatingWeight = table.Column<double>(nullable: false),
+                    DryOperatingIndex = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FuelForms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FuelForms_Aircraft_AircraftId",
+                        column: x => x.AircraftId,
+                        principalTable: "Aircraft",
+                        principalColumn: "AircraftId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "WeightForms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AircraftId = table.Column<int>(nullable: false),
+                    AircraftBasicWeight = table.Column<double>(nullable: false),
+                    MaximumZeroFuelWeight = table.Column<double>(nullable: false),
+                    MaximumLandingWeight = table.Column<double>(nullable: false),
+                    MaximumTakeoffWeight = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_WeightForms", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_WeightForms_Aircraft_AircraftId",
+                        column: x => x.AircraftId,
+                        principalTable: "Aircraft",
+                        principalColumn: "AircraftId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -491,7 +450,7 @@ namespace BMS.Migrations
                         column: x => x.ContainerPalletMessageId,
                         principalTable: "Messages",
                         principalColumn: "MessageId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ContainerInfos_Messages_UniloadContainerMessageId",
                         column: x => x.UniloadContainerMessageId,
@@ -499,6 +458,58 @@ namespace BMS.Migrations
                         principalColumn: "MessageId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Passengers",
+                columns: table => new
+                {
+                    PaxId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(nullable: false),
+                    LastName = table.Column<string>(nullable: false),
+                    Nationality = table.Column<string>(nullable: false),
+                    Age = table.Column<int>(nullable: false),
+                    Gender = table.Column<int>(nullable: false),
+                    Weight = table.Column<int>(nullable: false),
+                    PassportNumber = table.Column<string>(nullable: false),
+                    AircraftCabinId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Passengers", x => x.PaxId);
+                    table.ForeignKey(
+                        name: "FK_Passengers_AircraftCabins_AircraftCabinId",
+                        column: x => x.AircraftCabinId,
+                        principalTable: "AircraftCabins",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Suitcases",
+                columns: table => new
+                {
+                    SuitcaseId = table.Column<string>(nullable: false),
+                    Weight = table.Column<int>(nullable: false),
+                    PaxId = table.Column<int>(nullable: false),
+                    PassengerPaxId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Suitcases", x => x.SuitcaseId);
+                    table.ForeignKey(
+                        name: "FK_Suitcases_Passengers_PassengerPaxId",
+                        column: x => x.PassengerPaxId,
+                        principalTable: "Passengers",
+                        principalColumn: "PaxId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Aircraft_OutboundFlightId",
+                table: "Aircraft",
+                column: "OutboundFlightId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AircraftBaggageHolds_AircraftId",
@@ -509,6 +520,12 @@ namespace BMS.Migrations
                 name: "IX_AircraftCabins_AircraftId",
                 table: "AircraftCabins",
                 column: "AircraftId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ArrivalMovements_InboundFlightId",
+                table: "ArrivalMovements",
+                column: "InboundFlightId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -566,15 +583,16 @@ namespace BMS.Migrations
                 column: "OutboundFlightId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DepartureMovements_OutboundFlightId",
+                table: "DepartureMovements",
+                column: "OutboundFlightId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_FuelForms_AircraftId",
                 table: "FuelForms",
                 column: "AircraftId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_InboundFlights_ArrivalMovementId",
-                table: "InboundFlights",
-                column: "ArrivalMovementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_InboundFlightId",
@@ -585,16 +603,6 @@ namespace BMS.Migrations
                 name: "IX_Messages_OutboundFlightId",
                 table: "Messages",
                 column: "OutboundFlightId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutboundFlights_AircraftId",
-                table: "OutboundFlights",
-                column: "AircraftId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OutboundFlights_DepartureMovementId",
-                table: "OutboundFlights",
-                column: "DepartureMovementId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Passengers_AircraftCabinId",
@@ -619,6 +627,9 @@ namespace BMS.Migrations
                 name: "AircraftBaggageHolds");
 
             migrationBuilder.DropTable(
+                name: "ArrivalMovements");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
@@ -635,6 +646,9 @@ namespace BMS.Migrations
 
             migrationBuilder.DropTable(
                 name: "ContainerInfos");
+
+            migrationBuilder.DropTable(
+                name: "DepartureMovements");
 
             migrationBuilder.DropTable(
                 name: "FuelForms");
@@ -664,19 +678,13 @@ namespace BMS.Migrations
                 name: "InboundFlights");
 
             migrationBuilder.DropTable(
-                name: "OutboundFlights");
-
-            migrationBuilder.DropTable(
                 name: "AircraftCabins");
 
             migrationBuilder.DropTable(
-                name: "ArrivalMovements");
-
-            migrationBuilder.DropTable(
-                name: "DepartureMovements");
-
-            migrationBuilder.DropTable(
                 name: "Aircraft");
+
+            migrationBuilder.DropTable(
+                name: "OutboundFlights");
         }
     }
 }

@@ -41,8 +41,9 @@ namespace BMS.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                this.flightService.RegisterFlight(flightInputModel);
-                return this.RedirectToAction("RegisterAircraft");
+                this.flightService.RegisterInboundFlight(flightInputModel);
+                this.flightService.RegisterOutboundFlight(flightInputModel);
+                return this.RedirectToAction("Arrival", "Movements");
             } 
             else
             {

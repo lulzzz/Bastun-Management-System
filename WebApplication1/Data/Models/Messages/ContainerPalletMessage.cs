@@ -9,7 +9,7 @@
     {
         public ContainerPalletMessage()
         {
-
+            this.ContainerInfo = new List<ContainerInfo>();
         }
 
         public int ContainerInfoId { get; set; }

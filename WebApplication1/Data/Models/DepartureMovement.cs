@@ -9,13 +9,17 @@
     {
         public int Id { get; set; }
        
-
         public DateTime DateOfMovement { get; set; }
 
         public DateTime OffBlockTime { get; set; }
 
         public DateTime TakeoffTime { get; set; }
 
+        public int OutboundFlightId { get; set; }
+
+        public virtual OutboundFlight OutboundFlight { get; set; }
+
+       
         public int TotalPAX { get; set; }
 
         public string SupplementaryInformation { get; set; }

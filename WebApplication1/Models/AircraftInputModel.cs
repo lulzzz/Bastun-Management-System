@@ -13,7 +13,7 @@
     {
 
         [Required(ErrorMessage =InvalidErrorMessages.FlightNumberRequired)]
-        [RegularExpression(FlightInputDataValidation.OutboundFlightValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
+        [RegularExpression(FlightInputDataValidation.GeneralFlightNumberValidation, ErrorMessage = InvalidErrorMessages.FlightNumber)]
         public string FlightNumber { get; set; }
 
 

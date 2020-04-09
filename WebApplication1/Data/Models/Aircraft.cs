@@ -11,7 +11,6 @@
     using System.Threading.Tasks;
     public class Aircraft : IAircraft
     {
-        [Key]
         public int AircraftId { get; set; }
 
 
@@ -24,9 +23,15 @@
         
         public string AircraftRegistration { get; set; }
 
+        public int OutboundFlightId { get; set; }
+
+        public  virtual OutboundFlight OutboundFlight { get; set; }
+
         [Required]
         [RegularExpression(FlightInputDataValidation.AircraftVersionValidation, ErrorMessage = (InvalidErrorMessages.AircraftVersion))]
         public string Version { get; set; }
+
+        public int AircraftCabinId { get; set; }
         public  virtual AircraftCabin Cabin { get; set; }
 
         public int FuelFormId { get; set; }

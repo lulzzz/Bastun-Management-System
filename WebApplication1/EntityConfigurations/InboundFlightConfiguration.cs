@@ -19,6 +19,11 @@
                 .HasForeignKey(x => x.InboundFlightId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(x => x.ArrivalMovement)
+                .WithOne(x => x.InboundFlight)
+                .HasForeignKey<ArrivalMovement>(x => x.InboundFlightId)
+                .OnDelete(DeleteBehavior.Restrict);
+
         }
     }
 }

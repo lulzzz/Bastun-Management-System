@@ -7,15 +7,19 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    public class ContainerPalletMessageConfiguration : IEntityTypeConfiguration<ContainerPalletMessage>
+
+    public class UniloadContainerMessageConfiguration : IEntityTypeConfiguration<UniloadContainerMessage>
     {
-        public void Configure(EntityTypeBuilder<ContainerPalletMessage> builder)
+        public void Configure(EntityTypeBuilder<UniloadContainerMessage> builder)
         {
-      
+  
+
             builder.HasMany(x => x.ContainerInfo)
-                .WithOne(x => x.ContainerPalletMessage)
-                .HasForeignKey(x => x.ContainerPalletMessageId)
+                .WithOne(x => x.UniloadContainerMessage)
+                .HasForeignKey(x => x.UniloadContainerMessageId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+
         }
     }
 }
