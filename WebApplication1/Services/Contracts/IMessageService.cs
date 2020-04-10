@@ -1,5 +1,6 @@
 ﻿namespace BMS.Services.Contracts
 {
+    using BMS.Data.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,7 +9,7 @@
     {
         public void CreateLDM();
 
-        public void CreateCPM();
+        public void CreateInboundCPM(ICollection<ContainerInfo> containers, InboundFlight inboundFlight);
 
         public void CreateUCM();
     }

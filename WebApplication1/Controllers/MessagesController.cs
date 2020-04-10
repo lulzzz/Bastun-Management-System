@@ -32,7 +32,7 @@ namespace BMS.Controllers
         {
             this.messageParser.ParseCPM(messageInputModel.CPMMessage);
 
-            return this.RedirectToAction("maika ti");
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -40,7 +40,7 @@ namespace BMS.Controllers
         {
             this.messageParser.ParseUCM(messageInputModel.UCMMessage);
 
-            return this.RedirectToAction("test");
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

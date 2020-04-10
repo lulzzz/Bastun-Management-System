@@ -13,9 +13,9 @@
 
         void ParseDepartureMovement(string messageContent);
 
-        void ParseLDM(string messageContent);
+        bool ParseLDM(string messageContent);
 
-        void ParseCPM(string messageContent);
+        bool ParseCPM(string messageContent);
 
         void ParseUCM(string messageContent);
 

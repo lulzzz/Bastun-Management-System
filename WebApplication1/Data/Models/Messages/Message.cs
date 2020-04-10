@@ -18,13 +18,13 @@
         public int MessageId { get; set; }
 
         
-        public int InboundFlightId { get; set; }
+        public int? InboundFlightId { get; set; }
 
        
         public virtual InboundFlight InboundFlight { get; set; }
 
         
-        public int OutboundFlightId { get; set; }
+        public int? OutboundFlightId { get; set; }
 
         public virtual OutboundFlight OutboundFlight { get; set; }
     }

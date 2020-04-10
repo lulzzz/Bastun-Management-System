@@ -7,9 +7,8 @@
     using System.Threading.Tasks;
     public interface IFlightDataValidation
     {
-        bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration);
 
-        bool IsDateAndStationValid(string flightNumber,string date, string station);
+        bool IsCPMFlightDataValid(string[] splitMessageContent);
 
     }
 }

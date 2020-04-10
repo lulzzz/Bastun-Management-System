@@ -21,6 +21,7 @@
         private readonly IMessageService messageService;
         private readonly IFlightDataValidation flightDataValidation;
         private readonly IFlightService flightService;
+        private readonly Regex regex = new Regex(FlightInfoConstants.IsFlightInfoValid);
         private const string movementDateFormat = "HH:MM:SS";
         private const string _colon = ":";
         private const string _zeros = "00";
@@ -39,64 +40,44 @@
             string[] splitMessage =
                 messageContent.Split("\r\n", StringSplitOptions.None);
 
-            if (MessageValidation.IsMovementMessageTypeValid(splitMessage[0]))
-            {
-                var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
-                var flightMatch = flightRegex.Match(splitMessage[1]);
-
-                if (flightMatch.Success)
-                {
-                    string fltNmb = flightMatch.Groups["flt"].Value;
-                    string date = flightMatch.Groups["date"].Value;
-                    string registration = flightMatch.Groups["reg"].Value;
-                    string station = flightMatch.Groups["origin"].Value;
-
-                    if (!MessageValidation.IsFlightInfoNotNullOrEmpty(fltNmb,registration,date,station))
-                    {
-                        if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(fltNmb,registration))
-                        {
-                            if (this.flightDataValidation.IsDateAndStationValid(fltNmb,date,station))
-                            {
-                                string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
-                                var flightByFlightNumber = this.flightService.GetInboundFlightByFlightNumber(fltNmb);
-                                string[] times = this.GetTimesForArrivalMovement(splitMessage[2]);
-                                DateTime[] parsedMovementTimes = this.ParseTimesForMovements(times, flightByFlightNumber);
-
-                                if (parsedMovementTimes != null)
-                                {
-                                    this.movementService.CreateArrivalMovement(parsedMovementTimes, supplementaryInformation, flightByFlightNumber);
-                                }
-                                
-                            } 
-                            else
-                            {
-                                flag = false;
-                            }
-                        } 
-                        else
-                        {
-                            flag = false;
-                        }
-                    }
-                    else
-                    {
-                        flag = false;
-                    }
-                }
-            }
-            else
-            {
-                flag = false;
-            }
 
             return flag; 
         }
 
-        public void ParseCPM(string messageContent)
+        public bool ParseCPM(string messageContent)
         {
+            //method returns true if message has been created successfully 
+            //else returns false
+            bool flag = true;
+            string[] splitMessageContent =
+                messageContent
+                .Split("\r\n", StringSplitOptions.None);
+            InboundFlight inbound;
+            OutboundFlight outbound;
 
+            string flightNumberFromInput = this.GetFlightNumber(splitMessageContent[1]);
 
+            if (flightNumberFromInput != null)
+            {
+                inbound = this.flightService.GetInboundFlightByFlightNumber(flightNumberFromInput);
+            } 
+            else
+            {
+                return flag = false;
+            }
+            
+            if (this.flightDataValidation.IsCPMFlightDataValid(splitMessageContent))
+            {
+                var containerInformation = this.ParseContainerInfo(splitMessageContent);
+                this.messageService.CreateInboundCPM(containerInformation, inbound);
+            } 
+            else
+            {
+                flag = false;
+            }
+              
 
+            return flag;
         }
 
         public void ParseDepartureMovement(string messageContent)
@@ -105,35 +86,8 @@
             string[] splitMessage = messageContent
                 .Split("\r\n", StringSplitOptions.None);
 
-            if (MessageValidation.IsMovementMessageTypeValid(splitMessage[0]))
-            {
-                var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
-                var match = flightRegex.Match(splitMessage[1]);
-                if (match.Success)
-                {
-                    string flightNumber = match.Groups["flt"].Value;
-                    string date = match.Groups["date"].Value;
-                    string registration = match.Groups["registration"].Value;
 
-                    if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(flightNumber, registration))
-                    {
-                        string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[4]);
-                        var flightByFlightNumber = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
-                        string[] timesForDepartureMovement = this.GetTimesForDepartureMovement(splitMessage[2]);
-                        DateTime[] datesForDepartureMovement = this.ParseTimesForDepartureMovement(timesForDepartureMovement, flightByFlightNumber);
-                        int totalPax = this.ParseTotalPax(splitMessage[3]);
-                        this.movementService.CreateDepartureMovement(datesForDepartureMovement, supplementaryInformation, totalPax, flightByFlightNumber);
-                    } 
-                    else
-                    {
-                        flag = false;
-                    }
-                }
-
-            } else
-            {
-                flag = false;
-            }
+          
         }
 
         public bool ParseLDM(string messageContent)
@@ -288,6 +242,43 @@
         private int ParseTotalPax(string totalPax)
         {
             return int.Parse(totalPax.Remove(0, 3));
+        }
+
+
+        private ICollection<ContainerInfo> ParseContainerInfo(string[] splitCPMData)
+        {
+            var listOfContainerInfo = new List<ContainerInfo>();
+
+            for (int i = 2; i < splitCPMData.Length -1; i++)
+            {
+                string currContainer = splitCPMData[i];
+                string[] splitDataForCurrContainer =
+                    currContainer.Split(new string[] { "/", "-" }, StringSplitOptions.RemoveEmptyEntries);
+
+                var currentContainerInfo = new ContainerInfo
+                {
+                    ContainerPosition = splitDataForCurrContainer[0],
+                    ContainerNumberAndType = splitDataForCurrContainer[1],
+                    ContainerTotalWeight = int.Parse(splitDataForCurrContainer[2])
+                };
+                listOfContainerInfo.Add(currentContainerInfo);
+            }
+
+            return listOfContainerInfo;
+        }
+
+        private string GetFlightNumber(string message)
+        {
+            var match = regex.Match(message);
+
+            if (match.Success)
+            {
+                return match.Groups["flt"].Value;
+            } 
+            else
+            {
+                return null;
+            }
         }
 
 

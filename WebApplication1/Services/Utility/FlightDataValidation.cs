@@ -1,11 +1,15 @@
 ﻿namespace BMS.Services.Utility
 {
+    using BMS.Services.ParserUtility;
     using BMS.Services.Contracts;
     using BMS.Services.Utility.UtilityContracts;
     using System;
+    using System.Text.RegularExpressions;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using BMS.Services.Utility.UtilityConstants;
+
     public class FlightDataValidation : IFlightDataValidation
     {
         private readonly IFlightService flightService;
@@ -18,7 +22,7 @@
             this.aircraftService = aircraftService;
         }
    
-        public bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration)
+        private bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration)
         {
             bool flag = true;
             if (this.flightService.CheckFlightNumber(flightNumber))
@@ -36,7 +40,7 @@
             return flag;
         }
 
-        public bool IsDateAndStationValid(string flightNumber,string date, string station)
+        private bool IsDateAndStationValid(string flightNumber,string date, string station)
         {
             bool flag = true;
 
@@ -48,6 +52,47 @@
             }
 
            
+            return flag;
+        }
+
+        public bool IsCPMFlightDataValid(string[] splitMessageContent)
+        {
+            bool flag = true;
+
+            if (MessageValidation.IsCPMMessageTypeValid(splitMessageContent[0]))
+            {
+                var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+                var match = flightRegex.Match(splitMessageContent[1]);
+
+                if (match.Success)
+                {
+                    string flightNumber = match.Groups["flt"].Value;
+                    string date = match.Groups["date"].Value;
+                    string registration = match.Groups["reg"].Value;
+                    string station = match.Groups["origin"].Value;
+
+                    if (this.IsFlightNumberAndRegistrationValid(flightNumber, registration))
+                    {
+                        if (this.IsDateAndStationValid(flightNumber,date,station))
+                        {
+                            return flag;
+                        } 
+                        else
+                        {
+                            flag = false;
+                        }
+                    } 
+                    else
+                    {
+                        flag = false;
+                    }
+                }
+                
+            } else
+            {
+                flag = false;
+            }
+
             return flag;
         }
         

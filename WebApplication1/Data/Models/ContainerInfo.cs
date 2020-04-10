@@ -25,7 +25,7 @@
 
         public string ContainerPosition { get; set; }
 
-        public int ContainerNumberAndType { get; set; }
+        public string ContainerNumberAndType { get; set; }
 
         public int ContainerTotalWeight { get; set; }
     }
