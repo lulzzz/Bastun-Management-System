@@ -7,6 +7,6 @@
     using System.Threading.Tasks;
     public interface IAircraftBaggageHoldService
     {
-        void AddBaggageHoldToAircraft(Aircraft aircraft);
+        AircraftBaggageHold AddBaggageHoldToAircraft(Aircraft aircraft);
     }
 }

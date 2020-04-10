@@ -31,7 +31,7 @@
 
         public bool IsAircraftGoingToBeContainerized(string aircraftType)
         {
-            if (aircraftType == "763" || aircraftType == "788" || aircraftType == "789")
+            if (aircraftType == "B763" || aircraftType == "B788" || aircraftType == "B789")
             {
                 return true;
             }
@@ -51,22 +51,32 @@
                     Version = aircraftInputModel.Version,
                     Type = aircraftInputModel.Type,
                     OutboundFlightId = outboundFlightToRegisterAircraftTo.FlightId,
-                    OutboundFlight = outboundFlightToRegisterAircraftTo
                 };
 
                 newAircraft.IsAicraftContainerized = this.IsAircraftGoingToBeContainerized(newAircraft.Type.ToString());
-                this.cabinService.AddCabinToAircraft(newAircraft);
-                this.baggageHoldService.AddBaggageHoldToAircraft(newAircraft);
                 this.dbContext.Aircraft.Add(newAircraft);
                 this.dbContext.SaveChanges();
+
+                this.AddCabinAndBaggageHoldToAircraft(aircraftInputModel.AircraftRegistration);
             }
         }
 
-        public Aircraft GetAircraftByRegistration(string registration)
+
+        public Aircraft GetAicraftByRegistration(string registration)
         {
+
             var aircrafToReturn = this.dbContext.Aircraft.FirstOrDefault(x => x.AircraftRegistration == registration);
 
             return aircrafToReturn;
+        }
+
+       
+        private void AddCabinAndBaggageHoldToAircraft(string registration)
+        {
+            var aircraft = this.GetAicraftByRegistration(registration);
+
+            aircraft.Cabin = this.cabinService.AddCabinToAircraft(aircraft);
+            aircraft.BaggageHold = this.baggageHoldService.AddBaggageHoldToAircraft(aircraft);
         }
     }
 }

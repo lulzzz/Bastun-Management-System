@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     public interface IAircraftCabinService
     {
-        void AddCabinToAircraft(Aircraft aircraft);
+        AircraftCabin AddCabinToAircraft(Aircraft aircraft);
 
     }
 }

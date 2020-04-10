@@ -34,6 +34,10 @@
         public int AircraftCabinId { get; set; }
         public  virtual AircraftCabin Cabin { get; set; }
 
+        public int AircraftBaggageHoldId { get; set; }
+
+        public virtual AircraftBaggageHold BaggageHold { get; set; }
+
         public int FuelFormId { get; set; }
         public virtual FuelForm FuelForm { get; set; }
 

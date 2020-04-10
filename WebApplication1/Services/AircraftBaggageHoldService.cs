@@ -17,12 +17,11 @@
             this.dbContext = dbContext;
         }
 
-        private void AddBaggageHoldToAircraft(Aircraft aircraft)
+        public AircraftBaggageHold AddBaggageHoldToAircraft(Aircraft aircraft)
         {
             var aircraftBaggageHold = new AircraftBaggageHold
             {
-                AircraftId = aircraft.AircraftId,
-                Aircraft = aircraft
+                AircraftId = aircraft.AircraftId
             };
 
             switch (aircraft.Type.ToString())
@@ -48,14 +47,19 @@
                 default:
                     break;
             }
-
             this.dbContext.AircraftBaggageHolds.Add(aircraftBaggageHold);
             this.dbContext.SaveChanges();
+            aircraft.AircraftBaggageHoldId = aircraftBaggageHold.BaggageHoldId;
+            return aircraftBaggageHold;
         }
 
         private void SetHoldData738(AircraftBaggageHold baggageHold)
         {
-            throw new NotImplementedException();
+            baggageHold.CompartmentOneCapacity = 900;
+            baggageHold.CompartmentTwoCapacity = 1800;
+            baggageHold.CompartmentThreeCapacity = 2800;
+            baggageHold.CompartmentFourCapacity = 1000;
+            baggageHold.CompartmentFiveCapacity = 0;
         }
 
         private void SetHoldData752(AircraftBaggageHold baggageHold)
@@ -78,17 +82,29 @@
 
         private void SetHoldData788(AircraftBaggageHold baggageHold)
         {
-           
+            baggageHold.CompartmentOneCapacity = 4500;
+            baggageHold.CompartmentTwoCapacity = 4500;
+            baggageHold.CompartmentThreeCapacity = 5500;
+            baggageHold.CompartmentFourCapacity = 5500;
+            baggageHold.CompartmentFiveCapacity = 2000;
         }
 
         private void SetHoldData789(AircraftBaggageHold baggageHold)
         {
-          
+            baggageHold.CompartmentOneCapacity = 4700;
+            baggageHold.CompartmentTwoCapacity = 4800;
+            baggageHold.CompartmentThreeCapacity = 6000;
+            baggageHold.CompartmentFourCapacity = 6000;
+            baggageHold.CompartmentFiveCapacity = 2300;
         }
 
         private void SetHoldData320(AircraftBaggageHold baggageHold)
         {
-
+            baggageHold.CompartmentOneCapacity = 1000;
+            baggageHold.CompartmentTwoCapacity = 2300;
+            baggageHold.CompartmentThreeCapacity = 3400;
+            baggageHold.CompartmentFourCapacity = 3500;
+            baggageHold.CompartmentFiveCapacity = 800;
         }
     }
 }

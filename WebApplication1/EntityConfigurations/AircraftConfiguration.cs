@@ -28,7 +28,13 @@
             builder.HasOne(x => x.Cabin)
                 .WithOne(x => x.Aircraft)
                 .HasForeignKey<AircraftCabin>(x => x.AircraftId)
-                .OnDelete(DeleteBehavior.Restrict); 
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+            builder.HasOne(x => x.BaggageHold)
+                .WithOne(x => x.Aircraft)
+                .HasForeignKey<AircraftBaggageHold>(x => x.AircraftId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
