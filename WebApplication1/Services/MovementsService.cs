@@ -19,12 +19,22 @@
             this.flightService = flightService;
         }
 
-        public void CreateArrivalMovement(DateTime[] dates,string supplementaryInformation)
+        public void CreateArrivalMovement(DateTime[] dates,string supplementaryInformation,InboundFlight inboundFlight)
         {
-           
+            var arrivalMovement = new ArrivalMovement
+            {
+                InboundFlightId = inboundFlight.FlightId,
+                SupplementaryInformation = supplementaryInformation,
+                TouchdownTime = dates[0],
+                OnBlockTime = dates[1],
+                DateOfMovement = DateTime.UtcNow
+            };
+
+            this.dbContext.ArrivalMovements.Add(arrivalMovement);
+            this.dbContext.SaveChanges();
         }
 
-        public void CreateDepartureMovement(DateTime[] dates, string supplementaryInformation, int totalPax)
+        public void CreateDepartureMovement(DateTime[] dates, string supplementaryInformation, int totalPax, OutboundFlight outboundFlight)
         {
             
         }

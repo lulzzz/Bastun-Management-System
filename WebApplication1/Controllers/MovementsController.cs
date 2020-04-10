@@ -11,12 +11,12 @@ namespace WebApplication1.Controllers
     public class MovementsController : Controller
     {
         private readonly IMessageParser messageParser;
-        private readonly IAircraftService aircraftService;
+        private readonly IFlightService flightService;
 
-        public MovementsController(IMessageParser messageParser, IAircraftService aircraftService)
+        public MovementsController(IMessageParser messageParser,IFlightService flightService)
         {
             this.messageParser = messageParser;
-            this.aircraftService = aircraftService;
+            this.flightService = flightService;
         }
 
         [HttpGet]
@@ -29,11 +29,8 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Arrival(MovementInputModel movementInput)
         {
-            var ac = this.aircraftService.GetAicraftByRegistration("DAZAPX");
-            ac.Cabin.ZoneAlphaCapacity -= 30;
-            ac.BaggageHold.CompartmentOneTotalWeight += 500;
-
-            var hold = ac.BaggageHold;
+           
+            
             if (this.messageParser.ParseArrivalMovement(movementInput.ArrivalMovement))
             {
                 return this.Redirect("/Home/Index");

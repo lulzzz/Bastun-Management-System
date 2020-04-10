@@ -23,7 +23,7 @@
 
         public bool CheckFlightNumber(string flightNumber)
         {
-            throw new NotImplementedException();
+            return this.dbContext.InboundFlights.Any(x => x.FlightNumber == flightNumber);
         }
 
         public void GetAllFlights()

@@ -11,6 +11,5 @@
 
         bool IsDateAndStationValid(string flightNumber,string date, string station);
 
-        string GetCorrectFlightNumber(string flightNumber);
     }
 }

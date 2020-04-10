@@ -7,6 +7,6 @@
 
     public static class FlightInfoConstants
     {
-        public const string IsFlightInfoValid = @"(?<flt>[A-Z]{1,4}[0-9]{1,5})\/(?<date>[0-9]{1,2})\.(?<registration>[A-Z]{1,3}\-[A-Z]{1,5})\.(?<station>[A-Z]{3})";
+        public const string IsFlightInfoValid = @"(?<flt>[A-Z]{1,4}[0-9]{1,5})\/(?<date>[0-9]{1,2})\.(?<reg>[A-Z0-9]{5,10})\.(?<origin>[A-Z]{3})";
     }
 }
