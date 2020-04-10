@@ -117,12 +117,12 @@
 
                     if (this.flightDataValidation.IsFlightNumberAndRegistrationValid(flightNumber, registration))
                     {
-                        //string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[4]);
-                        //var flightByFlightNumber = this.flightService.GetFlightByFlightNumber(this.flightDataValidation.GetCorrectFlightNumber(flightNumber));
-                        //string[] timesForDepartureMovement = this.GetTimesForDepartureMovement(splitMessage[2]);
-                        //DateTime[] datesForDepartureMovement = this.ParseTimesForMovements(timesForDepartureMovement, flightByFlightNumber);
-                        //int totalPax = this.ParseTotalPax(splitMessage[3]);
-                        //this.movementService.CreateDepartureMovement(flightByFlightNumber, datesForDepartureMovement, supplementaryInformation, totalPax);
+                        string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[4]);
+                        var flightByFlightNumber = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
+                        string[] timesForDepartureMovement = this.GetTimesForDepartureMovement(splitMessage[2]);
+                        DateTime[] datesForDepartureMovement = this.ParseTimesForDepartureMovement(timesForDepartureMovement, flightByFlightNumber);
+                        int totalPax = this.ParseTotalPax(splitMessage[3]);
+                        this.movementService.CreateDepartureMovement(datesForDepartureMovement, supplementaryInformation, totalPax, flightByFlightNumber);
                     } 
                     else
                     {
@@ -136,9 +136,25 @@
             }
         }
 
-        public void ParseLDM(string messageContent)
+        public bool ParseLDM(string messageContent)
         {
 
+            bool flag = true;
+            string[] splitMessage =
+               messageContent.Split("\r\n", StringSplitOptions.None);
+
+            string messageType = splitMessage[0];
+
+            if (MessageValidation.IsLoadDistributionMessageTypeValid(messageType))
+            {
+                
+            }
+            else
+            {
+                flag = false;
+            }
+
+            return flag;
         }
 
         public void ParseUCM(string messageContent)
@@ -218,8 +234,40 @@
             int flightMonth = inboundFlight.STA.Month;
             int flightDay = inboundFlight.STA.Day;
 
+            var time1ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds)
+                .ToUniversalTime(); ;
+            var time2ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds)
+                .ToUniversalTime();
+
+            
+            return new DateTime[] { time1ParsedToDateTime, time2ParsedToDateTime };
+        }
+
+        private DateTime[] ParseTimesForDepartureMovement(string[] times, OutboundFlight outboundFlight)
+        {
+            var arrOfValidTimes = this.GetValidTimesFormat(times);
+            string time1 = arrOfValidTimes[0];
+            string time2 = arrOfValidTimes[1];
+
+            if (time1 == null || time2 == null)
+            {
+                return null;
+            }
+
+            var parsedTime1 = TimeSpan.Parse(time1);
+            var parsedTime2 = TimeSpan.Parse(time2);
+
+            int flightYear = outboundFlight.STD.Year;
+            int flightMonth = outboundFlight.STD.Month;
+            int flightDay = outboundFlight.STD.Day;
+
             var time1ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds);
+                
             var time2ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds);
+
+            var offBlockTimeInUTC = time1ParsedToDateTime.ToUniversalTime();
+            var takeoffTimeInUTC =  time2ParsedToDateTime.ToUniversalTime();
+
             return new DateTime[] { time1ParsedToDateTime, time2ParsedToDateTime };
         }
 

@@ -24,19 +24,35 @@
             var arrivalMovement = new ArrivalMovement
             {
                 InboundFlightId = inboundFlight.FlightId,
+                InboundFlight = inboundFlight,
                 SupplementaryInformation = supplementaryInformation,
                 TouchdownTime = dates[0],
                 OnBlockTime = dates[1],
                 DateOfMovement = DateTime.UtcNow
             };
-
+            
             this.dbContext.ArrivalMovements.Add(arrivalMovement);
             this.dbContext.SaveChanges();
+
+            inboundFlight.ArrivalMovementId = arrivalMovement.Id;
         }
 
         public void CreateDepartureMovement(DateTime[] dates, string supplementaryInformation, int totalPax, OutboundFlight outboundFlight)
         {
-            
+            var departureMovement = new DepartureMovement
+            {
+                OffBlockTime = dates[0],
+                TakeoffTime = dates[1],
+                SupplementaryInformation = supplementaryInformation,
+                TotalPAX = totalPax,
+                OutboundFlightId = outboundFlight.FlightId,
+                OutboundFlight = outboundFlight,
+                DateOfMovement = DateTime.UtcNow
+            };
+            this.dbContext.DepartureMovements.Add(departureMovement);
+            this.dbContext.SaveChanges();
+
+            outboundFlight.DepartureMovementId = departureMovement.Id;
         }
 
         public ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber)
