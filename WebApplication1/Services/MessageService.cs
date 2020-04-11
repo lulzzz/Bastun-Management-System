@@ -19,13 +19,14 @@
             this.dbContext = dbContext;
         }
 
-        public void CreateInboundCPM(List<ContainerInfo> containers,InboundFlight inboundFlight)
+        public void CreateInboundCPM(List<ContainerInfo> containers,InboundFlight inboundFlight,string supplementaryInformation)
         {
             var containerPalletMessage = new ContainerPalletMessage
             {
                 InboundFlightId = inboundFlight.FlightId,
                 InboundFlight = inboundFlight,
                 ContainerInfo = containers,
+                SupplementaryInformation = supplementaryInformation
             };
 
             this.dbContext.ContainerPalletMessages.Add(containerPalletMessage);

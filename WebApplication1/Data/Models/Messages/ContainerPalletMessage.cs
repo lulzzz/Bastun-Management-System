@@ -14,5 +14,7 @@
 
         public int ContainerInfoId { get; set; }
         public virtual ICollection<ContainerInfo> ContainerInfo { get; set; }
+
+        public string SupplementaryInformation { get; set; }
     }
 }

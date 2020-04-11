@@ -70,12 +70,12 @@
             
             if (this.flightDataValidation.IsCPMFlightDataValid(splitMessageContent))
             {
+                string supplementaryInformation = this.ParseSupplementaryInformation(splitMessageContent[splitMessageContent.Length - 1]);
                 int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
                 var listOfContainersForCurrentMessage = this.containerService.AddContainerToInboundFlight(inbound,amountOfInboundContainers);
                var listofContainerInfo =  this.containerService.CreateContainerInfo(splitMessageContent, listOfContainersForCurrentMessage);
-                this.messageService.CreateInboundCPM(listofContainerInfo, inbound);
+                this.messageService.CreateInboundCPM(listofContainerInfo, inbound, supplementaryInformation);
 
-                var messages = inbound.InboundMessages.ToList();
             } 
             else
             {
