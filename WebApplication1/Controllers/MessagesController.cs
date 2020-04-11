@@ -59,5 +59,17 @@ namespace BMS.Controllers
         {
             return this.View();
         }
+
+        [HttpPost]
+        public IActionResult OutboundUCM(MessageInputModel messageInputModel)
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult OutboundLDM(MessageInputModel messageInputModel)
+        {
+            return this.View();
+        }
     }
 }

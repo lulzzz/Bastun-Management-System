@@ -111,41 +111,17 @@
             return flag;
         }
 
-        public void ParseDepartureMovement(string messageContent)
+        public bool ParseDepartureMovement(string messageContent)
         {
-            bool flag = true;
+            
             string[] splitMessage = messageContent
                 .Split("\r\n", StringSplitOptions.None);
 
-
+            return true;
           
         }
 
-        public bool ParseLDM(string messageContent)
-        {
-
-            bool flag = true;
-            string[] splitMessage =
-               messageContent.Split("\r\n", StringSplitOptions.None);
-
-            string messageType = splitMessage[0];
-
-            if (MessageValidation.IsLoadDistributionMessageTypeValid(messageType))
-            {
-                
-            }
-            else
-            {
-                flag = false;
-            }
-
-            return flag;
-        }
-
-        public void ParseUCM(string messageContent)
-        {
-
-        }
+       
 
         private string ParseSupplementaryInformation(string supplementaryInfo)
         {
@@ -309,5 +285,31 @@
             }
         }
 
+       
+
+        public bool ParseOutboundCPM(string messageContent)
+        {
+            return true;
+        }
+
+        public bool ParseInboundLDM(string messageContent)
+        {
+            return true;
+        }
+
+        public bool ParseOutboundLDM(string messageContent)
+        {
+            return true;
+        }
+
+        public bool ParseInboundUCM(string messageContent)
+        {
+            return true;
+        }
+
+        public bool ParseOutboundUCM(string messageContent)
+        {
+            return true;
+        }
     }
 }

@@ -11,14 +11,19 @@
     {
         bool ParseArrivalMovement(string messageContent);
 
-        void ParseDepartureMovement(string messageContent);
+        bool ParseDepartureMovement(string messageContent);
 
-        bool ParseLDM(string messageContent);
 
         bool ParseInboundCPM(string messageContent);
 
-        void ParseUCM(string messageContent);
+        bool ParseOutboundCPM(string messageContent);
 
+        bool ParseInboundLDM(string messageContent);
 
+        bool ParseOutboundLDM(string messageContent);
+
+        bool ParseInboundUCM(string messageContent);
+
+        bool ParseOutboundUCM(string messageContent);
     }
 }

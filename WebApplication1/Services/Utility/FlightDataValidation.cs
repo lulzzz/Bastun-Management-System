@@ -113,17 +113,95 @@
                     string date = match.Groups["date"].Value;
                     string station = match.Groups["origin"].Value;
 
-                    if (this.IsFlightNumberAndRegistrationValid(flightNumber,registration))
+
+                    if (MessageValidation.IsFlightInfoNotNullOrEmpty(flightNumber, registration,date, station))
                     {
-                        if (this.IsDateAndStationValid(flightNumber, date, station))
+                        if (this.IsFlightNumberAndRegistrationValid(flightNumber, registration))
                         {
-                            return true;
+                            if (this.IsDateAndStationValid(flightNumber, date, station))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    } 
+                    else
+                    {
+                        return false;
+                    }
+                  
+                }
+                else
+                {
+                    return false;
+                }
+            } 
+            else
+            {
+                return false;
+            }
+
+           
+        }
+
+        public bool IsUCMFlightDataValid(string[] splitMessageContent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsLDMFlightDataValid(string[] splitMessageContent)
+        {
+            if (MessageValidation.IsLoadDistributionMessageTypeValid(splitMessageContent[0]))
+            {
+                var ldmRegex = new Regex();
+            } 
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsDepartureMovementFlightDataValid(string[] splitMessageContent)
+        {
+            string messageType = splitMessageContent[0];
+
+            if (MessageValidation.IsMovementMessageTypeValid(messageType))
+            {
+                var flightRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+                var match = flightRegex.Match(splitMessageContent[1]);
+
+                if (match.Success)
+                {
+                    string flightNumber = match.Groups["flt"].Value;
+                    string registration = match.Groups["reg"].Value;
+                    string date = match.Groups["date"].Value;
+                    string station = match.Groups["origin"].Value;
+
+                    if (MessageValidation.IsFlightInfoNotNullOrEmpty(flightNumber, registration, date, station))
+                    {
+                        if (this.IsFlightNumberAndRegistrationValid(flightNumber, registration))
+                        {
+                            if (this.IsDateAndStationValid(flightNumber, date, station))
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false; 
+                            }
                         } 
                         else
                         {
                             return false;
                         }
-                    }
+                    } 
                     else
                     {
                         return false;
@@ -138,9 +216,6 @@
             {
                 return false;
             }
-
-           
         }
-        
     }
 }
