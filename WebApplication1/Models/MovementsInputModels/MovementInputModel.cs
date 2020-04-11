@@ -1,5 +1,6 @@
 ﻿namespace BMS.Models.MovementsInputModels
 {
+    using BMS.GlobalData.ErrorMessages;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -8,7 +9,7 @@
 
     public class MovementInputModel
     {
-        [Required]
+        [Required(ErrorMessage = InvalidErrorMessages.MovementIsRequired)]
         public string Movement { get; set; }
     }
 }

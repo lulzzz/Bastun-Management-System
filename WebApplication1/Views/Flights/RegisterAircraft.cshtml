@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Create aircraft";
+    ViewData["Title"] = "Add aircraft";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using BMS.Models;
@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <label>Flight number:</label>
                     <input asp-for="@Model.FlightNumber" type="text" class="form-control w-100" />
-                    <span asp-validation-for="@Model.FlightNumber" class="alert-danger"></span>
+                    <span asp-validation-for="@Model.FlightNumber"></span>
                 </div>
                 <div class="form-group">
                     <label>Aircraft type:</label>
@@ -25,16 +25,17 @@
                         <option>B789</option>
                         <option>A320</option>
                     </select>
+                    <span asp-validation-for="@Model.Type"></span>
                 </div>
                 <div class="form-group">
                     <label>Aircraft registration:</label>
                     <input asp-for="@Model.AircraftRegistration" type="text" class="form-control w-100"/>
-                    <span asp-validation-for="@Model.AircraftRegistration" class="alert-danger"></span>
+                    <span asp-validation-for="@Model.AircraftRegistration"></span>
                 </div>
                 <div class="form-group">
                     <label>Aircraft version:</label>
                     <input asp-for="@Model.Version" type="text" class="form-control w-100"/>
-                    <span asp-validation-for="@Model.Version" class="alert-danger"></span>
+                    <span asp-validation-for="@Model.Version"></span>
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary w-100">Register aircraft</button>
             </form>
