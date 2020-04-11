@@ -59,11 +59,25 @@
 
         public ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber)
         {
+            var inboundFlight = this.flightService.GetInboundFlightByFlightNumber(flightNumber);
+
+            if (inboundFlight != null)
+            {
+                return inboundFlight.ArrivalMovement;
+            }
+
             return null;
         }
 
         public DepartureMovement GetDepartureMovementByFlightNumber(string flightNumber)
         {
+            var outboundFlight = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
+
+            if (outboundFlight != null)
+            {
+                return outboundFlight.DepartureMovement;
+            }
+
             return null;
         }
     }
