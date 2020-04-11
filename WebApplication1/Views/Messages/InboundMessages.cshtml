@@ -1,4 +1,9 @@
-﻿@using BMS.Models;
+﻿@{ 
+    this.ViewData["Title"] = "Create inbound messages";
+}
+
+
+@using BMS.Models;
 @model MessageInputModel 
 <div class="col">
     <form id="ldmForm" asp-controller="Messages" asp-action="InboundLDM">

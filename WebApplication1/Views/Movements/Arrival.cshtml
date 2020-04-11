@@ -1,5 +1,6 @@
 ﻿@{ 
-    ViewData["Arrival"] = "Arrival";
+    ViewData["Title"] = "Create arrival movement";
+    this.ViewData["InvalidError"] = "maika ti";
 }
 @using BMS.Models.MovementsInputModels
 @model MovementInputModel
@@ -8,6 +9,7 @@
         <div class="col">
             <form asp-controller="Movements" asp-action="Arrival">
                 <div class="form-group">
+                    <div asp-validation-summary="All"></div>
                     <label>Enter arrival movement:</label>
                     <textarea asp-for="@Model.Movement" class="form-control w-100" rows="7"></textarea>
                     <span asp-validation-for="@Model.Movement" class="alert-danger"></span>

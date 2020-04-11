@@ -1,4 +1,9 @@
-﻿<div class="col">
+﻿@{ 
+    this.ViewData["Title"] = "Create outbound messages";
+}
+
+
+<div class="col">
     <form id="ldmForm" asp-controller="Movements" asp-action="OutboundLDMData">
         <div class="form-group">
             <label for="outboundLDM">Outbound LDM:</label>
