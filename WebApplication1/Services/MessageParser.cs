@@ -53,7 +53,7 @@
                     string station = match.Groups["origin"].Value;
 
                     var inboundFlightByFlightNumber = this.flightService.GetInboundFlightByFlightNumber(flightNumber);
-                    string[] arrivalMovementTimes = this.GetTimesForArrivalMovement(date);
+                    string[] arrivalMovementTimes = this.GetTimesForArrivalMovement(splitMessage[2]);
                     DateTime[] validMovementTime = this.ParseTimesForArrivalMovement(arrivalMovementTimes, inboundFlightByFlightNumber);
                     string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
                     this.movementService.CreateArrivalMovement(validMovementTime, supplementaryInformation, inboundFlightByFlightNumber);
@@ -116,6 +116,30 @@
             
             string[] splitMessage = messageContent
                 .Split("\r\n", StringSplitOptions.None);
+
+            if (this.flightDataValidation.IsDepartureMovementFlightDataValid(splitMessage))
+            {
+                var match = regex.Match(splitMessage[1]);
+                if (match.Success)
+                {
+                    string flightNumber = match.Groups["flt"].Value;
+                    string registration = match.Groups["reg"].Value;
+                    string date = match.Groups["date"].Value;
+                    string station = match.Groups["origin"].Value;
+
+                    var outboundFlightByFlightNumber = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
+                    string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[splitMessage.Length - 1]);
+                    int totalPax = this.ParseTotalPax(splitMessage[3]); 
+                    string[] times = this.GetTimesForDepartureMovement(splitMessage[2]);
+                    DateTime[] timesForDeparture = this.ParseTimesForDepartureMovement(times, outboundFlightByFlightNumber);
+                    this.movementService.CreateDepartureMovement(timesForDeparture, supplementaryInformation, totalPax, outboundFlightByFlightNumber);
+                    
+                }
+            }
+            else
+            {
+                return false;
+            }
 
             return true;
           
@@ -222,12 +246,12 @@
             int flightMonth = outboundFlight.STD.Month;
             int flightDay = outboundFlight.STD.Day;
 
-            var time1ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds);
+            var time1ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds)
+                .ToUniversalTime();
                 
-            var time2ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds);
+            var time2ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds)
+                .ToUniversalTime();
 
-            var offBlockTimeInUTC = time1ParsedToDateTime.ToUniversalTime();
-            var takeoffTimeInUTC =  time2ParsedToDateTime.ToUniversalTime();
 
             return new DateTime[] { time1ParsedToDateTime, time2ParsedToDateTime };
         }

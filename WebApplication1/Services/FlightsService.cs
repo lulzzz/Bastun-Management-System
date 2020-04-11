@@ -21,9 +21,16 @@
             this.dbContext = dbContext;
         }
 
-        public bool CheckFlightNumber(string flightNumber)
+
+
+        public bool CheckIfFlightIsInbound(string flightNumber)
         {
             return this.dbContext.InboundFlights.Any(x => x.FlightNumber == flightNumber);
+        }
+
+        public bool CheckIfFlightIsOutbound(string flightNumber)
+        {
+            return this.dbContext.OutboundFlights.Any(x => x.FlightNumber == flightNumber);
         }
 
         public void GetAllFlights()

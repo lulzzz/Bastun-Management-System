@@ -16,7 +16,9 @@
 
         void RegisterOutboundFlight(FlightInputModel outboundFlightInputModel);
 
-        bool CheckFlightNumber(string flightNumber);
+        bool CheckIfFlightIsInbound(string flightNumber);
+
+        bool CheckIfFlightIsOutbound(string flightNumber);
 
         void GetAllFlights();
     }

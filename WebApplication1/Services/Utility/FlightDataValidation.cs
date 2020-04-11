@@ -27,35 +27,74 @@
    
         private bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration)
         {
-            bool flag = true;
-            if (this.flightService.CheckFlightNumber(flightNumber))
+            bool isFlightInbound = this.flightService.CheckIfFlightIsInbound(flightNumber);
+            bool isFlightOutbound = this.flightService.CheckIfFlightIsOutbound(flightNumber);
+
+            if (isFlightInbound)
             {
-                if (!this.aircraftService.CheckAircraftRegistration(registration))
+                if (this.aircraftService.CheckAircraftRegistration(registration))
                 {
-                   
-                    flag = false;
+                    return true;
                 }
                 else
                 {
-                    flag = true;
+                    return false;
+                }
+                 
+            } 
+            else if(isFlightOutbound)
+            {
+                if (this.aircraftService.CheckAircraftRegistration(registration))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
-            return flag;
+
+            return false;
         }
 
         private bool IsDateAndStationValid(string flightNumber,string date, string station)
         {
-            bool flag = true;
+            bool isFlightInbound = this.flightService.CheckIfFlightIsInbound(flightNumber);
+            bool isFlightOutbound = this.flightService.CheckIfFlightIsOutbound(flightNumber);
 
-            var flightfromdb = this.flightService.GetInboundFlightByFlightNumber(flightNumber);
-
-            if (flightfromdb.Origin != station || flightfromdb.STA.Day.ToString() != date)
+            if (isFlightInbound)
             {
-                flag = false;
+                var inboundFlightByFlightNumber = this.flightService.GetInboundFlightByFlightNumber(flightNumber);
+
+                if (inboundFlightByFlightNumber != null)
+                {
+                    if (inboundFlightByFlightNumber.STA.Day.ToString() != date || inboundFlightByFlightNumber.Origin != station)
+                    {
+                        return false;
+                    } 
+                    else
+                    {
+                        return true;
+                    }
+                }
+            } 
+            else if(isFlightInbound)
+            {
+                var outboundFlightByFlightNumber = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
+                if (outboundFlightByFlightNumber != null)
+                {
+                    if (outboundFlightByFlightNumber.STD.Day.ToString() != date || outboundFlightByFlightNumber.Destination != station)
+                    {
+                        return false;
+                    } 
+                    else
+                    {
+                        return true;
+                    }
+                }
             }
 
-           
-            return flag;
+            return true;
         }
 
         public bool IsCPMFlightDataValid(string[] splitMessageContent)
@@ -113,7 +152,7 @@
                     string date = match.Groups["date"].Value;
                     string station = match.Groups["origin"].Value;
 
-
+                    var test = MessageValidation.IsFlightInfoNotNullOrEmpty(flightNumber, registration, date, station);
                     if (MessageValidation.IsFlightInfoNotNullOrEmpty(flightNumber, registration,date, station))
                     {
                         if (this.IsFlightNumberAndRegistrationValid(flightNumber, registration))
@@ -160,12 +199,14 @@
         {
             if (MessageValidation.IsLoadDistributionMessageTypeValid(splitMessageContent[0]))
             {
-                var ldmRegex = new Regex();
+                 
             } 
             else
             {
                 return false;
             }
+
+            return true;
         }
 
         public bool IsDepartureMovementFlightDataValid(string[] splitMessageContent)

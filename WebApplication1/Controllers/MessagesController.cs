@@ -22,7 +22,7 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult InboundLDM(MessageInputModel  messageInputModel)
         {
-            this.messageParser.ParseLDM(messageInputModel.Message);
+            this.messageParser.ParseInboundLDM(messageInputModel.Message);
 
             return this.RedirectToAction("InboundMessages");
         } 
@@ -43,7 +43,7 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult InboundUCM(MessageInputModel messageInputModel)
         {
-            this.messageParser.ParseUCM(messageInputModel.Message);
+            this.messageParser.ParseInboundUCM(messageInputModel.Message);
 
             return this.RedirectToAction("Index", "Home");
         }

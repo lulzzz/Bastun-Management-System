@@ -35,6 +35,7 @@
             this.dbContext.SaveChanges();
 
             inboundFlight.ArrivalMovementId = arrivalMovement.Id;
+            this.dbContext.SaveChanges();
         }
 
         public void CreateDepartureMovement(DateTime[] dates, string supplementaryInformation, int totalPax, OutboundFlight outboundFlight)
@@ -53,6 +54,7 @@
             this.dbContext.SaveChanges();
 
             outboundFlight.DepartureMovementId = departureMovement.Id;
+            this.dbContext.SaveChanges();
         }
 
         public ArrivalMovement GetArrivalMovementByFlightNumber(string flightNumber)

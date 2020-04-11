@@ -26,8 +26,28 @@
 
         public static bool IsFlightInfoNotNullOrEmpty(string flightNumber, string registration, string date, string station)
         {
-            return string.IsNullOrWhiteSpace(flightNumber) || string.IsNullOrWhiteSpace(registration) || string.IsNullOrWhiteSpace(date)
-                || string.IsNullOrWhiteSpace(station);
+            //cancer
+            if (string.IsNullOrWhiteSpace(flightNumber))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(registration))
+            {
+                return false; 
+            }
+
+            if (string.IsNullOrWhiteSpace(date))
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(station))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
