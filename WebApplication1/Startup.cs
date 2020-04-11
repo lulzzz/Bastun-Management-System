@@ -43,6 +43,7 @@ namespace WebApplication1
             services.AddTransient<IFlightDataValidation, FlightDataValidation>();
             services.AddTransient<IAircraftCabinService, AircraftCabinService>();
             services.AddTransient<IAircraftBaggageHoldService, AircraftBaggageHoldService>();
+            services.AddTransient<IContainerService, ContainerService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());

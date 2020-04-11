@@ -24,7 +24,7 @@
             var containerPalletMessage = new ContainerPalletMessage
             {
                 InboundFlightId = inboundFlight.FlightId,
-                OutboundFlightId = 0,
+                InboundFlight = inboundFlight,
                 ContainerInfo = containers,
             };
 

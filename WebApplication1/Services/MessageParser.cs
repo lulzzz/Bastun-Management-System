@@ -21,17 +21,19 @@
         private readonly IMessageService messageService;
         private readonly IFlightDataValidation flightDataValidation;
         private readonly IFlightService flightService;
+        private readonly IContainerService containerService;
         private readonly Regex regex = new Regex(FlightInfoConstants.IsFlightInfoValid);
         private const string movementDateFormat = "HH:MM:SS";
         private const string _colon = ":";
         private const string _zeros = "00";
         //TODO: Refactor this
-        public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation, IFlightService flightService)
+        public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation, IFlightService flightService, IContainerService containerService)
         {
             this.movementService = movementService;
             this.messageService = messageService;
             this.flightDataValidation = flightDataValidation;
             this.flightService = flightService;
+            this.containerService = containerService;
         }
 
         public bool ParseArrivalMovement(string messageContent)
@@ -68,7 +70,10 @@
             
             if (this.flightDataValidation.IsCPMFlightDataValid(splitMessageContent))
             {
-                var containerInformation = this.ParseContainerInfo(splitMessageContent);
+                int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
+                this.containerService.AddContainerToInboundFlight(inbound,amountOfInboundContainers);
+                var containerInformation = this.containerService.CreateContainerInfo(splitMessageContent);
+                this.containerService.MapContainerInfoToInboundFlightContainers(inbound, containerInformation);
                 this.messageService.CreateInboundCPM(containerInformation, inbound);
             } 
             else
@@ -245,26 +250,16 @@
         }
 
 
-        private ICollection<ContainerInfo> ParseContainerInfo(string[] splitCPMData)
+        private int GetContainerCount(string[] splitCpmData)
         {
-            var listOfContainerInfo = new List<ContainerInfo>();
+            int containerCount = 0;
 
-            for (int i = 2; i < splitCPMData.Length -1; i++)
+            for (int i = 2; i < splitCpmData.Length - 1; i++)
             {
-                string currContainer = splitCPMData[i];
-                string[] splitDataForCurrContainer =
-                    currContainer.Split(new string[] { "/", "-" }, StringSplitOptions.RemoveEmptyEntries);
-
-                var currentContainerInfo = new ContainerInfo
-                {
-                    ContainerPosition = splitDataForCurrContainer[0],
-                    ContainerNumberAndType = splitDataForCurrContainer[1],
-                    ContainerTotalWeight = int.Parse(splitDataForCurrContainer[2])
-                };
-                listOfContainerInfo.Add(currentContainerInfo);
+                containerCount++;
             }
 
-            return listOfContainerInfo;
+            return containerCount;
         }
 
         private string GetFlightNumber(string message)

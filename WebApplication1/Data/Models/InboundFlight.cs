@@ -30,6 +30,8 @@
         [Required]
         public DateTime STA { get; set; }
 
+        public virtual ICollection<Container> InboundContainers { get; set; }
+
         [Required(ErrorMessage = InvalidErrorMessages.OriginRequired)]
         [RegularExpression(FlightInputDataValidation.StationValidation, ErrorMessage = InvalidErrorMessages.Origin)]
         public string Origin { get; set; }

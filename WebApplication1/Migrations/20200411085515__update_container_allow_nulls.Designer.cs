@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
 namespace BMS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200411085515__update_container_allow_nulls")]
+    partial class _update_container_allow_nulls
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -173,7 +175,7 @@ namespace BMS.Migrations
 
             modelBuilder.Entity("BMS.Data.Models.Container", b =>
                 {
-                    b.Property<int?>("ContainerId")
+                    b.Property<int>("ContainerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -184,15 +186,10 @@ namespace BMS.Migrations
                     b.Property<int>("ContainerPieces")
                         .HasColumnType("int");
 
-                    b.Property<int?>("InboundFlightId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OutboundFlightId")
+                    b.Property<int>("OutboundFlightId")
                         .HasColumnType("int");
 
                     b.HasKey("ContainerId");
-
-                    b.HasIndex("InboundFlightId");
 
                     b.HasIndex("OutboundFlightId");
 
@@ -791,14 +788,11 @@ namespace BMS.Migrations
 
             modelBuilder.Entity("BMS.Data.Models.Container", b =>
                 {
-                    b.HasOne("BMS.Data.Models.InboundFlight", "InboundFlight")
-                        .WithMany("InboundContainers")
-                        .HasForeignKey("InboundFlightId");
-
                     b.HasOne("BMS.Data.Models.OutboundFlight", "OutboundFlight")
                         .WithMany("OutboundContainers")
                         .HasForeignKey("OutboundFlightId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BMS.Data.Models.ContainerInfo", b =>

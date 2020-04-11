@@ -13,15 +13,19 @@
         }
 
         [Key]
-        public int ContainerId { get; set; }
+        public int? ContainerId { get; set; }
 
-        public int OutboundFlightId { get; set; }
+        public int? InboundFlightId { get; set; }
 
-        public virtual OutboundFlight OutboundFlight { get; set; }
+        public virtual InboundFlight? InboundFlight { get; set; }
 
-        public int ContainerInfoId { get; set; }
+        public int? OutboundFlightId { get; set; }
 
-        public virtual ContainerInfo ContainerInfo { get; set; }
+        public virtual OutboundFlight? OutboundFlight { get; set; }
+
+        public int? ContainerInfoId { get; set; }
+
+        public virtual ContainerInfo? ContainerInfo { get; set; }
         public int ContainerPieces { get; set; }
       
     }
