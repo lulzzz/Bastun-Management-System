@@ -11,39 +11,40 @@
             <div class="form-group">
                 <label>Flight numbers:</label>
                 <input asp-for="@Model.FlightNumber" type="text" class="form-control w-100" />
-                <span asp-validation-for="@Model.FlightNumber" class="alert-danger"></span>
+                <span asp-validation-for="@Model.FlightNumber"></span>
             </div>
             <div class="form-group">
                 <label>Origin:</label>
                 <input asp-for="@Model.Origin" type="text" class="form-control w-100" />
-                <span asp-validation-for="@Model.Origin" class="alert-danger"></span>
+                <span asp-validation-for="@Model.Origin" ></span>
             </div>
             <div class="form-group">
                 <label>Handling station:</label>
                 <input asp-for="@Model.HandlingStation"  type="text"class="form-control w-100"/>
-                <span asp-validation-for="@Model.HandlingStation" class="alert-danger"></span>
+                <span asp-validation-for="@Model.HandlingStation"></span>
             </div>
             <div class="form-group">
                 <label>Destination:</label>
                 <input asp-for="@Model.Destination" type="text" class="form-control w-100" />
-                <span asp-validation-for="@Model.Destination" class="alert-danger"></span>
+                <span asp-validation-for="@Model.Destination"></span>
             </div>
             <div class="form-group">
                 <label>STA:</label>
                 <input asp-for="@Model.STA" type="datetime" class="form-control w-100" />
-                <span asp-validation-for="@Model.STA" class="alert-danger"></span>
+                <span asp-validation-for="@Model.STA"></span>
             </div>
             <div class="form-group">
                 <label>STD:</label>
                 <input asp-for="@Model.STD" type="datetime" class="form-control w-100" />
-                <span asp-validation-for="@Model.STD" class="alert-danger"></span>
+                <span asp-validation-for="@Model.STD" ></span>
             </div>
             <div class="form-group">
                 <label>Booked PAX:</label>
                 <input asp-for="@Model.BookedPax" type="number" class="form-control w-100" />
-                <span asp-validation-for="@Model.BookedPax" class="alert-danger"></span>
+                <span asp-validation-for="@Model.BookedPax"></span>
             </div>
             <button type="submit" class="btn btn-primary w-100">Register flight</button>
         </form>
     </div>
 </div>
+<link rel="stylesheet" href="~/css/coolError.css"/>
