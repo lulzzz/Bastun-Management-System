@@ -9,9 +9,6 @@
     public class MovementInputModel
     {
         [Required]
-        public string ArrivalMovement { get; set; }
-
-        [Required]
-        public string DepartureMovement { get; set; }
+        public string Movement { get; set; }
     }
 }
