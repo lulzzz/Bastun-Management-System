@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BMS.Models;
 using BMS.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApplication1.Models;
@@ -21,6 +22,7 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
+     
         [HttpGet]
         public IActionResult Index()
         {
