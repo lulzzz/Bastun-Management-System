@@ -1,4 +1,4 @@
-﻿using BMS.Models.MessagesInputModels.InboundMessagesInputModels;
+﻿using BMS.Models;
 using BMS.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,31 +20,42 @@ namespace BMS.Controllers
         }
 
         [HttpPost]
-        public IActionResult InboundLDM(InboundMessageInputModel messageInputModel)
+        public IActionResult InboundLDM(MessageInputModel  messageInputModel)
         {
-            this.messageParser.ParseLDM(messageInputModel.LDMMessage);
+            this.messageParser.ParseLDM(messageInputModel.Message);
 
             return this.RedirectToAction("InboundMessages");
         } 
         
         [HttpPost]
-        public IActionResult InboundCPM(InboundMessageInputModel messageInputModel)
+        public IActionResult InboundCPM(MessageInputModel messageInputModel)
         {
-            this.messageParser.ParseCPM(messageInputModel.CPMMessage);
-
-            return this.RedirectToAction("Index", "Home");
+            if (this.messageParser.ParseInboundCPM(messageInputModel.Message))
+            {
+                return this.RedirectToAction("RegisterFuelForm", "Fuel");
+            } 
+            else
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
-        public IActionResult InboundUCM(InboundMessageInputModel messageInputModel)
+        public IActionResult InboundUCM(MessageInputModel messageInputModel)
         {
-            this.messageParser.ParseUCM(messageInputModel.UCMMessage);
+            this.messageParser.ParseUCM(messageInputModel.Message);
 
             return this.RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
         public IActionResult OutboundMessages()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult OutboundCPM(MessageInputModel messageInputModel)
         {
             return this.View();
         }

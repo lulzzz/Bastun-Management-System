@@ -15,7 +15,7 @@
 
         bool ParseLDM(string messageContent);
 
-        bool ParseCPM(string messageContent);
+        bool ParseInboundCPM(string messageContent);
 
         void ParseUCM(string messageContent);
 

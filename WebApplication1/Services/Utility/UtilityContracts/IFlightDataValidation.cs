@@ -10,5 +10,7 @@
 
         bool IsCPMFlightDataValid(string[] splitMessageContent);
 
+        bool IsArrivalMovementFlightDataValid(string[] splitMessageContent);
+
     }
 }

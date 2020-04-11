@@ -16,11 +16,14 @@
         private readonly IAircraftService aircraftService;
         private const string _hyphen = "-";
 
+
         public FlightDataValidation(IFlightService flightService, IAircraftService aircraftService)
         {
             this.flightService = flightService;
             this.aircraftService = aircraftService;
         }
+
+       
    
         private bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration)
         {
@@ -94,6 +97,49 @@
             }
 
             return flag;
+        }
+
+        public bool IsArrivalMovementFlightDataValid(string[] splitMessageContent)
+        {
+            if (MessageValidation.IsMovementMessageTypeValid(splitMessageContent[0]))
+            {
+                var regex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+
+                var match = regex.Match(splitMessageContent[1]);
+                if (match.Success)
+                {
+                    string flightNumber = match.Groups["flt"].Value;
+                    string registration = match.Groups["reg"].Value;
+                    string date = match.Groups["date"].Value;
+                    string station = match.Groups["origin"].Value;
+
+                    if (this.IsFlightNumberAndRegistrationValid(flightNumber,registration))
+                    {
+                        if (this.IsDateAndStationValid(flightNumber, date, station))
+                        {
+                            return true;
+                        } 
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            } 
+            else
+            {
+                return false;
+            }
+
+           
         }
         
     }

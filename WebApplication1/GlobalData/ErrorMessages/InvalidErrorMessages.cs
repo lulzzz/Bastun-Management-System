@@ -43,5 +43,7 @@
         public const string HandlingStationIsRequired = "Handling station is required!";
 
         public const string HandlingStationIsInvalid = "Handling station format is invalid!";
+
+        public const string MessageIsRequired = "Message is required!";
     }
 }
