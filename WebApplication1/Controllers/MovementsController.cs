@@ -29,16 +29,20 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Arrival(MovementInputModel movementInput)
         {
-           
-            
-            if (this.messageParser.ParseArrivalMovement(movementInput.ArrivalMovement))
+
+            if (this.ModelState.IsValid)
             {
-                return this.Redirect("/Home/Index");
-            } 
-            else 
-            {
-                return this.View(movementInput);
+                if (this.messageParser.ParseArrivalMovement(movementInput.Movement))
+                {
+                    return this.Redirect("/Messages/InboundMessages");
+                }
+                else
+                {
+                    return this.View(movementInput);
+                }
             }
+
+            return this.View(movementInput);
         }
 
         [HttpGet]
@@ -50,9 +54,20 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public IActionResult Departure(MovementInputModel movementInput)
         {
-            this.messageParser.ParseDepartureMovement(movementInput.DepartureMovement);
+            if (this.ModelState.IsValid)
+            {
+                if (this.messageParser.ParseDepartureMovement(movementInput.Movement))
+                {
+                    return this.Redirect("/Messages/OutboundMessages");
+                } 
+                else
+                {
+                    return this.View(movementInput);
+                }
 
-            return this.RedirectToAction("Index", "Home");
+            }
+
+            return this.View(movementInput);
         }
     }
 }
