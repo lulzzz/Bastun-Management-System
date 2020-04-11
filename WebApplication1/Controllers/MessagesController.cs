@@ -1,9 +1,11 @@
 ﻿using BMS.Models;
 using BMS.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BMS.Controllers
 {
+    [Authorize]
     public class MessagesController : Controller
     {
         private readonly IMessageParser messageParser;

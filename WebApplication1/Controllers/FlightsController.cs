@@ -1,6 +1,7 @@
 ﻿using BMS.Models;
 
 using BMS.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BMS.Controllers
 {
+    [Authorize]
     public class FlightsController : Controller
     {
         private readonly IFlightService flightService;

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using BMS.Models.MovementsInputModels;
 using BMS.Services.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class MovementsController : Controller
     {
         private readonly IMessageParser messageParser;

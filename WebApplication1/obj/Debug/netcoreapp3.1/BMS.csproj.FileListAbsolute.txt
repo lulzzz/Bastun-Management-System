@@ -262,3 +262,4 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Mi
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\FuelAndWeight\FuelForm.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\FuelAndWeight\RegisterWeightForm.cshtml.g.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_WelcomePartial.cshtml.g.cs

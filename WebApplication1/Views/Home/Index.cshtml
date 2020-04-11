@@ -1,6 +1,18 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<div >
-    test
-</div>
+@if (!this.User.Identity.IsAuthenticated)
+{
+    <div class="row">
+         <div class="col" style="right:-150px; top:-100px">
+             <button class="btn btn-primary">Register</button>
+         </div>
+         <div class="col" style="right:-150px; top:-100px">
+             <button class="btn btn-primary">Login</button>
+         </div>
+    </div>
+}
+else 
+{
+
+}   
