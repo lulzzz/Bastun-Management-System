@@ -4,9 +4,29 @@
 @if (!this.User.Identity.IsAuthenticated)
 {
     <div class="row">
-         <div class="col" style="right:-200px; top:-100px;">
-             <button class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px">Register</button>
-         </div>
+        <div class="col" style="right:-200px; top:-100px;">
+            <button class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px">Display</button>
+            <form asp-controller="Account" asp-action="Register">
+                <br />
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control" style="width:200px"/>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" style="width:200px"/>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" style="width:200px"/>
+                </div>
+                <div class="form-group">
+                    <label>Confirm password</label>
+                    <input type="password" class="form-control" style="width:200px" />
+                </div>
+                <button type="submit" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px">Register</button>
+            </form>
+        </div>
          <div class="col" style="right:-150px;top:-100px;">
              <button class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px">Login</button>
          </div>
