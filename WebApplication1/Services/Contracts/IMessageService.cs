@@ -9,7 +9,7 @@
     {
         public void CreateLDM();
 
-        public void CreateInboundCPM(ICollection<ContainerInfo> containers, InboundFlight inboundFlight);
+        public void CreateInboundCPM(List<ContainerInfo> containers, InboundFlight inboundFlight);
 
         public void CreateUCM();
     }

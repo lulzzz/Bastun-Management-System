@@ -7,10 +7,9 @@
     using System.Threading.Tasks;
     public interface IContainerService
     {
-        public void AddContainerToInboundFlight(InboundFlight inboundFlight,int amountOfInboundContainersToCreate);
+        public List<Container> AddContainerToInboundFlight(InboundFlight inboundFlight,int amountOfInboundContainersToCreate);
 
-        public void MapContainerInfoToInboundFlightContainers(InboundFlight inboundFlight, List<ContainerInfo> containerInfos);
 
-        List<ContainerInfo> CreateContainerInfo(string[] splitMessage);
+        public List<ContainerInfo> CreateContainerInfo(string[] splitMessage,List<Container> containers);
     }
 }

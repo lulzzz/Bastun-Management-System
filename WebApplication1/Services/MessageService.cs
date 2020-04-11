@@ -19,7 +19,7 @@
             this.dbContext = dbContext;
         }
 
-        public void CreateInboundCPM(ICollection<ContainerInfo> containers,InboundFlight inboundFlight)
+        public void CreateInboundCPM(List<ContainerInfo> containers,InboundFlight inboundFlight)
         {
             var containerPalletMessage = new ContainerPalletMessage
             {
@@ -31,7 +31,6 @@
             this.dbContext.ContainerPalletMessages.Add(containerPalletMessage);
             this.dbContext.SaveChanges();
 
-            inboundFlight.InboundMessages.Add(containerPalletMessage);
         }
 
         public void CreateLDM()

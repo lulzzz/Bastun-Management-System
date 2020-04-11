@@ -17,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public void AddContainerToInboundFlight(InboundFlight inboundFlight,int amountOfContainersToCreate)
+        public List<Container> AddContainerToInboundFlight(InboundFlight inboundFlight,int amountOfContainersToCreate)
         {
             var listOfContainers = new List<Container>();
 
@@ -35,52 +35,35 @@
                 this.dbContext.SaveChanges();
             }
 
-            foreach (var container in listOfContainers)
-            {
-                inboundFlight.InboundContainers.Add(container);
-            }
+            return listOfContainers;
         }
 
-        public List<ContainerInfo> CreateContainerInfo(string[] splitMessage)
+        public List<ContainerInfo> CreateContainerInfo(string[] splitMessage,List<Container> containers)
         {
             var listOfContainerInfo = new List<ContainerInfo>();
-
+            int index = 0;
             for (int i = 2; i < splitMessage.Length - 1; i++)
             {
-                string currContainer = splitMessage[i];
+                string currContainerInfo = splitMessage[i];
                 string[] splitDataForCurrContainer =
-                    currContainer.Split(new string[] { "/", "-" }, StringSplitOptions.RemoveEmptyEntries);
+                    currContainerInfo.Split(new string[] { "/", "-" }, StringSplitOptions.RemoveEmptyEntries);
 
+                var currentContainer = containers[index];
                 var currentContainerInfo = new ContainerInfo
                 {
                     ContainerPosition = splitDataForCurrContainer[0],
                     ContainerNumberAndType = splitDataForCurrContainer[1],
-                    ContainerTotalWeight = int.Parse(splitDataForCurrContainer[2])
+                    ContainerTotalWeight = int.Parse(splitDataForCurrContainer[2]),
+                    ContainerId = currentContainer.ContainerId,
+                    Container = currentContainer
                 };
                 listOfContainerInfo.Add(currentContainerInfo);
 
                 this.dbContext.ContainerInfos.Add(currentContainerInfo);
                 this.dbContext.SaveChanges();
+                index++;
             }
-
             return listOfContainerInfo;
-        }
-
-        public void MapContainerInfoToInboundFlightContainers(InboundFlight inboundFlight, List<ContainerInfo> containerInfos)
-        {
-            var listOfInboundFlightContainers = inboundFlight.InboundContainers.ToList();
-
-            for (int i = 0; i < containerInfos.Count; i++)
-            {
-                var currentContainerForInboundFlight = listOfInboundFlightContainers[i];
-                var currentContainerInfo = containerInfos[i];
-
-                currentContainerInfo.Container = currentContainerForInboundFlight;
-                currentContainerInfo.ContainerId = currentContainerForInboundFlight.ContainerId;
-
-                currentContainerForInboundFlight.ContainerInfo = currentContainerInfo;
-                currentContainerForInboundFlight.ContainerInfoId = currentContainerInfo.ContainerInfoId;
-            }
         }
     }
 }
