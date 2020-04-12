@@ -368,7 +368,14 @@
                     int inboundChildren = int.Parse(loadMatch.Groups["children"].Value);
                     int inboundInfants = int.Parse(loadMatch.Groups["infants"].Value);
                     int totalWeightInCompartments = this.ParseInboundLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
-                    
+
+                    var loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMSummaryInfoValid);
+                    var loadSummaryMatch = loadSummaryRegex.Match(splitMessage[3]);
+                    if (loadSummaryMatch.Success)
+                    {
+                        int inboundTotalPax = this.ParseLDMTotalPax(loadSummaryMatch.Groups["PAX"].Value); 
+
+                    }
                 }
             } 
             else
@@ -398,8 +405,18 @@
             int totalWeight = int.Parse(splitData[1]);
 
             return totalWeight;
-            
         }
+
+        private int ParseLDMTotalPax(string totalPax)
+        {
+            string[] splitData =
+                totalPax
+                .Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            return int.Parse(splitData[1]);
+        }
+
+        private int ParseLDMTotalBags(int i)
     }
 
     
