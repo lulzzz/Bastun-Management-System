@@ -92,6 +92,11 @@
             if (flightNumberFromInput != null)
             {
                 inbound = this.flightService.GetInboundFlightByFlightNumber(flightNumberFromInput);
+
+                if (inbound == null)
+                {
+                    return false;
+                }
             } 
             else
             {
@@ -102,7 +107,7 @@
             {
                 string supplementaryInformation = this.ParseSupplementaryInformation(splitMessageContent[splitMessageContent.Length - 1]);
                 int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
-                var listOfContainersForCurrentMessage = this.containerService.AddContainerToInboundFlight(inbound,amountOfInboundContainers);
+                var listOfContainersForCurrentMessage = this.containerService.AddContainersToInboundFlight(inbound,amountOfInboundContainers);
                var listofContainerInfo =  this.containerService.CreateContainerInfo(splitMessageContent, listOfContainersForCurrentMessage);
                 this.messageService.CreateInboundCPM(listofContainerInfo, inbound, supplementaryInformation);
             } 
@@ -148,8 +153,6 @@
             return true;
           
         }
-
-       
 
         private string ParseSupplementaryInformation(string supplementaryInfo)
         {
@@ -329,6 +332,11 @@
             if (flightNumberFromInput != null)
             {
                 outbound = this.flightService.GetOutboundFlightByFlightNumber(flightNumberFromInput);
+
+                if (outbound == null)
+                {
+                    return false;
+                }
             }
             else
             {
@@ -337,11 +345,12 @@
 
             if (this.flightDataValidation.IsCPMFlightDataValid(splitMessageContent))
             {
-                //string supplementaryInformation = this.ParseSupplementaryInformation(splitMessageContent[splitMessageContent.Length - 1]);
-                //int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
-                //var listOfContainersForCurrentMessage = this.containerService.AddContainerToOutboundFlight(outbound, amountOfInboundContainers);
-                //var listofContainerInfo = this.containerService.CreateContainerInfo(splitMessageContent, listOfContainersForCurrentMessage);
-                //this.messageService.CreateOutboundCPM(listofContainerInfo, outbound, supplementaryInformation);
+                string supplementaryInformation = this.ParseSupplementaryInformation(splitMessageContent[splitMessageContent.Length - 1]);
+                int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
+                var listOfContainersForCurrentMessage = this.containerService.AddContainersToOutboundFlight(outbound, amountOfInboundContainers);
+                var listofContainerInfo = this.containerService.CreateContainerInfo(splitMessageContent, listOfContainersForCurrentMessage);
+                var cpmDTO = new CPMDTO(listofContainerInfo, supplementaryInformation);
+                this.messageService.CreateOutboundCPM(outbound, cpmDTO);
             }
             else
             {

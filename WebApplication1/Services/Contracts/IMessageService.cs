@@ -14,7 +14,7 @@
 
         public void CreateInboundCPM(List<ContainerInfo> containers, InboundFlight inboundFlight,string supplementaryInformation);
 
-        public void CreateOutboundCPM(List<ContainerInfo> containers, OutboundFlight outboundFlight, string supplementaryInformation);
+        public void CreateOutboundCPM(OutboundFlight outboundFlight,CPMDTO dto);
 
         public void CreateUCM();
     }

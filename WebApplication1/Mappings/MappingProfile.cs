@@ -19,6 +19,8 @@ namespace BMS.Mappings
                 .ForMember(dest => dest.UserName, src => src.MapFrom(x => x.UserName));
 
             CreateMap<LDMDTO, LoadDistributionMessage>();
+
+            CreateMap<CPMDTO, ContainerPalletMessage>();
                
         }
     }

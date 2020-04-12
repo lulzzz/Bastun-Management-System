@@ -17,7 +17,7 @@
             this.dbContext = dbContext;
         }
 
-        public List<Container> AddContainerToInboundFlight(InboundFlight inboundFlight,int amountOfContainersToCreate)
+        public List<Container> AddContainersToInboundFlight(InboundFlight inboundFlight,int amountOfContainersToCreate)
         {
             var listOfContainers = new List<Container>();
 
@@ -30,6 +30,25 @@
 
                 };
 
+                listOfContainers.Add(container);
+                this.dbContext.Containers.Add(container);
+                this.dbContext.SaveChanges();
+            }
+
+            return listOfContainers;
+        }
+
+        public List<Container> AddContainersToOutboundFlight(OutboundFlight outbond, int amountOfOutboundContainersToCreate)
+        {
+            var listOfContainers = new List<Container>();
+
+            for (int i = 0; i < amountOfOutboundContainersToCreate; i++)
+            {
+                var container = new Container
+                {
+                    OutboundFlight = outbond,
+                    OutboundFlightId = outbond.FlightId
+                };
                 listOfContainers.Add(container);
                 this.dbContext.Containers.Add(container);
                 this.dbContext.SaveChanges();

@@ -25,7 +25,7 @@
 
         public void CreateInboundCPM(List<ContainerInfo> containers,InboundFlight inboundFlight,string supplementaryInformation)
         {
-            var containerPalletMessage = new ContainerPalletMessage
+            var inboundContainerPalletMessage = new ContainerPalletMessage
             {
                 InboundFlightId = inboundFlight.FlightId,
                 InboundFlight = inboundFlight,
@@ -33,7 +33,7 @@
                 SupplementaryInformation = supplementaryInformation
             };
 
-            this.dbContext.ContainerPalletMessages.Add(containerPalletMessage);
+            this.dbContext.ContainerPalletMessages.Add(inboundContainerPalletMessage);
             this.dbContext.SaveChanges();
 
         }
@@ -49,9 +49,16 @@
             this.dbContext.SaveChanges();
         }
 
-        public void CreateOutboundCPM(List<ContainerInfo> containers, OutboundFlight outboundFlight, string supplementaryInformation)
+        public void CreateOutboundCPM(OutboundFlight outboundFlight, CPMDTO dto)
         {
-            throw new NotImplementedException();
+            var outboundContainerPalletMessage = mapper.Map<ContainerPalletMessage>(dto);
+            this.dbContext.ContainerPalletMessages.Add(outboundContainerPalletMessage);
+            this.dbContext.SaveChanges();
+
+            outboundContainerPalletMessage.OutboundFlight = outboundFlight;
+            outboundContainerPalletMessage.OutboundFlightId = outboundFlight.FlightId;
+            outboundFlight.OutboundMessages.Add(outboundContainerPalletMessage);
+            this.dbContext.SaveChanges();
         }
 
         public void CreateOutboundLDM()

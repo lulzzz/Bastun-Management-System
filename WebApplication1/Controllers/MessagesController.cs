@@ -57,7 +57,19 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult OutboundCPM(MessageInputModel messageInputModel)
         {
-            return this.View();
+            if (this.ModelState.IsValid)
+            {
+                if (this.messageParser.ParseOutboundCPM(messageInputModel.Message))
+                {
+                    return this.RedirectToAction("Index", "Home");
+                } 
+                else
+                {
+                    return this.RedirectToAction("OutboundMessages");
+                }
+            }
+
+            return this.RedirectToAction("OutboundMessage", messageInputModel);
         }
 
         [HttpPost]

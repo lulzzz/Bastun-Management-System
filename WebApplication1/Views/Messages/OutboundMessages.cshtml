@@ -2,12 +2,14 @@
     this.ViewData["Title"] = "Create outbound messages";
 }
 
-
+@using BMS.Models;
+@model MessageInputModel
 <div class="col">
-    <form id="ldmForm" asp-controller="Movements" asp-action="OutboundLDMData">
+    <form id="ldmForm" asp-controller="Messages" asp-action="OutboundLDM">
         <div class="form-group">
-            <label for="outboundLDM">Outbound LDM:</label>
-            <textarea class="form-control w-100" rows="7"></textarea>
+            <label asp-for="@Model.Message">Outbound LDM:</label>
+            <textarea asp-for="@Model.Message"class="form-control w-100" rows="7"></textarea>
+            <span asp-validation-for="@Model.Message"></span>
         </div>
         <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
@@ -16,10 +18,11 @@
 <hr />
 <br />
 <div class="col">
-    <form id="cpmForm" asp-controller="Movements" asp-action="OutboundCPMData">
+    <form id="cpmForm" asp-controller="Messages" asp-action="OutboundCPM">
         <div class="form-group">
-            <label for="outboundCPM">Outbound CPM:</label>
-            <textarea class="form-control w-100" rows="7"></textarea>
+            <label asp-for="@Model.Message">Outbound CPM:</label>
+            <textarea asp-for="@Model.Message" class="form-control w-100" rows="7"></textarea>
+            <span asp-validation-for="@Model.Message"></span>
         </div>
         <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
@@ -28,10 +31,11 @@
 <hr />
 <br />
 <div class="col">
-    <form id="ucmForm">
+    <form id="ucmForm" asp-controller="Messages" asp-action="OutboundUCM">
         <div class="form-group">
-            <label for="outboundUCM">Outbound UCM:</label>
-            <textarea class="form-control w-100" rows="7"></textarea>
+            <label asp-for="@Model.Message">Outbound UCM:</label>
+            <textarea asp-for="@Model.Message" class="form-control w-100" rows="7"></textarea>
+            <span asp-validation-for="@Model.Message"></span>
         </div>
         <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
