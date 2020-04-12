@@ -377,10 +377,11 @@
                         {
                             int[] loadSummaryInfo = this.ParseLoadSummaryInfo(splitMessage[3]);
                             var inboundFlight = this.flightService.GetInboundFlightByFlightNumber(inboundFlightNumber);
-
+                            
                             if (inboundFlight != null)
                             {
-                                
+                                var dto = new LDMDTO(crewConfiguration, paxFigures, totalWeightInCompartments, weightInEachCompartment, loadSummaryInfo);
+                                this.messageService.CreateInboundLDM(inboundFlight, dto);
                             }
                             else
                             {
@@ -485,12 +486,38 @@
 
         private int[] ParsePAXFigures(string input)
         {
-            return null;
+            int inboundPaxMale = 0;
+            int inboundPaxFemale = 0;
+            int inboundPaxChildren = 0;
+            int inboundPaxInfants = 0;
+            var match = this.loadDistributionRegex.Match(input);
+            
+            if (match.Success)
+            {
+                inboundPaxMale = int.Parse(match.Groups["M"].Value);
+                inboundPaxFemale = int.Parse(match.Groups["female"].Value);
+                inboundPaxChildren = int.Parse(match.Groups["children"].Value);
+                inboundPaxInfants = int.Parse(match.Groups["infants"].Value);
+
+            }
+
+            return new int[] { inboundPaxMale, inboundPaxFemale, inboundPaxChildren, inboundPaxInfants };
         }
 
         private int[] ParseLoadSummaryInfo(string input)
         {
-            return null;
+            int totalPax = 0;
+            int totalBags = 0;
+            int totalCargo = 0;
+            var match = loadSummaryRegex.Match(input);
+            if (match.Success)
+            {
+                totalPax = this.ParseLDMTotalPax(match.Groups["PAX"].Value);
+                totalBags = this.ParseLDMTotalBags(match.Groups["bags"].Value);
+                totalCargo = this.ParseLDMCargo(match.Groups["cargo"].Value);
+            }
+
+            return new int[] { totalPax, totalBags, totalCargo };
         }
     }
 

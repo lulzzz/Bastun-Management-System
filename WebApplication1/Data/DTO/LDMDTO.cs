@@ -7,18 +7,13 @@
 
     public class LDMDTO
     {
-        public LDMDTO(string config, int male, int female, int children, int infants, int ttlWeight,Dictionary<int,int> cptWeights,int totalPax, int ttlBags, int cargo)
+        public LDMDTO(string config, int[] paxFigures,int totalWeightInCpts,Dictionary<int,int> compartmentWeights, int[] summaryInfo)
         {
             this.CrewConfiguration = config;
-            this.PAXMale = male;
-            this.PAXFemale = female;
-            this.PAXChildren = children;
-            this.PAXInfants = infants;
-            this.TotalWeightInAllCompartments = ttlWeight;
-            this.TotalPax = totalPax;
-            this.TotalBaggagePieces = ttlBags;
-            this.TotalCargo = cargo;
-            this.SetCompartmentWeights(cptWeights);
+            this.TotalWeightInAllCompartments = totalWeightInCpts;
+            this.SetCompartmentWeights(compartmentWeights);
+            this.SetSummaryInfo(summaryInfo);
+            this.SetPaxFigures(paxFigures);
         }
 
         public string CrewConfiguration { get; set; }
@@ -51,7 +46,26 @@
 
         private void SetCompartmentWeights(Dictionary<int,int> cptWeights)
         {
-           
+            this.TTLWeightInCPT1 = cptWeights[1];
+            this.TTLWeightInCPT2 = cptWeights[2];
+            this.TTlWeightINCPT3 = cptWeights[3];
+            this.TTLWeightInCPT4 = cptWeights[4];
+            this.TTLWeightInCPT5 = cptWeights[5];
+        }
+
+        private void SetSummaryInfo(int[] summaryInfo)
+        {
+            this.TotalPax = summaryInfo[0];
+            this.TotalBaggagePieces = summaryInfo[1];
+            this.TotalCargo = summaryInfo[2];
+        }
+
+        private void SetPaxFigures(int[] paxFigures)
+        {
+            this.PAXMale = paxFigures[0];
+            this.PAXFemale = paxFigures[1];
+            this.PAXChildren = paxFigures[2];
+            this.PAXInfants = paxFigures[3];
         }
     }
 }
