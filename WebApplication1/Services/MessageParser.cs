@@ -313,11 +313,57 @@
 
         public bool ParseOutboundCPM(string messageContent)
         {
-            return true;
+            bool flag = true;
+            string[] splitMessageContent =
+                messageContent
+                .Split("\r\n", StringSplitOptions.None);
+
+            OutboundFlight outbound;
+
+            string flightNumberFromInput = this.GetFlightNumber(splitMessageContent[1]);
+
+            if (flightNumberFromInput != null)
+            {
+                outbound = this.flightService.GetOutboundFlightByFlightNumber(flightNumberFromInput);
+            }
+            else
+            {
+                return flag = false;
+            }
+
+            if (this.flightDataValidation.IsCPMFlightDataValid(splitMessageContent))
+            {
+                //string supplementaryInformation = this.ParseSupplementaryInformation(splitMessageContent[splitMessageContent.Length - 1]);
+                //int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
+                //var listOfContainersForCurrentMessage = this.containerService.AddContainerToOutboundFlight(outbound, amountOfInboundContainers);
+                //var listofContainerInfo = this.containerService.CreateContainerInfo(splitMessageContent, listOfContainersForCurrentMessage);
+                //this.messageService.CreateOutboundCPM(listofContainerInfo, outbound, supplementaryInformation);
+            }
+            else
+            {
+                flag = false;
+            }
+
+
+            return flag;
         }
+
 
         public bool ParseInboundLDM(string messageContent)
         {
+            string[] splitMessage =
+                messageContent
+                .Split("\r\n", StringSplitOptions.None);
+
+            if (this.flightDataValidation.IsLDMFlightDataValid(splitMessage))
+            {
+
+            } 
+            else
+            {
+                return false;
+            }
+
             return true;
         }
 
@@ -326,14 +372,12 @@
             return true;
         }
 
-        public bool ParseInboundUCM(string messageContent)
-        {
-            return true;
-        }
 
         public bool ParseOutboundUCM(string messageContent)
         {
             return true;
         }
     }
+
+    
 }

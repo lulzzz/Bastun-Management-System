@@ -205,7 +205,12 @@
                 var match = flightDataRegex.Match(splitMessageContent[1]);
                 if (match.Success)
                 {
-                    var
+                    var loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
+                    var loadMatch = loadDistributionRegex.Match(splitMessageContent[2]);
+                    if (loadMatch.Success)
+                    {
+
+                    }
                 }
             } 
             else
