@@ -42,14 +42,6 @@ namespace BMS.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult InboundUCM(MessageInputModel messageInputModel)
-        {
-            this.messageParser.ParseInboundUCM(messageInputModel.Message);
-
-            return this.RedirectToAction("Index", "Home");
-        }
-
         [HttpGet]
         public IActionResult OutboundMessages()
         {

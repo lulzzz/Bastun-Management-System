@@ -34,7 +34,17 @@
 
         }
 
-        public void CreateLDM()
+        public void CreateInboundLDM()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateOutboundCPM(List<ContainerInfo> containers, OutboundFlight outboundFlight, string supplementaryInformation)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void CreateOutboundLDM()
         {
             throw new NotImplementedException();
         }
@@ -43,7 +53,5 @@
         {
             throw new NotImplementedException();
         }
-
-       
     }
 }

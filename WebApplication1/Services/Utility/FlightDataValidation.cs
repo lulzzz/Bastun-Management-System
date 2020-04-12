@@ -205,11 +205,18 @@
                 var match = flightDataRegex.Match(splitMessageContent[1]);
                 if (match.Success)
                 {
-                    var loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
-                    var loadMatch = loadDistributionRegex.Match(splitMessageContent[2]);
-                    if (loadMatch.Success)
-                    {
+                    string fltNumber = match.Groups["flt"].Value;
+                    string registration = match.Groups["reg"].Value;
+                    string date = match.Groups["date"].Value;
+                    
 
+                    if (this.IsFlightNumberAndRegistrationValid(fltNumber,registration))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
             } 

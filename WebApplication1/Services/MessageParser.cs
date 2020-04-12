@@ -355,9 +355,21 @@
                 messageContent
                 .Split("\r\n", StringSplitOptions.None);
 
-            if (this.flightDataValidation.IsLDMFlightDataValid(splitMessage))
+            if (this.flightDataValidation.IsInboundLDMFlightDataValid(splitMessage))
             {
+                var loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
+                var loadMatch = loadDistributionRegex.Match(splitMessage[2]);
 
+                if (loadMatch.Success)
+                {
+                    string station = loadMatch.Groups["station"].Value;
+                    int inboundMales = int.Parse(loadMatch.Groups["M"].Value);
+                    int inboundFemales = int.Parse(loadMatch.Groups["female"].Value);
+                    int inboundChildren = int.Parse(loadMatch.Groups["children"].Value);
+                    int inboundInfants = int.Parse(loadMatch.Groups["infants"].Value);
+                    int totalWeightInCompartments = this.ParseInboundLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
+                    
+                }
             } 
             else
             {
@@ -376,6 +388,17 @@
         public bool ParseOutboundUCM(string messageContent)
         {
             return true;
+        }
+
+        private int ParseInboundLDMTotalWeight(string totalWeightInCPT)
+        {
+            string[] splitData =
+                totalWeightInCPT.Split(".", StringSplitOptions.RemoveEmptyEntries);
+
+            int totalWeight = int.Parse(splitData[1]);
+
+            return totalWeight;
+            
         }
     }
 
