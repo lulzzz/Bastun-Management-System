@@ -1,5 +1,6 @@
 ﻿namespace BMS.Services.Contracts
 {
+    using BMS.Data.DTO;
     using BMS.Data.Models;
     using System;
     using System.Collections.Generic;
@@ -7,7 +8,7 @@
     using System.Threading.Tasks;
     public interface IMessageService
     {
-        public void CreateInboundLDM();
+        public void CreateInboundLDM(InboundFlight inbound,LDMDTO inboundLDMDTO);
 
         public void CreateOutboundLDM();
 

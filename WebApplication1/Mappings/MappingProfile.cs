@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BMS.Data.DTO;
 using BMS.Data.Models;
+using BMS.Data.Models.Messages;
 using BMS.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -15,6 +17,9 @@ namespace BMS.Mappings
         {
             CreateMap<RegisterUserInputModel, IdentityUser>()
                 .ForMember(dest => dest.UserName, src => src.MapFrom(x => x.UserName));
+
+            CreateMap<LDMDTO, LoadDistributionMessage>();
+               
         }
     }
 }

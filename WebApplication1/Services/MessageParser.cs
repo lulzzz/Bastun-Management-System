@@ -14,6 +14,7 @@
     using BMS.Services.Utility;
     using BMS.Services.Utility.UtilityContracts;
     using System.Globalization;
+    using BMS.Data.DTO;
 
     public class MessageParser : IMessageParser
     {
@@ -23,6 +24,9 @@
         private readonly IFlightService flightService;
         private readonly IContainerService containerService;
         private readonly Regex regex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+        private readonly Regex ldmFlightInfoRegex = new Regex(FlightInfoConstants.IsLDMFlightInfoValid);
+        private readonly Regex loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
+        private readonly Regex loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMSummaryInfoValid);
         private const string movementDateFormat = "HH:MM:SS";
         private const string _colon = ":";
         private const string _zeros = "00";
@@ -357,26 +361,48 @@
 
             if (this.flightDataValidation.IsInboundLDMFlightDataValid(splitMessage))
             {
-                var loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
-                var loadMatch = loadDistributionRegex.Match(splitMessage[2]);
-
-                if (loadMatch.Success)
+                var ldmFlightInfoMatch = ldmFlightInfoRegex.Match(splitMessage[1]);
+                if (ldmFlightInfoMatch.Success)
                 {
-                    string station = loadMatch.Groups["station"].Value;
-                    int inboundMales = int.Parse(loadMatch.Groups["M"].Value);
-                    int inboundFemales = int.Parse(loadMatch.Groups["female"].Value);
-                    int inboundChildren = int.Parse(loadMatch.Groups["children"].Value);
-                    int inboundInfants = int.Parse(loadMatch.Groups["infants"].Value);
-                    int totalWeightInCompartments = this.ParseInboundLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
-
-                    var loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMSummaryInfoValid);
-                    var loadSummaryMatch = loadSummaryRegex.Match(splitMessage[3]);
-                    if (loadSummaryMatch.Success)
+                    string inboundFlightNumber = ldmFlightInfoMatch.Groups["flt"].Value;
+                    string crewConfiguration = ldmFlightInfoMatch.Groups["crewConfig"].Value;
+                    var loadMatch = loadDistributionRegex.Match(splitMessage[2]);
+                    if (loadMatch.Success)
                     {
-                        int inboundTotalPax = this.ParseLDMTotalPax(loadSummaryMatch.Groups["PAX"].Value); 
+                        int[] paxFigures = this.ParsePAXFigures(splitMessage[2]);
+                        int totalWeightInCompartments = this.ParseInboundLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
+                        var weightInEachCompartment = this.ParseWeightsInCompartments(loadMatch.Groups["wghtByCompartment"].Value);
+                        var loadSummaryMatch = loadSummaryRegex.Match(splitMessage[3]);
+                        if (loadSummaryMatch.Success)
+                        {
+                            int[] loadSummaryInfo = this.ParseLoadSummaryInfo(splitMessage[3]);
+                            var inboundFlight = this.flightService.GetInboundFlightByFlightNumber(inboundFlightNumber);
 
+                            if (inboundFlight != null)
+                            {
+                                
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
                     }
                 }
+                else
+                {
+                    return false;
+                }
+
             } 
             else
             {
@@ -416,7 +442,56 @@
             return int.Parse(splitData[1]);
         }
 
-        private int ParseLDMTotalBags(int i)
+        private int ParseLDMTotalBags(string totalBags)
+        {
+            string[] splitData =
+                totalBags.Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            return int.Parse(splitData[1]);
+        }
+
+        private int ParseLDMCargo(string cargo)
+        {
+            string[] splitData =
+                cargo.Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitData[1] == "NIL")
+            {
+                return 0;
+            }
+
+            return int.Parse(splitData[1]);
+        }
+
+        private Dictionary<int,int> ParseWeightsInCompartments(string input)
+        {
+            var weightInCompartments = new Dictionary<int, int>();
+            string[] splitByCompartments =
+                input
+                .Split(".", StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var compartment in splitByCompartments)
+            {
+                string[] splitData =
+                     compartment
+                     .Split("/", StringSplitOptions.RemoveEmptyEntries);
+
+                int compartmentNumber = int.Parse(splitData[0]);
+                int weight = int.Parse(splitData[1]);
+                weightInCompartments.Add(compartmentNumber, weight);
+            }
+            return weightInCompartments;
+        }
+
+        private int[] ParsePAXFigures(string input)
+        {
+            return null;
+        }
+
+        private int[] ParseLoadSummaryInfo(string input)
+        {
+            return null;
+        }
     }
 
     

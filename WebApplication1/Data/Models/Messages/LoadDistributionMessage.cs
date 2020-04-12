@@ -30,7 +30,6 @@
 
         public int TTLWeightInCPT5 { get; set; }
 
-        [Range(1,345, ErrorMessage = "Invalid pax number!")]
         public int TotalPax { get; set; }
 
         public int TotalBaggagePieces { get; set; }

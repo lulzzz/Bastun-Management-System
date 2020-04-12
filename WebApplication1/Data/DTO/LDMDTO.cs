@@ -5,8 +5,22 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class InboundLDMDto
+    public class LDMDTO
     {
+        public LDMDTO(string config, int male, int female, int children, int infants, int ttlWeight,Dictionary<int,int> cptWeights,int totalPax, int ttlBags, int cargo)
+        {
+            this.CrewConfiguration = config;
+            this.PAXMale = male;
+            this.PAXFemale = female;
+            this.PAXChildren = children;
+            this.PAXInfants = infants;
+            this.TotalWeightInAllCompartments = ttlWeight;
+            this.TotalPax = totalPax;
+            this.TotalBaggagePieces = ttlBags;
+            this.TotalCargo = cargo;
+            this.SetCompartmentWeights(cptWeights);
+        }
+
         public string CrewConfiguration { get; set; }
 
         public int PAXMale { get; set; }
@@ -34,5 +48,10 @@
         public int TotalBaggagePieces { get; set; }
 
         public int TotalCargo { get; set; }
+
+        private void SetCompartmentWeights(Dictionary<int,int> cptWeights)
+        {
+           
+        }
     }
 }

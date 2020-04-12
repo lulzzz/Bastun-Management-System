@@ -9,14 +9,18 @@
     using WebApplication1.Data;
     using BMS.Data.Models;
     using BMS.Data.Models.Messages;
+    using BMS.Data.DTO;
+    using AutoMapper;
 
     public class MessageService : IMessageService
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IMapper mapper;
 
-        public MessageService(ApplicationDbContext dbContext)
+        public MessageService(ApplicationDbContext dbContext,IMapper mapper)
         {
             this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
         public void CreateInboundCPM(List<ContainerInfo> containers,InboundFlight inboundFlight,string supplementaryInformation)
@@ -34,9 +38,15 @@
 
         }
 
-        public void CreateInboundLDM()
+        public void CreateInboundLDM(InboundFlight inboundFlight, LDMDTO ldmDTO)
         {
-            throw new NotImplementedException();
+            var loadDistributionMessage = mapper.Map<LoadDistributionMessage>(ldmDTO);
+            this.dbContext.LoadDistributionMessages.Add(loadDistributionMessage);
+            this.dbContext.SaveChanges();
+
+            loadDistributionMessage.InboundFlight = inboundFlight;
+            loadDistributionMessage.InboundFlightId = inboundFlight.FlightId;
+            this.dbContext.SaveChanges();
         }
 
         public void CreateOutboundCPM(List<ContainerInfo> containers, OutboundFlight outboundFlight, string supplementaryInformation)
