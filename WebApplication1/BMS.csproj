@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Data\UserModels\" />
-    <Folder Include="Models\ViewModels\Flights\" />
   </ItemGroup>
 
 </Project>

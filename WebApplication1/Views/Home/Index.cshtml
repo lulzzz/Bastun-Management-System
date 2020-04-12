@@ -3,15 +3,31 @@
 }
 
 @using Microsoft.AspNetCore.Identity;
+@using BMS.Models.ViewModels.Flights;
 @inject SignInManager<IdentityUser> signInManager
-
 @if (signInManager.IsSignedIn(User))
 {
-    <h1>test</h1>
+    <div class="col">
+        <h1 class="text-center">Daily aircraft movements:</h1>
+        <br />
+        <table class="table table-bordered table-hover text-center" id="dailyMovements">
+            <thead class="thead-dark ">
+                <tr>
+                    <th scope="col">Flight Number</th>
+                    <th scope="col">A/C Registration</th>
+                    <th scope="col">A/C Type</th>
+                    <th scope="col">Origin</th>
+                    <th scope="col">Destination</th>
+                    <th scope="col">STA</th>
+                    <th scope="col">STD</th>
+                    <th scope="col">R/A</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>  
 } 
-else
-{
 
-}
 
  

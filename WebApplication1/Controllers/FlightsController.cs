@@ -28,15 +28,6 @@ namespace BMS.Controllers
             return this.View();
         }
 
-        [HttpGet]
-        public IActionResult DisplayDaily()
-        {
-            //var flights = this.flightService.GetAllFlights();
-            //var dailyFlightsViewModel = new FlightViewModel(flights);
-
-            //return this.View(dailyFlightsViewModel);
-            return null;
-        }
 
         [HttpPost]
         public IActionResult RegisterFlight(FlightInputModel flightInputModel)

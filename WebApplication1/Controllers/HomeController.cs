@@ -26,6 +26,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            //TODO: create logic for merging inbound/outbound flights as one and displaying to view
             return this.View();
         }
      

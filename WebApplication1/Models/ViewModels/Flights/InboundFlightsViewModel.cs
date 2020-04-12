@@ -1,5 +1,6 @@
 ﻿namespace BMS.Models.ViewModels.Flights
 {
+    using BMS.Models.ViewModels.Flights.InboundFlights;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -8,9 +9,9 @@
     {
         public InboundFlightsViewModel()
         {
-
+            this.InboundFlights = new List<InboundFlightDetailsModel>();
         }
 
-        public List<i> MyProperty { get; set; }
+        public List<InboundFlightDetailsModel> InboundFlights { get; set; }
     }
 }

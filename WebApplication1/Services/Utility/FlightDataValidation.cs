@@ -97,6 +97,8 @@
             return true;
         }
 
+    
+
         public bool IsCPMFlightDataValid(string[] splitMessageContent)
         {
             bool flag = true;
@@ -195,11 +197,16 @@
             throw new NotImplementedException();
         }
 
-        public bool IsLDMFlightDataValid(string[] splitMessageContent)
+        public bool IsInboundLDMFlightDataValid(string[] splitMessageContent)
         {
             if (MessageValidation.IsLoadDistributionMessageTypeValid(splitMessageContent[0]))
             {
-                 
+                var flightDataRegex = new Regex(FlightInfoConstants.IsLDMFlightInfoValid);
+                var match = flightDataRegex.Match(splitMessageContent[1]);
+                if (match.Success)
+                {
+                    var
+                }
             } 
             else
             {

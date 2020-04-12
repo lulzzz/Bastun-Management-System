@@ -213,7 +213,6 @@ C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\Sy
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Security.Cryptography.Pkcs.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\AutoMapper.dll
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Flights\DisplayDaily.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Flights\RegisterFlight.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\PAX\Register.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Operations\Loadsheet.cshtml.g.cs
