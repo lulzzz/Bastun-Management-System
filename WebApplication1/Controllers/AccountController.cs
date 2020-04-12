@@ -2,6 +2,8 @@
 {
     using AutoMapper;
     using BMS.Models;
+    using Microsoft.AspNetCore.Authentication;
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -81,6 +83,16 @@
             }
 
             return this.View("_WelcomePartial", loginUserInputModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+
+            await this.signInManager.SignOutAsync();
+
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }

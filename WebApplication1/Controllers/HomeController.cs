@@ -22,12 +22,13 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
-     
+
         [HttpGet]
         public IActionResult Index()
         {
             return this.View();
         }
+     
 
         public IActionResult Privacy()
         {

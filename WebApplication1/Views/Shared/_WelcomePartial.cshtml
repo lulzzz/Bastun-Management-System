@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@using BMS.Models;
-@model RegisterUserInputModel
+﻿
 <div id="sky">
     <div id="cloud1" class="cloud"></div>
     <div id="cloud2" class="cloud"></div>
@@ -13,8 +9,9 @@
     <div id="cloud7" class="cloud"></div>
     <div id="aeroplane"></div>
 </div>
-  <partial name="_RegisterPartialView" />
-  <partial name="_LoginPartialView" />
+<div class="row">
+    <partial name="_RegisterPartialView" />
+    <partial name="_LoginPartialView" />
+</div>
 <link rel="stylesheet" href="~/css/coolError.css" />
 <link rel="stylesheet" href="~/css/AnimatePlane.css" />
-

@@ -3,7 +3,6 @@
 *@
 @using BMS.Models;
 @model RegisterUserInputModel
-<div class="row">
     <div class="col" style="right:-450px">
         <button id="registerButton" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px;" onclick="showHideRegisterForm()">Display</button>
         <form id="registerForm" asp-controller="Account" asp-action="Register" style="display:none">
@@ -23,5 +22,4 @@
             <button type="submit" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px; font-size:20px">Register</button>
         </form>
     </div>
-</div>
 <script src="~/js/ShowHideRegisterForm.js"></script>

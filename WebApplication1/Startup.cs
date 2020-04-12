@@ -49,12 +49,18 @@ namespace WebApplication1
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 10;
+            });
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddRazorPages();
             services.AddAutoMapper(typeof(Startup));
-           
-        }
+       }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
