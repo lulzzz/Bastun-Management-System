@@ -31,14 +31,3 @@
 <br />
 <hr />
 <br />
-<div class="col">
-    <form id="ucmForm" asp-controller="Messages" asp-action="InboundUCM">
-        <div class="form-group">
-            <label >Inbound UCM:</label>
-            <textarea asp-for="@Model.Message"class="form-control w-100" rows="3"></textarea>
-            <span asp-validation-for="@Model.Message"></span>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Submit</button>
-    </form>
-</div>
-<br />

@@ -24,9 +24,15 @@ namespace BMS.Controllers
         [HttpPost]
         public IActionResult InboundLDM(MessageInputModel  messageInputModel)
         {
-            this.messageParser.ParseInboundLDM(messageInputModel.Message);
-
-            return this.RedirectToAction("InboundMessages");
+            if (this.ModelState.IsValid)
+            {
+                this.messageParser.ParseInboundLDM(messageInputModel.Message);
+                return this.RedirectToAction("InboundMessages");
+            } 
+            else
+            {
+                return this.RedirectToAction("Index", "Home");
+            }
         } 
         
         [HttpPost]
