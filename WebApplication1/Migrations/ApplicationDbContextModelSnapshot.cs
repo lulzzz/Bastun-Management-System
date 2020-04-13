@@ -219,14 +219,9 @@ namespace BMS.Migrations
                     b.Property<int>("ContainerTotalWeight")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UniloadContainerMessageId")
-                        .HasColumnType("int");
-
                     b.HasKey("ContainerInfoId");
 
                     b.HasIndex("ContainerPalletMessageId");
-
-                    b.HasIndex("UniloadContainerMessageId");
 
                     b.ToTable("ContainerInfos");
                 });
@@ -749,13 +744,6 @@ namespace BMS.Migrations
                     b.HasDiscriminator().HasValue("LoadDistributionMessage");
                 });
 
-            modelBuilder.Entity("BMS.Data.Models.Messages.UniloadContainerMessage", b =>
-                {
-                    b.HasBaseType("BMS.Data.Models.Messages.Message");
-
-                    b.HasDiscriminator().HasValue("UniloadContainerMessage");
-                });
-
             modelBuilder.Entity("BMS.Data.Models.Aircraft", b =>
                 {
                     b.HasOne("BMS.Data.Models.OutboundFlight", "OutboundFlight")
@@ -815,11 +803,6 @@ namespace BMS.Migrations
                     b.HasOne("BMS.Data.Models.Messages.ContainerPalletMessage", "ContainerPalletMessage")
                         .WithMany("ContainerInfo")
                         .HasForeignKey("ContainerPalletMessageId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("BMS.Data.Models.Messages.UniloadContainerMessage", "UniloadContainerMessage")
-                        .WithMany("ContainerInfo")
-                        .HasForeignKey("UniloadContainerMessageId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

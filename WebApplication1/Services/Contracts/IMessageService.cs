@@ -16,6 +16,5 @@
 
         public void CreateOutboundCPM(OutboundFlight outboundFlight,CPMDTO outboundCPMDTO);
 
-        public void CreateUCM();
     }
 }

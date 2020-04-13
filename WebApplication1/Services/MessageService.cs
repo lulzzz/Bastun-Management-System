@@ -67,9 +67,5 @@
             this.dbContext.SaveChanges();
         }
 
-        public void CreateUCM()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

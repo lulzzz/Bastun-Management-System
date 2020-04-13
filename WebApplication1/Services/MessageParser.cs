@@ -484,11 +484,6 @@
         }
 
 
-        public bool ParseUCM(string messageContent)
-        {
-            return true;
-        }
-
         private int ParseLDMTotalWeight(string totalWeightInCPT)
         {
             string[] splitData =

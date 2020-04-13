@@ -22,6 +22,5 @@
 
         bool ParseOutboundLDM(string messageContent);
 
-        bool ParseUCM(string messageContent);
     }
 }

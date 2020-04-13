@@ -19,10 +19,6 @@
 
         public virtual ContainerPalletMessage? ContainerPalletMessage { get; set; }
 
-        public int? UniloadContainerMessageId { get; set; }
-
-        public virtual UniloadContainerMessage? UniloadContainerMessage { get; set; }
-
         public string ContainerPosition { get; set; }
 
         public string ContainerNumberAndType { get; set; }

@@ -24,8 +24,6 @@ namespace WebApplication1.Data
 
         public DbSet<ContainerPalletMessage> ContainerPalletMessages { get; set; }
 
-        public DbSet<UniloadContainerMessage> UniloadContainerMessages { get; set; }
-
         public DbSet<LoadDistributionMessage> LoadDistributionMessages { get; set; }
 
         public DbSet<AircraftBaggageHold> AircraftBaggageHolds { get; set; }
