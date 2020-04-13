@@ -75,8 +75,12 @@
         {
             var aircraft = this.GetAicraftByRegistration(registration);
 
-            aircraft.Cabin = this.cabinService.AddCabinToAircraft(aircraft);
-            aircraft.BaggageHold = this.baggageHoldService.AddBaggageHoldToAircraft(aircraft);
+            var cabin  = this.cabinService.AddCabinToAircraft(aircraft);
+            var baggageHold = this.baggageHoldService.AddBaggageHoldToAircraft(aircraft);
+
+            aircraft.Cabin = cabin;
+            aircraft.BaggageHold = baggageHold;
+            this.dbContext.SaveChanges();
         }
     }
 }

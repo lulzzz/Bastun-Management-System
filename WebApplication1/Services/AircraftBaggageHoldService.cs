@@ -47,9 +47,12 @@
                 default:
                     break;
             }
+        
             this.dbContext.AircraftBaggageHolds.Add(aircraftBaggageHold);
             this.dbContext.SaveChanges();
             aircraft.AircraftBaggageHoldId = aircraftBaggageHold.BaggageHoldId;
+            this.dbContext.SaveChanges();
+
             return aircraftBaggageHold;
         }
 

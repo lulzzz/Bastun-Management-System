@@ -368,7 +368,7 @@
             string[] splitMessage =
                 messageContent
                 .Split("\r\n", StringSplitOptions.None);
-
+         
             if (this.flightDataValidation.IsLDMFlightDataValid(splitMessage))
             {
                 var ldmFlightInfoMatch = ldmFlightInfoRegex.Match(splitMessage[1]);

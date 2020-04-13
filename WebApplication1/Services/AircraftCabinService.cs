@@ -50,6 +50,7 @@
             this.dbContext.AircraftCabins.Add(aircraftCabin);
             this.dbContext.SaveChanges();
             aircraft.AircraftCabinId = aircraftCabin.Id;
+            this.dbContext.SaveChanges();
             return aircraftCabin;
         }
 
