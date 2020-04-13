@@ -2,10 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
-    public class LoginUserInputModel
+    using System.ComponentModel.DataAnnotations;
+    using Microsoft.AspNetCore.Mvc;
+    public class UserInputModel
     {
         [Required(ErrorMessage = "Username is required!")]
         public string UserName { get; set; }
@@ -14,7 +15,9 @@
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Compare("Password", ErrorMessage = "Passwords do not match")]
+        public string ConfirmPassword { get; set; }
+
         public bool RememberMe { get; set; }
     }
 }
