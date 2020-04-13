@@ -51,9 +51,13 @@
                     return this.View("_WelcomePartial", userInputModel);
                 }
 
-             
+                var loginInfo = new LoginUserInputModel
+                {
+                    UserName = user.UserName,
+                    Password = userInputModel.Password
+                };
 
-                return this.RedirectToAction("RegisterFlight", "Flights");
+                return this.View("_LoginPartialView", loginInfo);
             }
         }
 

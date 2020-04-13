@@ -10,14 +10,17 @@
             <div class="form-group">
                 <label asp-for="@Model.UserName">Username</label>
                 <input asp-for="@Model.UserName" class="form-control" style="width:200px" />
+                <span asp-validation-for="@Model.UserName"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.Password">Password</label>
                 <input asp-for="@Model.Password" class="form-control" style="width:200px" />
+                <span asp-validation-for="@Model.Password"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@Model.ConfirmPassword">Confirm password</label>
                 <input asp-for="@Model.ConfirmPassword" class="form-control" style="width:200px" />
+                <span asp-validation-for="@Model.ConfirmPassword"></span>
             </div>
             <button type="submit" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px; font-size:20px">Register</button>
         </form>
