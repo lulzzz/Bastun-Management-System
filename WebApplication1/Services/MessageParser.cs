@@ -109,7 +109,8 @@
                 int amountOfInboundContainers = this.GetContainerCount(splitMessageContent);
                 var listOfContainersForCurrentMessage = this.containerService.AddContainersToInboundFlight(inbound,amountOfInboundContainers);
                var listofContainerInfo =  this.containerService.CreateContainerInfo(splitMessageContent, listOfContainersForCurrentMessage);
-                this.messageService.CreateInboundCPM(listofContainerInfo, inbound, supplementaryInformation);
+                var dto = new CPMDTO(listofContainerInfo, supplementaryInformation);
+                this.messageService.CreateInboundCPM(inbound, dto);
             } 
             else
             {
@@ -368,7 +369,7 @@
                 messageContent
                 .Split("\r\n", StringSplitOptions.None);
 
-            if (this.flightDataValidation.IsInboundLDMFlightDataValid(splitMessage))
+            if (this.flightDataValidation.IsLDMFlightDataValid(splitMessage))
             {
                 var ldmFlightInfoMatch = ldmFlightInfoRegex.Match(splitMessage[1]);
                 if (ldmFlightInfoMatch.Success)
@@ -379,7 +380,7 @@
                     if (loadMatch.Success)
                     {
                         int[] paxFigures = this.ParsePAXFigures(splitMessage[2]);
-                        int totalWeightInCompartments = this.ParseInboundLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
+                        int totalWeightInCompartments = this.ParseLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
                         var weightInEachCompartment = this.ParseWeightsInCompartments(loadMatch.Groups["wghtByCompartment"].Value);
                         var loadSummaryMatch = loadSummaryRegex.Match(splitMessage[3]);
                         if (loadSummaryMatch.Success)
@@ -424,16 +425,71 @@
 
         public bool ParseOutboundLDM(string messageContent)
         {
+            string[] splitMessage =
+                   messageContent
+                   .Split("\r\n", StringSplitOptions.None);
+
+            if (this.flightDataValidation.IsLDMFlightDataValid(splitMessage))
+            {
+                var ldmFlightInfoMatch = ldmFlightInfoRegex.Match(splitMessage[1]);
+                if (ldmFlightInfoMatch.Success)
+                {
+                    string outboundFlightNumber = ldmFlightInfoMatch.Groups["flt"].Value;
+                    string crewConfiguration = ldmFlightInfoMatch.Groups["crewConfig"].Value;
+                    var loadMatch = loadDistributionRegex.Match(splitMessage[2]);
+                    if (loadMatch.Success)
+                    {
+                        int[] paxFigures = this.ParsePAXFigures(splitMessage[2]);
+                        int totalWeightInCompartments = this.ParseLDMTotalWeight(loadMatch.Groups["ttlWghtInCpt"].Value);
+                        var weightInEachCompartment = this.ParseWeightsInCompartments(loadMatch.Groups["wghtByCompartment"].Value);
+                        var loadSummaryMatch = loadSummaryRegex.Match(splitMessage[3]);
+                        if (loadSummaryMatch.Success)
+                        {
+                            int[] loadSummaryInfo = this.ParseLoadSummaryInfo(splitMessage[3]);
+                            var outboundFlight = this.flightService.GetOutboundFlightByFlightNumber(outboundFlightNumber);
+
+                            if (outboundFlight != null)
+                            {
+                                var dto = new LDMDTO(crewConfiguration, paxFigures, totalWeightInCompartments, weightInEachCompartment, loadSummaryInfo);
+                                this.messageService.CreateOutboundLDM(outboundFlight, dto);
+                            }
+                            else
+                            {
+                                return false;
+                            }
+
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+
             return true;
         }
 
 
-        public bool ParseOutboundUCM(string messageContent)
+        public bool ParseUCM(string messageContent)
         {
             return true;
         }
 
-        private int ParseInboundLDMTotalWeight(string totalWeightInCPT)
+        private int ParseLDMTotalWeight(string totalWeightInCPT)
         {
             string[] splitData =
                 totalWeightInCPT.Split(".", StringSplitOptions.RemoveEmptyEntries);

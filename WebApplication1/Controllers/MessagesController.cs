@@ -69,19 +69,43 @@ namespace BMS.Controllers
                 }
             }
 
-            return this.RedirectToAction("OutboundMessage", messageInputModel);
+            return this.RedirectToAction("OutboundMessages", messageInputModel);
         }
 
         [HttpPost]
         public IActionResult OutboundUCM(MessageInputModel messageInputModel)
         {
-            return this.View();
+            if (this.ModelState.IsValid)
+            {
+                if (this.messageParser.ParseUCM(messageInputModel.Message))
+                {
+                    return this.RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return this.RedirectToAction("OutboundMessages");
+                }
+            }
+
+            return this.RedirectToAction("OutboundMessages", messageInputModel);
         }
 
         [HttpPost]
         public IActionResult OutboundLDM(MessageInputModel messageInputModel)
         {
-            return this.View();
+            if (this.ModelState.IsValid)
+            {
+                if (this.messageParser.ParseOutboundLDM(messageInputModel.Message))
+                {
+                    return this.RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return this.RedirectToAction("OutboundMessages");
+                }
+            }
+
+            return this.RedirectToAction("OutboundMessages", messageInputModel);
         }
     }
 }

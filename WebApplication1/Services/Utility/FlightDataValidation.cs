@@ -197,7 +197,7 @@
             throw new NotImplementedException();
         }
 
-        public bool IsInboundLDMFlightDataValid(string[] splitMessageContent)
+        public bool IsLDMFlightDataValid(string[] splitMessageContent)
         {
             if (MessageValidation.IsLoadDistributionMessageTypeValid(splitMessageContent[0]))
             {

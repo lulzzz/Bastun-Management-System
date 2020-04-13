@@ -10,11 +10,11 @@
     {
         public void CreateInboundLDM(InboundFlight inbound,LDMDTO inboundLDMDTO);
 
-        public void CreateOutboundLDM();
+        public void CreateOutboundLDM(OutboundFlight outbound, LDMDTO outboundLDMDTO);
 
-        public void CreateInboundCPM(List<ContainerInfo> containers, InboundFlight inboundFlight,string supplementaryInformation);
+        public void CreateInboundCPM(InboundFlight inbound, CPMDTO inboundCPMDTO);
 
-        public void CreateOutboundCPM(OutboundFlight outboundFlight,CPMDTO dto);
+        public void CreateOutboundCPM(OutboundFlight outboundFlight,CPMDTO outboundCPMDTO);
 
         public void CreateUCM();
     }

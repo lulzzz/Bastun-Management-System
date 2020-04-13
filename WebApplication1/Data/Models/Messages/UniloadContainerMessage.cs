@@ -9,9 +9,12 @@
     {
         public UniloadContainerMessage()
         {
-            this.ContainerInfo = new List<ContainerInfo>();
+            this.InboundContainerInfo = new List<ContainerInfo>();
+            this.OutboundContainerInfo = new List<ContainerInfo>();
         }
 
-        public virtual ICollection<ContainerInfo> ContainerInfo { get; set; }
+        public virtual ICollection<ContainerInfo> InboundContainerInfo { get; set; }
+
+        public virtual ICollection<ContainerInfo> OutboundContainerInfo { get; set; }
     }
 }

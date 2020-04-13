@@ -16,7 +16,7 @@
 
         bool IsUCMFlightDataValid(string[] splitMessageContent);
 
-        bool IsInboundLDMFlightDataValid(string[] splitMessageContent);
+        bool IsLDMFlightDataValid(string[] splitMessageContent);
 
     }
 }

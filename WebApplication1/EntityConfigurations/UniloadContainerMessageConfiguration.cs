@@ -12,14 +12,16 @@
     {
         public void Configure(EntityTypeBuilder<UniloadContainerMessage> builder)
         {
-  
+            builder.HasMany(x => x.OutboundContainerInfo)
+               .WithOne(x => x.UniloadContainerMessage)
+               .HasForeignKey(x => x.UniloadContainerMessageId)
+               .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasMany(x => x.ContainerInfo)
+
+            builder.HasMany(x => x.InboundContainerInfo)
                 .WithOne(x => x.UniloadContainerMessage)
                 .HasForeignKey(x => x.UniloadContainerMessageId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
         }
     }
 }

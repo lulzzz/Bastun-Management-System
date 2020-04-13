@@ -23,19 +23,14 @@
             this.mapper = mapper;
         }
 
-        public void CreateInboundCPM(List<ContainerInfo> containers,InboundFlight inboundFlight,string supplementaryInformation)
+        public void CreateInboundCPM(InboundFlight inbound, CPMDTO dto)
         {
-            var inboundContainerPalletMessage = new ContainerPalletMessage
-            {
-                InboundFlightId = inboundFlight.FlightId,
-                InboundFlight = inboundFlight,
-                ContainerInfo = containers,
-                SupplementaryInformation = supplementaryInformation
-            };
-
+            var inboundContainerPalletMessage = this.mapper.Map<ContainerPalletMessage>(dto);
             this.dbContext.ContainerPalletMessages.Add(inboundContainerPalletMessage);
             this.dbContext.SaveChanges();
 
+            inboundContainerPalletMessage.InboundFlight = inbound;
+            inboundContainerPalletMessage.InboundFlightId = inbound.FlightId;
         }
 
         public void CreateInboundLDM(InboundFlight inboundFlight, LDMDTO ldmDTO)
@@ -61,9 +56,15 @@
             this.dbContext.SaveChanges();
         }
 
-        public void CreateOutboundLDM()
+        public void CreateOutboundLDM(OutboundFlight outboundFlight, LDMDTO  dto)
         {
-            throw new NotImplementedException();
+            var outboundLoadDistributionMessage = this.mapper.Map<LoadDistributionMessage>(dto);
+            this.dbContext.LoadDistributionMessages.Add(outboundLoadDistributionMessage);
+            this.dbContext.SaveChanges();
+
+            outboundLoadDistributionMessage.OutboundFlight = outboundFlight;
+            outboundLoadDistributionMessage.OutboundFlightId = outboundFlight.FlightId;
+            this.dbContext.SaveChanges();
         }
 
         public void CreateUCM()
