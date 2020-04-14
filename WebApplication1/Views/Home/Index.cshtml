@@ -4,7 +4,9 @@
 
 @using Microsoft.AspNetCore.Identity;
 @using BMS.Models.ViewModels.Flights;
+@using BMS.Models; 
 @inject SignInManager<IdentityUser> signInManager
+@model UserInputModel
 @if (signInManager.IsSignedIn(User))
 {
     <div class="col">
@@ -27,7 +29,11 @@
             </tbody>
         </table>
     </div>  
-} 
+}
+else
+{
+  
+}
 
 
  

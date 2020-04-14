@@ -173,7 +173,7 @@ namespace BMS.Migrations
 
             modelBuilder.Entity("BMS.Data.Models.Container", b =>
                 {
-                    b.Property<int?>("ContainerId")
+                    b.Property<int>("ContainerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

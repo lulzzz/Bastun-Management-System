@@ -9,7 +9,7 @@ namespace BMS.Migrations
             migrationBuilder.AlterColumn<int>(
                  name: "ContainerId",
                  table: "Containers",
-                 nullable: true,
+                 nullable: false,
                  oldClrType: typeof(int),
                  oldType: "int");
                

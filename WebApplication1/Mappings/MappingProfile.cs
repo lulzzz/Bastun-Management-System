@@ -15,8 +15,9 @@ namespace BMS.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<RegisterUserInputModel, IdentityUser>()
+            CreateMap<UserInputModel, IdentityUser>()
                 .ForMember(dest => dest.UserName, src => src.MapFrom(x => x.UserName));
+                
 
             CreateMap<LDMDTO, LoadDistributionMessage>();
 

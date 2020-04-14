@@ -1,4 +1,6 @@
-﻿<div id="sky">
+﻿@using BMS.Models 
+@model UserInputModel
+<div id="sky">
     <div id="cloud1" class="cloud"></div>
     <div id="cloud2" class="cloud"></div>
     <div id="cloud3" class="cloud"></div>
@@ -9,7 +11,55 @@
     <div id="aeroplane"></div>
 </div>
 <div class="row">
-
+    <div class="col" style="right:-450px">
+        <button id="registerButton" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px;" onclick="showHideRegisterForm()">Display</button>
+        <form id="registerForm" asp-controller="Account" asp-action="Register" style="display:none">
+            <br />
+            <div class="form-group">
+                <label asp-for="@Model.UserName">Username</label>
+                <input asp-for="@Model.UserName" class="form-control" style="width:200px" />
+        
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Password">Password</label>
+                <input asp-for="@Model.Password" class="form-control" style="width:200px" />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.ConfirmPassword">Confirm password</label>
+                <input asp-for="@Model.ConfirmPassword" class="form-control" style="width:200px" />
+      
+            </div>
+            <button type="submit" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px; font-size:20px">Register</button>
+        </form>
+        <div asp-validation-summary="All"></div>
+    </div>
+    <div class="col" style="right:-50px">
+        <button id="loginButton" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px;" onclick="showHideLoginForm()">Display</button>
+        <form id="loginForm" asp-controller="Account" asp-action="Login" style="display:none">
+            <br />
+            <div class=form-group>
+                <label asp-for="@Model.UserName">Username</label>
+                <input asp-for="@Model.UserName" class="form-control" style="width:200px" />
+                <span asp-validation-for="@Model.UserName"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Password">Password</label>
+                <input asp-for="@Model.Password" class="form-control" style="width:200px" />
+                <span asp-validation-for="@Model.Password"></span>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" asp-for="@Model.RememberMe" class="form-check-input" />
+                <label class="form-check-label">Remember me?</label>
+                <span asp-validation-for="@Model.RememberMe"></span>
+                <br />
+            </div>
+            <br />
+            <button type="submit" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px; font-size:20px">Login</button>
+        </form>
+    </div>
 </div>
 <link rel="stylesheet" href="~/css/coolError.css" />
 <link rel="stylesheet" href="~/css/AnimatePlane.css" />
+<script src="~/js/ShowHideRegisterForm.js"></script>
+<script src="~/js/ShowHideLoginForm.js"></script>

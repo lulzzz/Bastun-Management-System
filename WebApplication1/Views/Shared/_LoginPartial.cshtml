@@ -5,7 +5,6 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    
         <li class="nav-item">
             <a class="text-white nav-link" asp-controller="Home" asp-action="Index">Hello @User.Identity.Name!</a>
         </li>
@@ -14,5 +13,4 @@
                 <button type="submit" class="nav-link btn text-white">Logout</button>
             </form>
         </li>
-    
  }

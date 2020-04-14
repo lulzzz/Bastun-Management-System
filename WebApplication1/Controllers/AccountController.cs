@@ -29,45 +29,38 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterUserInputModel userInputModel)
+        public async Task<IActionResult> Register(UserInputModel userInputModel)
         {
             if (!this.ModelState.IsValid)
             {
-               return this.View("_WelcomePartial", userInputModel);
+               return this.View("Index", userInputModel);
             } 
             else
             {
-                var user = this.mapper.Map<IdentityUser>(userInputModel);
-
-                var result = await this.userManager.CreateAsync(user, userInputModel.Password);
-
-                if (!result.Succeeded)
+                if (userInputModel.ConfirmPassword == userInputModel.Password)
                 {
-                    foreach (var error in result.Errors)
+                    var user = this.mapper.Map<IdentityUser>(userInputModel);
+
+                    var result = await this.userManager.CreateAsync(user, userInputModel.Password);
+
+                    if (!result.Succeeded)
                     {
-                        this.ModelState.AddModelError("Username", "Username is invalid!");
+                        return this.RedirectToAction("Index", "Home");
                     }
-
-                    return this.View("_WelcomePartial", userInputModel);
                 }
+           
 
-                var loginInfo = new LoginUserInputModel
-                {
-                    UserName = user.UserName,
-                    Password = userInputModel.Password
-                };
-
-                return this.View("_LoginPartialView", loginInfo);
+                return this.RedirectToAction("Login");
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginUserInputModel loginUserInputModel)
+        public async Task<IActionResult> Login(UserInputModel loginUserInputModel)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.View("_WelcomePartial", loginUserInputModel);
+                return this.RedirectToAction("Index", "Home");
             }
 
             var user = await this.userManager.FindByNameAsync(loginUserInputModel.UserName);
@@ -86,7 +79,7 @@
                 }
             }
 
-            return this.View("_WelcomePartial", loginUserInputModel);
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

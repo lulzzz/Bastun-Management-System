@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj": {}
+    "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\BMS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj": {
+    "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\BMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj",
+        "projectUniqueName": "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\BMS.csproj",
         "projectName": "BMS",
-        "projectPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj",
+        "projectPath": "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\BMS.csproj",
         "packagesPath": "C:\\Users\\Mitko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\Mitko\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -48,10 +45,6 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[7.0.0, )"
-            },
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.2.7, )"
             },
             "Microsoft.AspNetCore.Authentication.Cookies": {
               "target": "Package",
@@ -110,7 +103,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
