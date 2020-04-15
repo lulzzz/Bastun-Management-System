@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using BMS.Data;
 using BMS.Data.DTO;
+using BMS.Data.DTO.FuelAndWeightDTO;
 using BMS.Data.Models;
 using BMS.Data.Models.Messages;
 using BMS.Models;
@@ -25,7 +27,10 @@ namespace BMS.Mappings
             CreateMap<LDMDTO, LoadDistributionMessage>();
 
             CreateMap<CPMDTO, ContainerPalletMessage>();
-               
+
+            CreateMap<FuelFormDTO, FuelForm>();
+
+            CreateMap<WeightFormDTO, WeightForm>();
         }
     }
 }

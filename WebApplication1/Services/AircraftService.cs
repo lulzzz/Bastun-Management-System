@@ -16,7 +16,7 @@
         private readonly IAircraftCabinService cabinService;
         private readonly IAircraftBaggageHoldService baggageHoldService;
 
-        public AircraftService(ApplicationDbContext dbContext, IFlightService flightService, IAircraftCabinService cabinService, IAircraftBaggageHoldService baggageHoldService)
+        public AircraftService(ApplicationDbContext dbContext,IFlightService flightService, IAircraftCabinService cabinService, IAircraftBaggageHoldService baggageHoldService)
         {
             this.dbContext = dbContext;
             this.flightService = flightService;

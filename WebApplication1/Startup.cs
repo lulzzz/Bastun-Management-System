@@ -50,6 +50,7 @@ namespace WebApplication1
             services.AddTransient<IParserMovementUtility, ParserArrMVTUtility>();
             services.AddTransient<IParserMovementUtility, ParserDepMVTUtility>();
             services.AddTransient<IParserCPMUtility, ParserCPMUtility>();
+            services.AddTransient<IFuelAndWeightService, FuelAndWeightService>();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());
@@ -61,6 +62,10 @@ namespace WebApplication1
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 10;
+            });
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
             });
             services.AddControllersWithViews();
             services.AddMvc();

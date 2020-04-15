@@ -17,6 +17,9 @@
         public virtual Aircraft Aircraft { get; set; }
 
         [Required]
+        public DateTime Date { get; set; }
+
+        [Required]
         public string PilotInCommand { get; set; }
 
         [Required]
@@ -30,6 +33,9 @@
 
         [Required]
         public double TripFuel { get; set; }
+
+        [Required]
+        public int TakeoffFuel { get; set; }
 
         [Required]
         public double DryOperatingWeight { get; set; }

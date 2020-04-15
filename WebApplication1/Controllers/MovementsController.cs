@@ -13,9 +13,9 @@ namespace WebApplication1.Controllers
     public class MovementsController : Controller
     {
         private readonly IMessageParser messageParser;
-        private readonly IFlightService flightService;
+        private readonly IAircraftService flightService;
 
-        public MovementsController(IMessageParser messageParser,IFlightService flightService)
+        public MovementsController(IMessageParser messageParser,IAircraftService flightService)
         {
             this.messageParser = messageParser;
             this.flightService = flightService;

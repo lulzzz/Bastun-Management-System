@@ -274,6 +274,12 @@ namespace BMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("STA")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("STD")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("FlightId");
 
                     b.ToTable("Flights");
@@ -298,6 +304,9 @@ namespace BMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<double>("DryOperatingIndex")
                         .HasColumnType("float");
 
@@ -307,6 +316,9 @@ namespace BMS.Migrations
                     b.Property<string>("PilotInCommand")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TakeoffFuel")
+                        .HasColumnType("int");
 
                     b.Property<double>("TaxiFuel")
                         .HasColumnType("float");
@@ -654,9 +666,6 @@ namespace BMS.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("STA")
-                        .HasColumnType("datetime2");
-
                     b.HasDiscriminator().HasValue("InboundFlight");
                 });
 
@@ -682,9 +691,6 @@ namespace BMS.Migrations
 
                     b.Property<bool>("IsDeparted")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("STD")
-                        .HasColumnType("datetime2");
 
                     b.HasDiscriminator().HasValue("OutboundFlight");
                 });

@@ -1,4 +1,5 @@
 ﻿using BMS.Models;
+using BMS.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,11 @@ namespace WebApplication1.Controllers
     [Authorize]
     public class FuelAndWeightController : Controller
     {
-        public FuelAndWeightController()
-        {
+        private readonly IFuelAndWeightService fuelService;
 
+        public FuelAndWeightController(IFuelAndWeightService fuelService)
+        {
+            this.fuelService = fuelService;
         }
 
 
@@ -26,9 +29,18 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public void RegisterFuelForm(FuelFormInputModel fuelInputModel)
+        public IActionResult RegisterFuelForm(FuelFormInputModel fuelInputModel)
         {
+            if (this.ModelState.IsValid)
+            {
+                this.fuelService.AddFuelForm(fuelInputModel);
+            }
+            else
+            {
+                return this.View();
+            }
 
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -38,7 +50,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult RegisterWeightForm(WeightInputModel weightInputModel)
+        public IActionResult RegisterWeightForm(WeightFormInputModel weightInputModel)
         {
             return this.View(weightInputModel);
         }
