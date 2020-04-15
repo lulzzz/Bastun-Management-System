@@ -1,7 +1,24 @@
-﻿<div class="col">
-    <button id="registerButton" type="button" class="btn btn-primary btn-lg" onclick="showHideRegisterForm()">Show register</button>
-    <div id="registerForm" class="form-group" style="display:none">
-        <label>Register</label>
-        <input type="text" class="form-control" placeholder="Desi koga shte piem kafe?" />
-    </div>
+﻿@using BMS.Models;
+@model RegisterUserInputModel
+<div class="col">
+    <button id="registerButton" type="button" class="btn btn-primary btn-lg w-100" onclick="showHideRegisterForm()">Show register</button>
+    <form id="registerForm" class="form-group" style="display:none" asp-controller="Account" asp-action="Register">
+        <div class="form-group">
+            <label>Username</label>
+            <input asp-for="@Model.UserName" class="form-control" />
+            <span asp-validation-for="@Model.UserName"></span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input asp-for="@Model.Password" class="form-control" />
+            <span asp-validation-for="@Model.Password"></span>
+        </div>
+        <div class="form-group">
+            <label>Confirm password</label>
+            <input asp-for="@Model.ConfirmPassword" class="form-control" />
+            <span asp-validation-for="@Model.ConfirmPassword"></span>
+        </div>
+        <button type="submit" class="btn btn-lg btn-primary w-100" asp-controller="Account" asp-action="Register">Register</button>
+    </form>
+
 </div>

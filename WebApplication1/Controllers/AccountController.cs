@@ -29,38 +29,36 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(UserInputModel userInputModel)
+        public async Task<IActionResult> Register(RegisterUserInputModel userInputModel)
         {
             if (!this.ModelState.IsValid)
             {
-               return this.View("Index", userInputModel);
+               return this.View("Index");
             } 
             else
             {
-                if (userInputModel.ConfirmPassword == userInputModel.Password)
-                {
+              
                     var user = this.mapper.Map<IdentityUser>(userInputModel);
 
                     var result = await this.userManager.CreateAsync(user, userInputModel.Password);
 
-                    if (!result.Succeeded)
-                    {
-                        return this.RedirectToAction("Index", "Home");
-                    }
+                if (!result.Succeeded)
+                {
+                    return this.RedirectToAction("Landing", "Home");
                 }
            
-
-                return this.RedirectToAction("Login");
             }
+
+            return this.RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(UserInputModel loginUserInputModel)
+        public async Task<IActionResult> Login(LoginUserInputModel loginUserInputModel)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction("Index", "Home");
+                return this.RedirectToAction("Landing", "Home");
             }
 
             var userId = userManager.GetUserId(HttpContext.User);
@@ -82,7 +80,7 @@
                 }
             }
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Landing", "Home");
         }
 
         [HttpPost]
@@ -92,7 +90,7 @@
 
             await this.signInManager.SignOutAsync();
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Landing", "Home");
         }
     }
 }
