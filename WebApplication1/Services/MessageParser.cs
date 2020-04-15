@@ -26,7 +26,7 @@
         private readonly Regex regex = new Regex(FlightInfoConstants.IsFlightInfoValid);
         private readonly Regex ldmFlightInfoRegex = new Regex(FlightInfoConstants.IsLDMFlightInfoValid);
         private readonly Regex loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
-        private readonly Regex loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMSummaryInfoValid);
+        private readonly Regex loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMLoadSummaryInfoValid);
         private const string movementDateFormat = "HH:MM:SS";
         private const string _colon = ":";
         private const string _zeros = "00";
