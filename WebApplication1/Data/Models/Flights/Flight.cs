@@ -16,5 +16,11 @@
         [Required(ErrorMessage = InvalidErrorMessages.FlightNumberRequired)]
         [RegularExpression(FlightInputDataValidation.GeneralFlightNumberValidation, ErrorMessage = InvalidErrorMessages.InvalidFlightNumberFormat)]
         public string FlightNumber { get; set; }
+
+        [Required(ErrorMessage = InvalidErrorMessages.FlightSTAIsRequired)]
+        public DateTime STA { get; set; }
+
+        [Required(ErrorMessage = InvalidErrorMessages.FlightSTDIsRequired)]
+        public DateTime STD { get; set; }
     }
 }

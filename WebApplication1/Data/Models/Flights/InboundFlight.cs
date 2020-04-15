@@ -23,9 +23,6 @@
 
         public virtual ArrivalMovement ArrivalMovement { get; set; }
 
-        [Required]
-        public DateTime STA { get; set; }
-
         public virtual ICollection<Container> InboundContainers { get; set; }
 
         [Required(ErrorMessage = InvalidErrorMessages.OriginRequired)]

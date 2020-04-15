@@ -9,7 +9,6 @@
     {
         public ArrivalMovement ArrivalMovement { get; set; }
 
-        public DateTime STA { get; set; }
 
         public ICollection<Container> InboundContainers { get; set; }
 

@@ -19,8 +19,6 @@
 
         public DepartureMovement DepartureMovement { get; set; }
 
-        public DateTime STD { get; set; }
-
         public int BookedPAX { get; set; }
 
         public bool IsDeparted { get; set; }

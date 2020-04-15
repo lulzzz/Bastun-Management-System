@@ -36,9 +36,6 @@
 
         public virtual DepartureMovement DepartureMovement { get; set; }
 
-        [Required]
-        public DateTime STD { get; set; }
-
         [Required(ErrorMessage = InvalidErrorMessages.BookedPAXRequired)]
         [Range(0,345, ErrorMessage = InvalidErrorMessages.BookedPax)]
         public int BookedPAX { get; set; }

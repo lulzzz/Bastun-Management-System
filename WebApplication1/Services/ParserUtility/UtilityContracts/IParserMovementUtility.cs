@@ -13,5 +13,6 @@
         string[] GetTimes(string timeData);
 
         string[] GetValidTimesFormat(string[] listOfTimes);
+
     }
 }

@@ -7,5 +7,9 @@
     public interface IFlight
     {
         public string FlightNumber { get; set; }
+
+        public DateTime STA { get; set; }
+
+        public DateTime STD { get; set; }
     }
 }

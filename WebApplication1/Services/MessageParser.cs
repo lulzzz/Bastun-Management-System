@@ -30,8 +30,7 @@
         private readonly Regex loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
         private readonly Regex loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMLoadSummaryInfoValid);
         private const string movementDateFormat = "HH:MM:SS";
-        private const string _colon = ":";
-        private const string _zeros = "00";
+    
         //TODO: Refactor this
         public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation, 
             IFlightService flightService,
@@ -55,7 +54,7 @@
                 string[] flightData = this.parserMovementUtility.GetMovementFlightData(splitMessage[1]); 
                 var inboundFlightByFlightNumber = this.flightService.GetInboundFlightByFlightNumber(flightData[0]);
                 string[] arrivalMovementTimes = this.parserMovementUtility.GetTimes(splitMessage[2]); 
-                    DateTime[] validMovementTime = this.ParseTimesForArrivalMovement(arrivalMovementTimes, inboundFlightByFlightNumber);
+                DateTime[] validMovementTime = this.parserMovementUtility.(arrivalMovementTimes, inboundFlightByFlightNumber);
                     string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
                     this.movementService.CreateArrivalMovement(validMovementTime, supplementaryInformation, inboundFlightByFlightNumber);
                     return true; 
@@ -181,33 +180,6 @@
             return new string[] { offBlockTime, takeoffTime };
         }
 
-        private DateTime[] ParseTimesForArrivalMovement(string[] times, InboundFlight inboundFlight)
-        {
-            var arrOfValidTimes = this.GetValidTimesFormat(times);
-            string time1 = arrOfValidTimes[0];
-            string time2 = arrOfValidTimes[1];
-
-            if (time1 == null || time2 == null)
-            {
-                return null;
-            }
-
-            var parsedTime1 = TimeSpan.Parse(time1);
-            var parsedTime2 = TimeSpan.Parse(time2);
-
-            int flightYear = inboundFlight.STA.Year;
-            int flightMonth = inboundFlight.STA.Month;
-            int flightDay = inboundFlight.STA.Day;
-
-            var time1ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds)
-                .ToUniversalTime(); ;
-            var time2ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds)
-                .ToUniversalTime();
-
-            
-            return new DateTime[] { time1ParsedToDateTime, time2ParsedToDateTime };
-        }
-
         private DateTime[] ParseTimesForDepartureMovement(string[] times, OutboundFlight outboundFlight)
         {
             var arrOfValidTimes = this.GetValidTimesFormat(times);
@@ -234,20 +206,6 @@
 
 
             return new DateTime[] { time1ParsedToDateTime, time2ParsedToDateTime };
-        }
-
-        private string[] GetValidTimesFormat(string[] listOfTimes)
-        {
-            var touchdownTimeWithColon = listOfTimes[0].Insert(2, _colon);
-            var newTouchdownWithColonAfterMinutes = touchdownTimeWithColon.Insert(5, _colon);
-            var touchdownTime = newTouchdownWithColonAfterMinutes.Insert(6, _zeros);
-
-
-            var onblockTimeWithColon = listOfTimes[1].Insert(2, _colon);
-            var newOnBlockTimeWithColonAfterMinutes = onblockTimeWithColon.Insert(5, _colon);
-            var onblockTime = newOnBlockTimeWithColonAfterMinutes.Insert(6, _zeros);
-
-            return new string[] { touchdownTime, onblockTime };
         }
 
         private int ParseTotalPax(string totalPax)
