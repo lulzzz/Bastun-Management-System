@@ -12,7 +12,6 @@
     {
         public void Configure(EntityTypeBuilder<InboundFlight> builder)
         {
-            builder.HasKey(x => x.FlightId);
 
             builder.HasMany(x => x.InboundMessages)
                 .WithOne(x => x.InboundFlight)
@@ -22,6 +21,11 @@
             builder.HasOne(x => x.ArrivalMovement)
                 .WithOne(x => x.InboundFlight)
                 .HasForeignKey<ArrivalMovement>(x => x.InboundFlightId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.InboundContainers)
+                .WithOne(x => x.InboundFlight)
+                .HasForeignKey(x => x.InboundFlightId)
                 .OnDelete(DeleteBehavior.Restrict);
 
         }

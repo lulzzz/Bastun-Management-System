@@ -17,6 +17,8 @@ using BMS.Services.Contracts;
 using BMS.Services;
 using BMS.Services.Utility.UtilityContracts;
 using BMS.Services.Utility;
+using BMS.Services.ParserUtility.UtilityContracts;
+using BMS.Services.ParserUtility;
 
 namespace WebApplication1
 {
@@ -44,6 +46,7 @@ namespace WebApplication1
             services.AddTransient<IAircraftCabinService, AircraftCabinService>();
             services.AddTransient<IAircraftBaggageHoldService, AircraftBaggageHoldService>();
             services.AddTransient<IContainerService, ContainerService>();
+            services.AddTransient<IParserMovementUtility, ParserArrMVTUtility>(); 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies());

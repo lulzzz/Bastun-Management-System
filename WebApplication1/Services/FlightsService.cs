@@ -92,11 +92,12 @@
                 .Split("/", StringSplitOptions.RemoveEmptyEntries);
 
             string outboundFlightNumber = splitFlightNumbers[1];
+
             var newOutboundFlight = new OutboundFlight
             {
                 FlightNumber = outboundFlightNumber,
                 HandlingStation = outboundFlightInputModel.HandlingStation,
-                BookedPax = outboundFlightInputModel.BookedPax,
+                BookedPAX = outboundFlightInputModel.BookedPax,
                 STD = outboundFlightInputModel.STD,
                 Destination = outboundFlightInputModel.Destination
             };

@@ -15,6 +15,7 @@
     using BMS.Services.Utility.UtilityContracts;
     using System.Globalization;
     using BMS.Data.DTO;
+    using BMS.Services.ParserUtility.UtilityContracts;
 
     public class MessageParser : IMessageParser
     {
@@ -23,7 +24,8 @@
         private readonly IFlightDataValidation flightDataValidation;
         private readonly IFlightService flightService;
         private readonly IContainerService containerService;
-        private readonly Regex regex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+        private readonly IParserMovementUtility parserMovementUtility;
+        private readonly Regex regex = new Regex("maika ti");
         private readonly Regex ldmFlightInfoRegex = new Regex(FlightInfoConstants.IsLDMFlightInfoValid);
         private readonly Regex loadDistributionRegex = new Regex(FlightInfoConstants.IsLDMLoadInfoValid);
         private readonly Regex loadSummaryRegex = new Regex(FlightInfoConstants.IsLDMLoadSummaryInfoValid);
@@ -31,49 +33,37 @@
         private const string _colon = ":";
         private const string _zeros = "00";
         //TODO: Refactor this
-        public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation, IFlightService flightService, IContainerService containerService)
+        public MessageParser(IMovementService movementService, IMessageService messageService, IFlightDataValidation flightDataValidation, 
+            IFlightService flightService,
+            IContainerService containerService,IParserMovementUtility parserMovementUtility)
         {
             this.movementService = movementService;
             this.messageService = messageService;
             this.flightDataValidation = flightDataValidation;
             this.flightService = flightService;
             this.containerService = containerService;
+            this.parserMovementUtility = parserMovementUtility;
         }
 
         public bool ParseArrivalMovement(string messageContent)
         {
-            
             string[] splitMessage =
                 messageContent.Split("\r\n", StringSplitOptions.None);
 
             if (this.flightDataValidation.IsArrivalMovementFlightDataValid(splitMessage))
             {
-                var match = regex.Match(splitMessage[1]);
-                if (match.Success)
-                {
-                    string flightNumber = match.Groups["flt"].Value;
-                    string registration = match.Groups["reg"].Value;
-                    string date = match.Groups["date"].Value;
-                    string station = match.Groups["origin"].Value;
-
-                    var inboundFlightByFlightNumber = this.flightService.GetInboundFlightByFlightNumber(flightNumber);
-                    string[] arrivalMovementTimes = this.GetTimesForArrivalMovement(splitMessage[2]);
+                string[] flightData = this.parserMovementUtility.GetMovementFlightData(splitMessage[1]); 
+                var inboundFlightByFlightNumber = this.flightService.GetInboundFlightByFlightNumber(flightData[0]);
+                string[] arrivalMovementTimes = this.parserMovementUtility.GetTimes(splitMessage[2]); 
                     DateTime[] validMovementTime = this.ParseTimesForArrivalMovement(arrivalMovementTimes, inboundFlightByFlightNumber);
                     string supplementaryInformation = this.ParseSupplementaryInformation(splitMessage[3]);
                     this.movementService.CreateArrivalMovement(validMovementTime, supplementaryInformation, inboundFlightByFlightNumber);
-
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                    return true; 
             } 
             else
             {
                 return false;
             }
-           
         }
 
         public bool ParseInboundCPM(string messageContent)
@@ -167,30 +157,12 @@
                     .ToArray();
                 string actualData = splitData[0];
                 result = actualData;
-            } else
+            } 
+            else
             {
                 result = "NIL";
             }
 
-            return result;
-        }
-
-        private string[] GetTimesForArrivalMovement(string timeData)
-        {
-            string touchdownTime = string.Empty;
-            string onblockTime = string.Empty;
-            if (timeData != null)
-            {
-                string[] splitTimeData = timeData.Split("/",StringSplitOptions.RemoveEmptyEntries);
-                touchdownTime = splitTimeData[0].Remove(0, 2);
-                onblockTime = splitTimeData[1];
-
-            }
-            string[] result = new string[]
-            {
-                touchdownTime,
-                onblockTime
-            };
             return result;
         }
 

@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Text;
 using BMS.Data;
 using BMS.Data.Models;
+using BMS.Data.Models.Flights;
 using BMS.Data.Models.Messages;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -57,6 +58,7 @@ namespace WebApplication1.Data
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             builder.Entity<Message>().ToTable("Messages");
+            builder.Entity<Flight>().ToTable("Flights");
 
             base.OnModelCreating(builder);
         }
