@@ -44,12 +44,12 @@
 
                 if (!result.Succeeded)
                 {
-                    return this.RedirectToAction("Landing", "Home");
+                    return this.RedirectToAction("Landing", userInputModel);
                 }
            
             }
 
-            return this.RedirectToAction("Index", "Home");
+            return this.RedirectToAction("Landing", "Home");
         }
 
         [HttpPost]

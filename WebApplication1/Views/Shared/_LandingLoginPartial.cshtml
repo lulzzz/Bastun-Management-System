@@ -2,7 +2,7 @@
 @model  LoginUserInputModel
 <div class="col">
     <button id="loginButton" type="button" class="btn btn-lg w-100" onclick="showHideLoginForm()">Display</button>
-    <form id="loginForm" class="form-group">
+    <form id="loginForm" class="form-group" asp-controller="Account" asp-action="Login">
         <div class="form-group">
             <input asp-for="@Model.UserName" class="form-control w-75" placeholder="Username..."/>
             <span asp-validation-for="@Model.UserName"></span>
