@@ -69,10 +69,10 @@
             var parsedTime2 = TimeSpan.Parse(time2);
 
 
-            var time1ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds)
+            var time1ParsedToDateTime = new DateTime(outbound.STD.Year, outbound.STD.Month, outbound.STD.Day, parsedTime1.Hours, parsedTime1.Minutes, parsedTime1.Seconds)
                 .ToUniversalTime();
 
-            var time2ParsedToDateTime = new DateTime(flightYear, flightMonth, flightDay, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds)
+            var time2ParsedToDateTime = new DateTime(outbound.STD.Year, outbound.STD.Month, outbound.STD.Day, parsedTime2.Hours, parsedTime2.Minutes, parsedTime2.Seconds)
                 .ToUniversalTime();
 
 

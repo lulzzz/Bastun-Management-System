@@ -12,7 +12,7 @@
     using System.Threading.Tasks;
     public class ParserArrMVTUtility : IParserMovementUtility
     {
-        private readonly Regex MovementFlightData = new Regex(FlightInfoConstants.IsFlightInfoValid);
+        public Regex MovementFlightData { get; set; } = new Regex(FlightInfoConstants.IsFlightInfoValid);
 
         public string[] GetMovementFlightData(string flightData)
         {
