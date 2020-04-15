@@ -1,6 +1,7 @@
 ﻿namespace BMS.Services
 {
     using BMS.Data.Models;
+    using BMS.Data.Models.Contracts.FlightContracts;
     using BMS.Services.Contracts;
     using System;
     using System.Collections.Generic;
@@ -27,7 +28,6 @@
                 {
                     InboundFlight = inboundFlight,
                     InboundFlightId = inboundFlight.FlightId,
-
                 };
 
                 listOfContainers.Add(container);
@@ -38,16 +38,17 @@
             return listOfContainers;
         }
 
-        public List<Container> AddContainersToOutboundFlight(OutboundFlight outbond, int amountOfOutboundContainersToCreate)
+        public List<Container> AddContainersToOutboundFlight(OutboundFlight outbound, int amountOfOutboundContainersToCreate)
         {
             var listOfContainers = new List<Container>();
 
             for (int i = 0; i < amountOfOutboundContainersToCreate; i++)
             {
+               
                 var container = new Container
                 {
-                    OutboundFlight = outbond,
-                    OutboundFlightId = outbond.FlightId
+                    OutboundFlight = outbound,
+                    OutboundFlightId = outbound.FlightId
                 };
                 listOfContainers.Add(container);
                 this.dbContext.Containers.Add(container);

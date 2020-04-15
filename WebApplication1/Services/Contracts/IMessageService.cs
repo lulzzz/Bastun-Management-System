@@ -2,6 +2,7 @@
 {
     using BMS.Data.DTO;
     using BMS.Data.Models;
+    using BMS.Data.Models.Contracts.FlightContracts;
     using System;
     using System.Collections.Generic;
     using System.Linq;

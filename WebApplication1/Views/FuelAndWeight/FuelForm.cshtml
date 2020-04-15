@@ -1,57 +1,64 @@
 ﻿@{ 
     this.ViewData["Title"] = "Add fuel form";
 }
-
 @using BMS.Models
 @model FuelFormInputModel
-<div class="col">
-    <form asp-controller="FuelAndWeight" asp-action="RegisterFuelForm">
-        <div class="form-group">
-            <label for="flightNumber">Flight Number:</label>
-            <input type="text"class="form-control w-100" />
+<form asp-controller="FuelAndWeight" asp-action="RegisterFuelForm">
+    <div class="form-row">
+        <div class="col form-group">
+            <input asp-for="@Model.FlightNumber" class="form-control" placeholder="Flight number" />
+            <span asp-validation-for="@Model.FlightNumber"></span>
         </div>
-        <div class="form-group">
-            <label for="a/cRegistration">Registration:</label>
-            <input type="text"  class="form-control w-100"/>
+    </div>
+    <div class="form-row">
+        <div class="col form-group">
+            <input asp-for="@Model.Registration" class="form-control" placeholder="Registration" />
+            <span asp-validation-for="@Model.Registration"></span>
         </div>
-        <div class="form-group">
-            <label for="date">Date:</label>
-            <input type="datetime" class="form-control w-100" />
+        <div class="col form-group">
+            <input asp-for="@Model.Date" class="form-control" placeholder="Date" />
+            <span asp-validation-for="@Model.Date"></span>
         </div>
-        <div class="form-group">
-            <label for="picName">PIC:</label>
-            <input type="text" class="form-control w-100"/>
+    </div>
+    <div class="form-row">
+        <div class="col form-group">
+            <input asp-for="@Model.PilotInCommand" class="form-control" placeholder="Pilot in Command" />
+            <span asp-validation-for="@Model.PilotInCommand"></span>
         </div>
-        <div class="form-group">
-            <label for="crewConfiguration">
-                 Crew Configuration:
-            </label>
-            <input type="text" class="form-control w-100"/>
+        <div class="col form-group">
+            <input asp-for="@Model.CrewConfiguration" class="form-control" placeholder="Crew configuration" />
+            <span asp-validation-for="@Model.CrewConfiguration"></span>
         </div>
-        <div class="form-group">
-            <label for="taxiFuel">Taxi:</label>
-            <input type="number" class="form-control w-100" />
+    </div>
+    <div class="form-row">
+        <div class="col form-group">
+            <input asp-for="@Model.TaxiFuel" class="form-control" placeholder="Taxi fuel"/>
+            <span asp-validation-for="@Model.TaxiFuel"></span>
         </div>
-        <div class="form-group">
-            <label for="blockFuel">Block:</label>
-            <input type="number" class="form-control w-100" />
+        <div class="col form-group">
+            <input asp-for="@Model.BlockFuel" class="form-control" placeholder="Block fuel"/>
+            <span asp-validation-for="@Model.BlockFuel"></span>
         </div>
-        <div class="form-group">
-            <label for="tripFuel">Trip:</label>
-            <input type="number" class="form-control w-100" />
+    </div>
+    <div class="form-row">
+        <div class="col form-group">
+            <input asp-for="@Model.TripFuel" class="form-control" placeholder="Trip fuel" />
+            <span asp-validation-for="@Model.TripFuel"></span>
         </div>
-        <div class="form-group">
-            <label>Takeoff fuel:</label>
-            <input type="number" class="form-control w-100" />
+        <div class="col form-group">
+            <input asp-for="@Model.TakeoffFuel" class="form-control" placeholder="Takeoff fuel"/>
+            <span asp-validation-for="@Model.TakeoffFuel"></span>
         </div>
-        <div class="form-group">
-            <label for="dryOperatingWeight">DOW:</label>
-            <input type="text" class="form-control w-100" />
+    </div>
+    <div class="form-row">
+        <div class="col form-group">
+            <input asp-for="@Model.DryOperatingWeight" class="form-control" placeholder="Dry operating weight"/>
+            <span asp-validation-for="@Model.DryOperatingWeight"></span>
         </div>
-        <div class="form-group">
-            <label for="dryOperatingIndex">DOI:</label>
-            <input type="text" class="form-control w-100" />
+        <div class="col form-group">
+            <input asp-for="@Model.DryOperatingIndex" class="form-control" placeholder="Dry operating index" />
+            <span asp-validation-for="@Model.DryOperatingIndex"></span>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg w-100">Submit</button>
-    </form>
-</div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary w-100">Submit</button>
+</form>
