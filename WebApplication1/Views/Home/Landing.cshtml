@@ -17,20 +17,8 @@
 </div>
 <div class="container-fluid">
    <div class="row">
-       <div class="col">
-           <button id="loginButton"type="button" class="btn btn-primary btn-lg" onclick="showHideRegisterForm()">Show register</button>
-           <div id="loginForm"class="form-group" style="display:none">
-               <label>Register</label>
-               <input type="text" class="form-control" placeholder="Desi koga shte piem kafe?"/>
-           </div>
-       </div>
-       <div class="col">
-           <button id="registerButton" type="button" class="btn btn-primary btn-lg" onclick="showHideLoginForm()">Show login</button>
-           <div id="registerForm" class="form-group" style="display:none">
-               <label>Login</label>
-               <input type="text" class="form-control" placeholder="Maika ti 2" />
-           </div>
-       </div>
+       <partial name="_LandingRegisterPartial"/>
+       <partial name="_LandingLoginPartial"/>
    </div>
 </div>
 
