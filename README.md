@@ -1,2 +1,1 @@
-# BMS
- BMS is  system designed for ground-handling in aviation
+BMS is a detached departure control system for providing ground-handling services in the aviation industry. 
