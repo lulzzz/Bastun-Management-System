@@ -9378,17 +9378,21 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mitko\\.nuget\\packages\\": {}
+    "C:\\Users\\Mitko\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\BMS.csproj",
+      "projectUniqueName": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj",
       "projectName": "BMS",
-      "projectPath": "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\BMS.csproj",
+      "projectPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\BMS.csproj",
       "packagesPath": "C:\\Users\\Mitko\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Mitko\\Documents\\GitHub\\Bastun-Management-System\\WebApplication1\\obj\\",
+      "outputPath": "C:\\Users\\Mitko\\source\\repos\\DMOME\\BMS\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
         "C:\\Users\\Mitko\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -9479,7 +9483,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }

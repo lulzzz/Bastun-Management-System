@@ -34,30 +34,6 @@
         </form>
         <div asp-validation-summary="All"></div>
     </div>
-    <div class="col" style="right:-50px">
-        <button id="loginButton" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px;" onclick="showHideLoginForm()">Display</button>
-        <form id="loginForm" asp-controller="Account" asp-action="Login" style="display:none">
-            <br />
-            <div class=form-group>
-                <label asp-for="@Model.UserName">Username</label>
-                <input asp-for="@Model.UserName" class="form-control" style="width:200px" />
-                <span asp-validation-for="@Model.UserName"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="@Model.Password">Password</label>
-                <input asp-for="@Model.Password" class="form-control" style="width:200px" />
-                <span asp-validation-for="@Model.Password"></span>
-            </div>
-            <div class="form-check">
-                <input type="checkbox" asp-for="@Model.RememberMe" class="form-check-input" />
-                <label class="form-check-label">Remember me?</label>
-                <span asp-validation-for="@Model.RememberMe"></span>
-                <br />
-            </div>
-            <br />
-            <button type="submit" class="btn" style="color:#040e11; background-color:#367585; border-radius:20px; width:200px; font-size:20px">Login</button>
-        </form>
-    </div>
 </div>
 <link rel="stylesheet" href="~/css/coolError.css" />
 <link rel="stylesheet" href="~/css/AnimatePlane.css" />

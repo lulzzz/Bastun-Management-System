@@ -1,10 +1,10 @@
-﻿@{ 
+﻿@{
     this.ViewData["Title"] = "Landing...";
 }
 
 @using Microsoft.AspNetCore.Identity;
 @using BMS.Models.ViewModels.Flights;
-@using BMS.Models; 
+@using BMS.Models;
 @inject SignInManager<IdentityUser> signInManager
 @model UserInputModel
 @if (signInManager.IsSignedIn(User))
@@ -28,12 +28,13 @@
             <tbody>
             </tbody>
         </table>
-    </div>  
+    </div>
 }
 else
 {
-  
+    <br />
+    <h1>You're trying to access a feature that is only available to logged-in members, perhaps you'd like to do so?</h1>
 }
 
 
- 
+

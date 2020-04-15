@@ -63,6 +63,9 @@
                 return this.RedirectToAction("Index", "Home");
             }
 
+            var userId = userManager.GetUserId(HttpContext.User);
+            var userData = await userManager.FindByIdAsync(userId);
+
             var user = await this.userManager.FindByNameAsync(loginUserInputModel.UserName);
 
             if (user != null && await this.userManager.CheckPasswordAsync(user, loginUserInputModel.Password))

@@ -22,6 +22,13 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
+  
+        [HttpGet]
+        public IActionResult Landing()
+        {
+            return this.View();
+        }
+
 
         [HttpGet]
         public IActionResult Index()
