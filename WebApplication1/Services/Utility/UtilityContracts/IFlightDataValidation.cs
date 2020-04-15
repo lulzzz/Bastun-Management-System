@@ -14,8 +14,6 @@
 
         bool IsDepartureMovementFlightDataValid(string[] splitMessageContent);
 
-        bool IsUCMFlightDataValid(string[] splitMessageContent);
-
         bool IsLDMFlightDataValid(string[] splitMessageContent);
 
     }

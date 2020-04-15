@@ -14,16 +14,12 @@
     {
         private readonly IFlightService flightService;
         private readonly IAircraftService aircraftService;
-        private const string _hyphen = "-";
-
-
+ 
         public FlightDataValidation(IFlightService flightService, IAircraftService aircraftService)
         {
             this.flightService = flightService;
             this.aircraftService = aircraftService;
         }
-
-       
    
         private bool IsFlightNumberAndRegistrationValid(string flightNumber, string registration)
         {
@@ -97,7 +93,6 @@
             return true;
         }
 
-    
 
         public bool IsCPMFlightDataValid(string[] splitMessageContent)
         {
@@ -190,11 +185,6 @@
             }
 
            
-        }
-
-        public bool IsUCMFlightDataValid(string[] splitMessageContent)
-        {
-            throw new NotImplementedException();
         }
 
         public bool IsLDMFlightDataValid(string[] splitMessageContent)
