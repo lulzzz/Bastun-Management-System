@@ -149,7 +149,6 @@
                     string date = match.Groups["date"].Value;
                     string station = match.Groups["origin"].Value;
 
-                    var test = MessageValidation.IsFlightInfoNotNullOrEmpty(flightNumber, registration, date, station);
                     if (MessageValidation.IsFlightInfoNotNullOrEmpty(flightNumber, registration,date, station))
                     {
                         if (this.IsFlightNumberAndRegistrationValid(flightNumber, registration))
