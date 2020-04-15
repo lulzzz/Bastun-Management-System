@@ -1,4 +1,4 @@
-﻿namespace BMS.Services.ParserUtility
+﻿namespace BMS.Services.ParserUtility.ParserMovementUtility
 {
     using BMS.Data.Models;
     using BMS.Data.Models.Contracts.FlightContracts;
@@ -12,11 +12,11 @@
     using System.Threading.Tasks;
     public class ParserArrMVTUtility : IParserMovementUtility
     {
-        private readonly Regex movementFlightDataRegex = new Regex(FlightInfoConstants.IsFlightInfoValid);
+        private readonly Regex MovementFlightData = new Regex(FlightInfoConstants.IsFlightInfoValid);
 
         public string[] GetMovementFlightData(string flightData)
         {
-            var flightDataMatch = movementFlightDataRegex.Match(flightData);
+            var flightDataMatch = MovementFlightData.Match(flightData);
             string flightNumber = flightDataMatch.Groups["flt"].Value;
             string registration = flightDataMatch.Groups["reg"].Value;
             string date = flightDataMatch.Groups["date"].Value;
@@ -54,7 +54,7 @@
             return new string[] { firstTimeValid, secondTimeValid };
         }
 
-        public DateTime[] ParseArrivalMovementTimes(string[] times, IInbound inbound)
+        public DateTime[] ParseMovementTimes(string[] times, IFlight inbound)
         {
             var arrOfValidTimes = this.GetValidTimesFormat(times);
             string touchdownTime = arrOfValidTimes[0];
