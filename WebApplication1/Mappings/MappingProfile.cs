@@ -17,6 +17,10 @@ namespace BMS.Mappings
         {
             CreateMap<RegisterUserInputModel, IdentityUser>()
                 .ForMember(dest => dest.UserName, src => src.MapFrom(x => x.UserName));
+
+            CreateMap<FlightInputModel, InboundFlight>();
+
+            CreateMap<FlightInputModel, OutboundFlight>();
                 
             CreateMap<LDMDTO, LoadDistributionMessage>();
 
