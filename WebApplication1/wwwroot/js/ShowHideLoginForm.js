@@ -2,10 +2,10 @@
     let button = document.getElementById('loginButton');
     let form = document.getElementById('loginForm');
 
-    if (button.textContent === 'Show login form') {
-        button.textContent = 'Hide login form';
+    if (button.textContent === 'Display') {
+        button.textContent = 'Hide';
     } else {
-        button.textContent = 'Show login form';
+        button.textContent = 'Display';
     }
 
     if (form.style.display === "none") {

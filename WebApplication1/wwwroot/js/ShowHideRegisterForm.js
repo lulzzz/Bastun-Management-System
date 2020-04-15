@@ -2,10 +2,10 @@
     let displayButton = document.getElementById('registerButton');
     let form = document.getElementById('registerForm');
 
-    if (displayButton.textContent === "Show register") {
+    if (displayButton.textContent === "Display") {
         displayButton.textContent = "Hide";
     } else {
-        displayButton.textContent = "Show register";
+        displayButton.textContent = "Display";
     }
 
     if (form.style.display === "none") {

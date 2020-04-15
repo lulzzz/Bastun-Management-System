@@ -1,20 +1,21 @@
 ﻿@using  BMS.Models;
 @model  LoginUserInputModel
 <div class="col">
-    <button id="loginButton" type="button" class="btn btn-primary btn-lg w-100" onclick="showHideLoginForm()">Show login</button>
+    <button id="loginButton" type="button" class="btn btn-lg w-100" onclick="showHideLoginForm()">Display</button>
     <form id="loginForm" class="form-group">
         <div class="form-group">
-            <label>Username</label>
-            <input asp-for="@Model.UserName" class="form-control"/>
+            <input asp-for="@Model.UserName" class="form-control w-75" placeholder="Username..."/>
+            <span asp-validation-for="@Model.UserName"></span>
         </div>
         <div class="form-group">
-            <label>Password</label>
-            <input asp-for="@Model.Password" class="form-control" />
+            <input asp-for="@Model.Password" class="form-control w-75" placeholder="Password..." />
+            <span asp-validation-for="@Model.Password"></span>
         </div>
         <div class="form-group">
-            <input asp-for="@Model.RememberMe" class="form-check-inline"/>
-            <label class="form-check-inline form-control-lg">Remember me?</label>
+            <input id="rememberMeCheckbox" asp-for="@Model.RememberMe" class="form-check-inline w-auto"/>
+            <label class="form-check-inline">Remember me?</label>
         </div>
-        <button type="submit" class="btn btn-primary btn-lg w-100">Login</button>
+        <button id="loginSubmitButton" type="submit" class="w-100 btn btn-lg">Login</button>
     </form>
 </div>
+<script src="~/js/ShowHideLoginForm.js"></script>

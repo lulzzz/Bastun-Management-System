@@ -1,3 +1,11 @@
-﻿input[type=button], input[type=button]{
-
+﻿button[type=submit] {
+    background-color: #3576CA;
+    border-radius: 24px;
+}
+button[type=button] {
+    background-color: #3576CA;
+    border-radius: 24px;
+}
+#loginSubmitButton {
+   margin-top:-11px;
 }

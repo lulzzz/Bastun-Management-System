@@ -15,6 +15,7 @@
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Password confirmation is required")]
+        [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Passwords do not match!")]
         public string ConfirmPassword { get; set; }
 

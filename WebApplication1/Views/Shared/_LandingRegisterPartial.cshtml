@@ -1,24 +1,21 @@
 ﻿@using BMS.Models;
 @model RegisterUserInputModel
 <div class="col">
-    <button id="registerButton" type="button" class="btn btn-primary btn-lg w-100" onclick="showHideRegisterForm()">Show register</button>
-    <form id="registerForm" class="form-group" style="display:none" asp-controller="Account" asp-action="Register">
+    <button id="registerButton" type="button" class="btn  btn-lg w-100" onclick="showHideRegisterForm()">Display</button>
+    <form id="registerForm" class="form-group"  asp-controller="Account" asp-action="Register">
         <div class="form-group">
-            <label>Username</label>
-            <input asp-for="@Model.UserName" class="form-control" />
+            <input asp-for="@Model.UserName" class="form-control w-75" placeholder="Username..."/>
             <span asp-validation-for="@Model.UserName"></span>
         </div>
         <div class="form-group">
-            <label>Password</label>
-            <input asp-for="@Model.Password" class="form-control" />
+            <input asp-for="@Model.Password" class="form-control w-75" placeholder="Password..."/>
             <span asp-validation-for="@Model.Password"></span>
         </div>
         <div class="form-group">
-            <label>Confirm password</label>
-            <input asp-for="@Model.ConfirmPassword" class="form-control" />
+            <input asp-for="@Model.ConfirmPassword" class="form-control w-75" placeholder="Password confirmation..."/>
             <span asp-validation-for="@Model.ConfirmPassword"></span>
         </div>
-        <button type="submit" class="btn btn-lg btn-primary w-100" asp-controller="Account" asp-action="Register">Register</button>
+        <button type="submit" class="btn btn-lg w-100" asp-controller="Account" asp-action="Register">Register</button>
     </form>
-
 </div>
+<script src="~/js/ShowHideRegisterForm.js"></script>
