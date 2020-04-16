@@ -42,13 +42,22 @@ namespace BMS.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Username is required")]
+            [Display(Name =  "Username")]
+            public string UserName { get; set; }
+
+            [Required(ErrorMessage = "Email is required")]
             [EmailAddress]
             public string Email { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Password is required")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
+
+            [Required(ErrorMessage = "Password confirmation is required!")]
+            [DataType(DataType.Password)]
+            [Compare("Password", ErrorMessage = "Passwords do not match")]
+            public string ConfirmPassword { get; set; }
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }

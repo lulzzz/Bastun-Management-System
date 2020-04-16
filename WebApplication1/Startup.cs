@@ -20,6 +20,7 @@ using BMS.Services.Utility;
 using BMS.Services.ParserUtility.UtilityContracts;
 using BMS.Services.ParserUtility;
 using BMS.Services.ParserUtility.ParserMovementUtility;
+using Microsoft.AspNetCore.Http;
 
 namespace WebApplication1
 {
@@ -63,13 +64,16 @@ namespace WebApplication1
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 10;
             });
-            services.ConfigureApplicationCookie(options =>
-            {
-                options.LoginPath = "/Account/Login";
-            });
+            services.AddAuthentication()
+                .AddCookie(options =>
+                {
+                    options.LoginPath = "/Identity/Account/Login";
+                    options.LogoutPath = "/Identity/Account/Logout";
+                });
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddRazorPages();
+                
             services.AddAutoMapper(typeof(Startup));
        }
 
@@ -96,10 +100,11 @@ namespace WebApplication1
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages();
+                   
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Landing}/{id?}");
-                endpoints.MapRazorPages();
+                    pattern: "{controller=Home}/{action=Index}/{id?}");    
             });
         }
     }

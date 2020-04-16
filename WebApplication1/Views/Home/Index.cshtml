@@ -7,7 +7,7 @@
 @using BMS.Models;
 @inject SignInManager<IdentityUser> signInManager
 
-@if (signInManager.IsSignedIn(User))
+@if (this.signInManager.IsSignedIn(User))
 {
     <div class="col">
         <h1 class="text-center">Daily aircraft movements:</h1>
@@ -30,11 +30,8 @@
         </table>
     </div>
 }
-else
-{
-    <br />
-    <h1>You're trying to access a feature that is only available to logged-in members, perhaps you'd like to do so?</h1>
-}
+
+
 
 
 

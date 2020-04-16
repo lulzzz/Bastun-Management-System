@@ -12,6 +12,7 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -21,14 +22,6 @@ namespace WebApplication1.Controllers
         {
             _logger = logger;
         }
-
-  
-        [HttpGet]
-        public IActionResult Landing()
-        {
-            return this.View();
-        }
-
 
         [HttpGet]
         public IActionResult Index()

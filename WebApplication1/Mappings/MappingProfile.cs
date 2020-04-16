@@ -17,8 +17,7 @@ namespace BMS.Mappings
     {
         public MappingProfile()
         {
-            CreateMap<RegisterUserInputModel, IdentityUser>()
-                .ForMember(dest => dest.UserName, src => src.MapFrom(x => x.UserName));
+  
 
             CreateMap<FlightInputModel, InboundFlight>();
 
