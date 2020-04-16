@@ -4,15 +4,19 @@
 <h3 class="text-center">Login</h3>
 <div class="row justify-content-center">
     <div class="col-md-4">
-            <form>
-                <div asp-validation-summary="All" class="text-danger"></div>
+            <form asp-area="Identity" asp-page="/Account/Login" >
+                <div asp-validation-summary="ModelOnly"></div>
                 <div class="form-group">
                     <input asp-for="Input.UserName" class="form-control" placeholder="Username"/>
-                    <span asp-validation-for="Input.UserName" class="text-danger"></span>
+                    <span asp-validation-for="Input.UserName"></span>
                 </div>
                 <div class="form-group">
                     <input asp-for="Input.Password" class="form-control" placeholder="Password"/>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <span asp-validation-for="Input.Password"></span>
+                </div>
+                <div class="form-group">
+                    <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Password confirmation"/>
+                    <span asp-validation-for="Input.Password"></span>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
@@ -26,7 +30,15 @@
                     <button type="submit" class="btn btn-primary w-100">Log in</button>
                 </div>
                 <div class="form-group">
-                  <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    <p>
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                    <p>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
                 </div>
             </form>
     </div>

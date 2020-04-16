@@ -45,21 +45,23 @@ namespace BMS.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
+            [Required(ErrorMessage = "Username is required!")]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "Password is required")]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Required(ErrorMessage = "Password confirmation is required")]
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "Password confirmation is not the same as password")]
             public string ConfirmPassword { get; set; }
+
+            [DataType(DataType.EmailAddress)]
+            [EmailAddress]
+            public string Email { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -74,7 +76,7 @@ namespace BMS.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email }; 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
