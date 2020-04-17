@@ -23,6 +23,13 @@ namespace WebApplication1.Controllers
             return this.View();
         }
 
+        [HttpPost]
+        public IActionResult FileLoadingInstruction()
+        {
+
+            return this.Ok();
+        }
+
         [HttpGet]
         public IActionResult PAXManifest()
         {
@@ -33,6 +40,13 @@ namespace WebApplication1.Controllers
         public IActionResult DepartureControl()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult Depart()
+        {
+
+            return this.Ok();
         }
     }
 }

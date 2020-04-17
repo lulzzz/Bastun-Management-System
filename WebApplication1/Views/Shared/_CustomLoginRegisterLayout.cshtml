@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@this.ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/coolError.css" />
+    <link rel="stylesheet" href="~/css/AnimatePlane.css"/>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+   
+</head>
+<body>
+    <div id="sky">
+        <div id="cloud1" class="cloud"></div>
+        <div id="cloud2" class="cloud"></div>
+        <div id="cloud3" class="cloud"></div>
+        <div id="cloud4" class="cloud"></div>
+        <div id="cloud5" class="cloud"></div>
+        <div id="cloud6" class="cloud"></div>
+        <div id="cloud7" class="cloud"></div>
+        <div id="aeroplane"></div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts",false)
+</body>
+</html>

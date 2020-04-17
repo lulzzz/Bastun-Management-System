@@ -419,6 +419,7 @@ C:\Users\Mitko\Documents\GitHub\Bastun-Management-System\WebApplication1\obj\Deb
 C:\Users\Mitko\Documents\GitHub\Bastun-Management-System\WebApplication1\obj\Debug\netcoreapp3.1\staticwebassets\BMS.StaticWebAssets.xml
 C:\Users\Mitko\Documents\GitHub\Bastun-Management-System\WebApplication1\obj\Debug\netcoreapp3.1\BMS.genruntimeconfig.cache
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Home\Landing.cshtml.g.cs
+C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_CustomLoginRegisterLayout.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\AccessDenied.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Login.cshtml.g.cs
 C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\Logout.cshtml.g.cs

@@ -59,9 +59,6 @@ namespace BMS.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "Password confirmation is not the same as password")]
             public string ConfirmPassword { get; set; }
 
-            [DataType(DataType.EmailAddress)]
-            [EmailAddress]
-            public string Email { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -76,7 +73,7 @@ namespace BMS.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.UserName, Email = Input.Email }; 
+                var user = new IdentityUser { UserName = Input.UserName }; 
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -90,18 +87,9 @@ namespace BMS.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email });
-                    }
-                    else
-                    {
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return LocalRedirect(returnUrl);
-                    }
+         
                 }
                 foreach (var error in result.Errors)
                 {
