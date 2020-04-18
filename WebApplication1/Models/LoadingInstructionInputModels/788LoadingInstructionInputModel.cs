@@ -7,6 +7,18 @@ namespace BMS.Models.LoadingInstructionInputModels
 {
     public class _788LoadingInstructionInputModel
     {
+
+        public _788LoadingInstructionInputModel()
+        {
+            this.HoldOneLeft = new List<string>();
+            this.HoldOneRight = new List<string>();
+            this.HoldTwoLeft = new List<string>();
+            this.HoldTwoRight = new List<string>();
+            this.HoldThreeLeft = new List<string>();
+            this.HoldFourLeft = new List<string>();
+            this.HoldFourRight = new List<string>();
+        }
+
         public string FlightNumber { get; set; }
 
         public ICollection<string> HoldOneLeft { get; set; }
@@ -17,7 +29,15 @@ namespace BMS.Models.LoadingInstructionInputModels
 
         public ICollection<string> HoldTwoRight { get; set; }
 
-      
+        public ICollection<string> HoldThreeLeft { get; set; }
+
+        public ICollection<string> HoldThreeRight { get; set; }
+
+        public ICollection<string> HoldFourLeft { get; set; }
+
+        public ICollection<string> HoldFourRight { get; set; }
+
+
 
     }
 }

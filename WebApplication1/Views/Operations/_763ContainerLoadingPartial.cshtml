@@ -1,0 +1,59 @@
+﻿@using BMS.Models.LoadingInstructionInputModels
+@model _763LoadingInstructionInputModel
+<div class="col">
+    <form asp-controller="Operations" asp-action="File763ContainerLoadingInstruction" >
+        <div class="form-row">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span>Hold 1 Positions</span>
+                    <select class="selectpicker">
+                    @for (int i = 1; i <= 4; i++)
+                    {
+                        <option>1@{@i}L</option>
+                    }
+                    </select>
+                </div>
+            </div>
+        </div>
+       <div class="form-row">
+           <div class="input-group">
+               <div class="input-group-prepend">
+                   <span>Hold 2 Positions</span>
+                   <select class="selectpicker">
+                       @for (int i = 1; i <= 4; i++)
+                       {
+                           <option>2@{@i}L</option>
+                       }
+                   </select>
+               </div>
+           </div>
+       </div>
+        <div class="form-row">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span>Hold 3 Positions</span>
+                    <select class="selectpicker">
+                     @for (int i = 1; i <= 4; i++)
+                     {
+                         <option>3@{@i}L</option>
+                     }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span>Hold 4 Positions</span>
+                    <select class="selectpicker">
+                    @for (int i = 1; i <= 3; i++)
+                    {
+                        <option>4@{@i}L</option>
+                    }
+                    </select>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-block">Create loading instruction</button>
+    </form>
+</div>

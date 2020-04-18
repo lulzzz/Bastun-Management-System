@@ -1,35 +1,84 @@
 ﻿@using BMS.Models.LoadingInstructionInputModels
 @model _788LoadingInstructionInputModel
 <div class="col">
-    <form asp-controller="Operations" asp-action="File788ContainerLoadingInstruction">
+    <form asp-controller="Operations" asp-action="File788ContainerLoadingInstruction">  
         <div class="form-row w-50">
-            <div class="form-group col">
-                <input asp-for="@Model.FlightNumber" class="form-control" placeholder="Flight number" />
-                <span asp-validation-for="@Model.FlightNumber"></span>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 1 Positions L/R</span>
+                    <select asp-for="@Model.HoldOneLeft" class="selectpicker">
+                        @for (int i = 1; i <= 4; i++)
+                        {
+                            <option>1@{@i}L</option>
+                        }
+                    </select>
+                    <select asp-for="@Model.HoldOneRight" class="selectpicker">
+                        @for (int i = 1; i <= 4; i++)
+                        {
+                            <option>1@{@i}R</option>
+                        }
+                    </select>
+                </div>
             </div>
         </div>
         <div class="form-row w-50">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Hold One Positions L/R</span>
-                    <select asp-for="@Model.HoldOneLeft" class="selectpicker" multiple>
-                        <option>11L</option>
-                        <option>12L</option>
-                        <option>13L</option>
-                        <option>14L</option>
+                    <span class="input-group-text">Hold 2 Positions L/R</span>
+                    <select asp-for="@Model.HoldTwoLeft" class="selectpicker">
+                            @for (int i = 1; i <= 4; i++)
+                            {
+                                <option>2@{@i}L</option>
+                            }
                     </select>
-                    <select asp-for="@Model.HoldOneRight" class="selectpicker" multiple>
-                        <option>11R</option>
-                        <option>12R</option>
-                        <option>13R</option>
-                        <option>14R</option>
+                    <select asp-for="@Model.HoldTwoRight" class="selectpicker">
+                        @for (int i = 1; i <= 4; i++)
+                        {
+                            <option>2@{@i}R</option>
+                        }
                     </select>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn-primary btn-block w-100">Create loading instruction</button>
+        <div class="form-row w-50">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 3 Positions L/R</span>
+                    <select asp-for="@Model.HoldThreeLeft" class="selectpicker">
+                        @for (int i = 1; i <= 4; i++)
+                        {
+                            <option>3@{@i}L</option>
+                        }
+                    </select>
+                    <select asp-for="@Model.HoldThreeRight" class="selectpicker">
+                        @for (int i = 1;i <=4;i++)
+                        {
+                            <option>3@{@i}R</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-row w-50">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Hold 4 Positions L/R</span>
+                        <select asp-for="@Model.HoldFourLeft" class="selectpicker">
+                            @for (int i = 1; i <= 4; i++)
+                            {
+                                <option>4@{@i}L</option>
+                            }
+                        </select>
+                        <select asp-for="@Model.HoldFourRight" class="selectpicker">
+                            @for (int i = 1; i <= 4; i++)
+                            {
+                                <option>4@{@i}R</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn-primary btn-block w-50 btn-lg">Create loading instruction</button>
     </form>
 </div>
-<script>
 
-</script>

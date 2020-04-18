@@ -27,7 +27,7 @@
 
 
   <ItemGroup>
-    <Folder Include="GlobalData\LoadConstants\AircraftConstants\" />
+    <Folder Include="GlobalData\LoadConstants\AircraftConstants\ArmAndMoments\" />
   </ItemGroup>
 
 </Project>
