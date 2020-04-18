@@ -5,7 +5,8 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class LIConstants
+    public class LoadingInstructionConstants
+
     {
         public const int HoldOnePieces = 150;
 

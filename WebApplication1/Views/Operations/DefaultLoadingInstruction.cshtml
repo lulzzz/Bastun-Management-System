@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "Create loading instruction";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-controller="Operations" asp-action="DetermineCorrectLoadingInstruction" class="form-inline">
+    <div class="form-row w-25">
+        <div class="input-group">
+            <div class="input-group-prepend">
+               <span class="input-group-text" >Flight number</span>
+            </div>
+            <input class="form-control"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Get loading instruction</button>
+</form>
+

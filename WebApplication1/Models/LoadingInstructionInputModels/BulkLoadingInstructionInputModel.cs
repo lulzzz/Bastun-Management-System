@@ -14,19 +14,19 @@
         [Required(ErrorMessage = "Flight number is required")] 
         public string FlightNumber { get; set; }
 
-        [Range(1, LIConstants.HoldOnePieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldOneCapacityExceeded)]
+        [Range(1, LoadingInstructionConstants.HoldOnePieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldOneCapacityExceeded)]
         public int HoldOne { get; set; }
 
-        [Range(1,LIConstants.HoldTwoPieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldTwoCapacityExceeded)]
+        [Range(1,LoadingInstructionConstants.HoldTwoPieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldTwoCapacityExceeded)]
         public int HoldTwo { get; set; }
 
-        [Range(1, LIConstants.HoldThreePieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldThreeCapacityExceeded)]
+        [Range(1, LoadingInstructionConstants.HoldThreePieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldThreeCapacityExceeded)]
         public int HoldThree { get; set; }
 
-        [Range(1, LIConstants.HoldFourPieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldFourCapacityExceeded)]
+        [Range(1, LoadingInstructionConstants.HoldFourPieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldFourCapacityExceeded)]
         public int HoldFour { get; set; }
 
-        [Range(1, LIConstants.HoldFivePieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldFiveCapacityExceeded)]
+        [Range(1, LoadingInstructionConstants.HoldFivePieces, ErrorMessage = InvalidLoadInstructionErrorMessages.HoldFiveCapacityExceeded)]
         public int HoldFive { get; set; }
     }
 }

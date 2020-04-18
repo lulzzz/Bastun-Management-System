@@ -31,7 +31,7 @@
 
         public bool IsAircraftGoingToBeContainerized(string aircraftType)
         {
-            if (aircraftType == "B763" || aircraftType == "B788" || aircraftType == "B789")
+            if (aircraftType == "B763" || aircraftType == "B788")
             {
                 return true;
             }
@@ -81,6 +81,21 @@
             aircraft.Cabin = cabin;
             aircraft.BaggageHold = baggageHold;
             this.dbContext.SaveChanges();
+        }
+
+        public string IsAircraftOfACertainType(OutboundFlight flight)
+        {
+            string type = string.Empty;
+            if (flight.Aircraft.Type.ToString() == "B763" || flight.Aircraft.Type.ToString() == "B788")
+            {
+                type = type.ToString();
+            }
+            else
+            {
+                return null;
+            }
+            return type;
+           
         }
     }
 }

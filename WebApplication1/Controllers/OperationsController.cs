@@ -1,5 +1,6 @@
 ﻿using BMS.Models;
 using BMS.Models.LoadingInstructionInputModels;
+using BMS.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,6 +13,17 @@ namespace WebApplication1.Controllers
     [Authorize]
     public class OperationsController : Controller
     {
+        private readonly IFlightService flightService;
+        private readonly IAircraftService aircraftService;
+        private readonly ILoadControlService loadControlService;
+
+        public OperationsController(IFlightService flightService, IAircraftService aircraftService, ILoadControlService loadControlService)
+        {
+            this.flightService = flightService;
+            this.aircraftService = aircraftService;
+            this.loadControlService = loadControlService;
+        }
+
 
         [HttpGet]
         public IActionResult Loadsheet()
@@ -20,9 +32,24 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet]
-        public IActionResult LoadingInstruction()
+        public IActionResult DefaultLoadingInstruction()
         {
             return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult DetermineCorrectLoadingInstruction([FromBody]string flightNumber)
+        {
+            var flight = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
+            string type = this.aircraftService.IsAircraftOfACertainType(flight);
+            string correctLoadingInstruction = this.loadControlService.GetCorrectLoadingInstruction(type);
+
+            if (correctLoadingInstruction == null)
+            {
+                this.ModelState.AddModelError(string.Empty, "No valid loading instruction report found!");
+            }
+
+            return this.View(correctLoadingInstruction);
         }
 
         [HttpPost]
