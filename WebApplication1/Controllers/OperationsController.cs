@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BMS.Models;
+using BMS.Models.LoadingInstructionInputModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -24,9 +26,21 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult FileLoadingInstruction()
+        public IActionResult FileBulkLoadingInstruction(BulkLoadingInstructionInputModel loadingInstructionInputModel)
         {
 
+            return this.Ok();
+        }
+
+        [HttpPost]
+        public IActionResult File788ContainerLoadingInstruction(_788LoadingInstructionInputModel loadingInstructionInputModel)
+        {
+            return this.Ok();
+        }
+
+        [HttpPost]
+        public IActionResult File763ContainerLoadingInstruction(_763LoadingInstructionInputModel loadingInstructionInputModel)
+        {
             return this.Ok();
         }
 

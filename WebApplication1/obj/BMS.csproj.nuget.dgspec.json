@@ -86,6 +86,14 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.2, )"
+            },
+            "bootstrap-select": {
+              "target": "Package",
+              "version": "[1.13.14, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.5.0.1, )"
             }
           },
           "imports": [

@@ -7,7 +7,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using System.Threading.Tasks;
-    public class LoadingInstructionInputModel
+    public class BulkLoadingInstructionInputModel
     {
         //Dictates how many pieces of baggage are supposed to be in each baggage hold
 

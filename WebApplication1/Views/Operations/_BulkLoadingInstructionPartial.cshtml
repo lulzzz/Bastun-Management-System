@@ -1,0 +1,61 @@
+﻿@using BMS.Models
+@model BulkLoadingInstructionInputModel
+<div class="col">
+    <form asp-controller="Operations" asp-action="FileBulkLoadingInstruction" class="justify-content-start">
+        <div class="form-row w-50">
+            <div id="flightNumberDiv" class="form-group col">
+                <input asp-for="@Model.FlightNumber" class="form-control" placeholder="Flight number" />
+                <span asp-validation-for="@Model.FlightNumber"></span>
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 1</span>
+                </div>
+                <input asp-for="@Model.HoldOne" class="form-control" placeholder="Hold one pieces" />
+                <span asp-validation-for="@Model.HoldOne"></span>
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 2</span>
+                </div>
+                <input asp-for="@Model.HoldTwo" class="form-control" placeholder="Hold two pieces" />
+                <span asp-validation-for="@Model.HoldTwo"></span>
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 3</span>
+                </div>
+                <input asp-for="@Model.HoldThree" class="form-control w-25" placeholder="Hold three pieces" />
+                <span asp-validation-for="@Model.HoldThree"></span>
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 4</span>
+                </div>
+                <input asp-for="@Model.HoldFour" class="form-control w-25" placeholder="Hold four pieces" />
+                <span asp-validation-for="@Model.HoldFour"></span>
+            </div>
+        </div>
+        <div class="form-group row w-50">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Hold 5</span>
+                </div>
+                <input asp-for="@Model.HoldFive" class="form-control w-50" placeholder="Hold five pieces" />
+                <span asp-validation-for="@Model.HoldFive"></span>
+            </div>
+        </div>
+        <button id="loadInstructionButton" type="submit" class="btn btn-primary btn-block w-50">Create loading instruction</button>
+    </form>
+    <form>
+    </form>
+    <link rel="stylesheet" href="~/css/SetLoadingInstructionDivAndButtonCorrectly.css" />
+</div>
