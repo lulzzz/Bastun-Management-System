@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public IActionResult DetermineCorrectLoadingInstruction([FromBody]string flightNumber)
+        public IActionResult DetermineCorrectLoadingInstruction(string flightNumber)
         {
             var flight = this.flightService.GetOutboundFlightByFlightNumber(flightNumber);
             string type = this.aircraftService.IsAircraftOfACertainType(flight);

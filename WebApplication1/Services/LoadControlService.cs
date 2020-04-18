@@ -28,7 +28,7 @@
             if (aircraftType == "B763" || aircraftType == "B788")
             {
                 aircraftType = aircraftType.Remove(0, 1);
-                correctLoadingInstructionName = $"_{aircraftType}ContainerLoadingPartial.cshtml";
+                correctLoadingInstructionName = $"_{aircraftType}ContainerLoadingPartial";
             } 
             else
             {

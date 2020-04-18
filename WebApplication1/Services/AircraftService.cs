@@ -88,7 +88,7 @@
             string type = string.Empty;
             if (flight.Aircraft.Type.ToString() == "B763" || flight.Aircraft.Type.ToString() == "B788")
             {
-                type = type.ToString();
+                type = flight.Aircraft.Type.ToString();
             }
             else
             {
