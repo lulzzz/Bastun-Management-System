@@ -19,6 +19,30 @@ namespace BMS.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("BMS.Data.LoadingInstructions.LoadingInstruction", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OutboundFlightId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OutboundFlightId")
+                        .IsUnique();
+
+                    b.ToTable("LoadingInstructions");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("LoadingInstruction");
+                });
+
             modelBuilder.Entity("BMS.Data.Models.Aircraft", b =>
                 {
                     b.Property<int>("AircraftId")
@@ -655,6 +679,59 @@ namespace BMS.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("BMS.Data.LoadingInstructions.BulkLoadingInstruction", b =>
+                {
+                    b.HasBaseType("BMS.Data.LoadingInstructions.LoadingInstruction");
+
+                    b.Property<int>("HoldFivePieces")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldFourPieces")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldOnePieces")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldThreePieces")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldTwoPieces")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("BulkLoadingInstruction");
+                });
+
+            modelBuilder.Entity("BMS.Data.LoadingInstructions.ContainerLoadingInstruction", b =>
+                {
+                    b.HasBaseType("BMS.Data.LoadingInstructions.LoadingInstruction");
+
+                    b.Property<int>("HoldFourLeftContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldFourRightContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldOneLeftContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldOneRightContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldThreeLeftContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldThreeRightContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldTwoLeftContainerCount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoldTwoRightContainerCount")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("ContainerLoadingInstruction");
+                });
+
             modelBuilder.Entity("BMS.Data.Models.InboundFlight", b =>
                 {
                     b.HasBaseType("BMS.Data.Models.Flights.Flight");
@@ -691,6 +768,9 @@ namespace BMS.Migrations
 
                     b.Property<bool>("IsDeparted")
                         .HasColumnType("bit");
+
+                    b.Property<int>("LoadingInstructionId")
+                        .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("OutboundFlight");
                 });
@@ -755,6 +835,15 @@ namespace BMS.Migrations
                         .HasColumnType("int");
 
                     b.HasDiscriminator().HasValue("LoadDistributionMessage");
+                });
+
+            modelBuilder.Entity("BMS.Data.LoadingInstructions.LoadingInstruction", b =>
+                {
+                    b.HasOne("BMS.Data.Models.OutboundFlight", "OutboundFlight")
+                        .WithOne("LoadingInstruction")
+                        .HasForeignKey("BMS.Data.LoadingInstructions.LoadingInstruction", "OutboundFlightId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BMS.Data.Models.Aircraft", b =>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using BMS.Data;
+using BMS.Data.LoadingInstructions;
 using BMS.Data.Models;
 using BMS.Data.Models.Flights;
 using BMS.Data.Models.Messages;
@@ -43,6 +44,10 @@ namespace WebApplication1.Data
 
         public DbSet<Suitcase> Suitcases { get; set; }
 
+        public DbSet<ContainerLoadingInstruction> ContainerLoadingInstructions { get; set; }
+
+        public DbSet<BulkLoadingInstruction> BulkLoadingInstructions { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -59,6 +64,7 @@ namespace WebApplication1.Data
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             builder.Entity<Message>().ToTable("Messages");
             builder.Entity<Flight>().ToTable("Flights");
+            builder.Entity<LoadingInstruction>().ToTable("LoadingInstructions");
 
             base.OnModelCreating(builder);
         }

@@ -1,5 +1,6 @@
 ﻿namespace BMS.Data.Models
 {
+    using BMS.Data.LoadingInstructions;
     using BMS.Data.Models.Contracts.FlightContracts;
     using BMS.Data.Models.Flights;
     using BMS.Data.Models.Messages;
@@ -41,5 +42,9 @@
         public int BookedPAX { get; set; }
 
         public bool IsDeparted { get; set; }
+
+        public int LoadingInstructionId { get; set; }
+
+        public virtual LoadingInstruction? LoadingInstruction { get; set; }
     }
 }
