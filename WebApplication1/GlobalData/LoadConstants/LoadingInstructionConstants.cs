@@ -17,5 +17,7 @@
         public const int HoldFourPieces = 100;
 
         public const int HoldFivePieces = 50;
+
+        public const string RequiredFlightNumber = "Flight number is required";
     }
 }
