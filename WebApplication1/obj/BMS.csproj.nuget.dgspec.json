@@ -87,6 +87,10 @@
               "target": "Package",
               "version": "[3.1.2, )"
             },
+            "Wkhtmltopdf.NetCore": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "bootstrap-select": {
               "target": "Package",
               "version": "[1.13.14, )"
@@ -94,6 +98,10 @@
             "jQuery": {
               "target": "Package",
               "version": "[3.5.0.1, )"
+            },
+            "wkhtmltopdf.x64": {
+              "target": "Package",
+              "version": "[0.12.5, )"
             }
           },
           "imports": [

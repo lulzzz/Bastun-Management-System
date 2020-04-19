@@ -21,6 +21,7 @@ using BMS.Services.ParserUtility.UtilityContracts;
 using BMS.Services.ParserUtility;
 using BMS.Services.ParserUtility.ParserMovementUtility;
 using Microsoft.AspNetCore.Http;
+using Wkhtmltopdf.NetCore;
 
 namespace WebApplication1
 {
@@ -73,8 +74,8 @@ namespace WebApplication1
             services.AddControllersWithViews();
             services.AddMvc();
             services.AddRazorPages();
-                
             services.AddAutoMapper(typeof(Startup));
+            services.AddWkhtmltopdf(@"C:\Users\Mitko\source\repos\DMOME\BMS\WebApplication1\wkhtmltopdf\");
        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

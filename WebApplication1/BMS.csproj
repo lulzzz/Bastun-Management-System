@@ -23,6 +23,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Wkhtmltopdf.NetCore" Version="3.0.0" />
+    <PackageReference Include="wkhtmltopdf.x64" Version="0.12.5" />
   </ItemGroup>
 
 
